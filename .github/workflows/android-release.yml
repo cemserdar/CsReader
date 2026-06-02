@@ -13,18 +13,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 1. Java 17 Kurulumu (Gereksiz cache kapatıldı)
+      # 1. Java 17 Kurulumu (Hata veren cache parametresi tamamen kaldırıldı)
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
-          cache: false
 
-      # 2. Node.js Kurulumu (Hata veren cache kapatıldı)
+      # 2. Node.js Kurulumu (Hata riski taşımaması için cache parametresi tamamen kaldırıldı)
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: false
 
       # 3. Bağımlılıkların Temiz Kurulumu
       - name: Install Dependencies
