@@ -2,9 +2,9 @@ name: Build Android Release
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master", "main" ] # Repondaki branch adı 'master' olduğu için buraya master ekledik
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master", "main" ]
   workflow_dispatch:
 
 jobs:
@@ -19,45 +19,38 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      # 2. Node.js Kurulumu (React Native derleme araçları için ŞART)
+      # 2. Node.js Kurulumu
       - uses: actions/setup-node@v4
         with:
-          node-version: '20' # Projene uygun stabil LTS Node sürümü
+          node-version: '20'
+          cache: 'npm'
 
-      # 3. Projenin Node Paketlerinin (node_modules) Yüklenmesi
+      # 3. Bağımlılıkların Yüklenmesi
       - name: Install Dependencies
-        run: |
-          if [ -f "yarn.lock" ]; then
-            yarn install --frozen-lockfile
-          else
-            npm ci
-          fi
+        run: npm ci
 
-      # 4. Gradle Çalıştırma İzni
+      # 4. Expo CLI Kurulumu
+      - name: Setup Expo
+        uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          eas-version: latest
+
+      # 5. Olmayan Android Klasörünü Expo ile Otomatik Oluşturma (Prebuild)
+      - name: Expo Prebuild (Generate Android Folder)
+        run: npx expo prebuild --platform android
+
+      # 6. Oluşan gradlew Dosyasına Çalıştırma Yetkisi Verme
       - name: Make Gradle Wrapper Executable
-        run: |
-          if [ -f android/gradlew ]; then
-            chmod +x android/gradlew
-          fi
+        run: chmod +x android/gradlew
 
-      # 5. Wrapper Eksikse Oluşturulması
-      - name: Generate Android Wrapper if Missing
-        run: |
-          cd android
-          if [ ! -f gradlew ]; then
-            echo "Gradlew bulunamadı, oluşturuluyor..."
-            gradle wrapper
-          else
-            echo "Gradle wrapper zaten mevcut."
-          fi
-
-      # 6. APK Derleme
+      # 7. APK Derleme Aşaması
       - name: Build Release APK
         run: |
           cd android
           ./gradlew assembleRelease
 
-      # 7. Çıktıyı Yükleme
+      # 8. Çıktı APK'sını GitHub Ortamına Yükleme
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
