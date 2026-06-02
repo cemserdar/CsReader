@@ -13,25 +13,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 1. Java 21 Kurulumu
+      # 1. Java 17 Kurulumu (Gereksiz cache kapatıldı)
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '17'
+          cache: false
 
-      # 2. Node.js Kurulumu
+      # 2. Node.js Kurulumu (Hata veren cache kapatıldı)
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
+          cache: false
 
-      # 3. Bağımlılıkların Yüklenmesi (Ağ hatalarına karşı dayanıklı yapı)
+      # 3. Bağımlılıkların Temiz Kurulumu
       - name: Install Dependencies
         run: |
           npm config set fetch-retries 5
-          npm config set fetch-retry-mintimeout 20000
-          npm config set fetch-retry-maxtimeout 120000
-          npm ci || npm install --legacy-peer-deps
+          npm install --legacy-peer-deps
 
       # 4. Expo CLI Kurulumu
       - name: Setup Expo
@@ -40,27 +39,27 @@ jobs:
           expo-version: latest
           eas-version: latest
 
-      # 5. Expo Prebuild (Android Klasörünü oluşturma)
+      # 5. Expo Prebuild (Android klasörü üretimi)
       - name: Expo Prebuild
         run: npx expo prebuild --platform android
 
-      # 6. KRİTİK ADIM: Gradle Sürümünü Expo ile Uyumlu Olan 8.8 Sürümüne Çekme
+      # 6. Gradle Sürümünü En Kararlı Expo Yapısına Çekme (8.0.2)
       - name: Downgrade Gradle Version for Expo Compatibility
         run: |
           cd android
-          ./gradlew wrapper --gradle-version 8.8 --distribution-type all
+          ./gradlew wrapper --gradle-version 8.0.2 --distribution-type all
 
-      # 7. Oluşan gradlew Dosyasına Çalıştırma Yetkisi Verme
+      # 7. Çalıştırma İzni Tanımlama
       - name: Make Gradle Wrapper Executable
         run: chmod +x android/gradlew
 
-      # 8. APK Derleme Aşaması
+      # 8. APK Derleme
       - name: Build Release APK
         run: |
           cd android
           ./gradlew assembleRelease
 
-      # 9. Çıktı APK'sını GitHub Ortamına Yükleme
+      # 9. APK Dosyasını Summary Ekranına Çıkarma
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
