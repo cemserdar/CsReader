@@ -30,17 +30,20 @@ jobs:
           yarn config set network-timeout 300000
           yarn install --ignore-engines --non-interactive
 
-      # 4. Expo ve EAS CLI Araçlarının Kurulması (Global olarak kurar ve sisteme tanıtır)
+      # 4. Expo ve EAS CLI Kurulumu (Token eklendi)
       - name: Setup Expo & EAS
         uses: expo/expo-github-action@v8
         with:
           expo-version: latest
           eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
 
-      # 5. DÜZELTİLEN ADIM: 'eas' komutunu doğrudan çalıştırma
+      # 5. KESİN ÇÖZÜM: Android Klasörünü EAS ile Derleme (Token yetkisi eklendi)
       - name: Build Android App via EAS CLI
         run: |
           eas build --platform android --local --non-interactive
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
       # 6. Üretilen APK Çıktısını Yakalama
       - name: Upload Build Artifact
