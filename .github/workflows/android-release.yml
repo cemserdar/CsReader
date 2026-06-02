@@ -13,11 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 1. Java 17 Kurulumu
+      # 1. Java 11 Kurulumu (Eski AGP ve Gradle sürümleri için Java 11 en stabil olanıdır)
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '11'
 
       # 2. Node.js Kurulumu
       - uses: actions/setup-node@v4
@@ -37,8 +37,11 @@ jobs:
           expo-version: latest
           eas-version: latest
 
-      # 5. DÜZELTİLEN ADIM: Kalıntıları temizle ve kendi sürüm şablonuyla prebuild et
-      - name: Expo Prebuild
+      # 5. KRİTİK ADIM: Çevre değişkenleri ile Gradle ve AGP sürümlerini geriye zorlama
+      - name: Expo Prebuild (Forced Legacy Versions)
+        env:
+          EXPO_ANDROID_GRADLE_PLUGIN_VERSION: 7.4.2
+          EXPO_ANDROID_GRADLE_VERSION: 7.6
         run: |
           npx expo prebuild --platform android --clean
 
