@@ -13,38 +13,48 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 1. Java 17 Kurulumu
+      # 1. Java 11 Kurulumu (Eski kararlı Expo/Gradle şablonları için Java 11 en güvenlisidir)
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '11'
 
       # 2. Node.js Kurulumu
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '18'
 
-      # 3. Bağımlılıkların Yüklenmesi
-      - name: Install Dependencies
+      # 3. Bağımlılıkların YARN ile Kurulması (Ağ hatalarına karşı npm yerine çok daha kararlıdır)
+      - name: Install Dependencies via Yarn
         run: |
-          npm config set fetch-retries 5
-          npm install --legacy-peer-deps
+          yarn config set network-timeout 300000
+          yarn install --frozen-lockfile || yarn install --non-interactive
 
-      # 4. Expo ve EAS CLI Kurulumu
-      - name: Setup Expo & EAS
+      # 4. Expo CLI Kurulumu
+      - name: Setup Expo
         uses: expo/expo-github-action@v8
         with:
           expo-version: latest
           eas-version: latest
-          token: ${{ secrets.EXPO_TOKEN }} # İsteğe bağlı: Eğer EAS bulutunu kullansaydın gerekecekti, lokalde boş kalabilir ama kalsın.
 
-      # 5. EAS ile Kurulabilir Android Klasörünü ve Gradle Ayarlarını Otomatik Optimize Etme
-      - name: Build APK Local via EAS
-        run: npx eas build --platform android --local --profile preview --non-interactive
+      # 5. KRİTİK DEĞİŞİKLİK: Eski ve Kararlı Gradle/AGP Şablonu ile Android Klasörü Oluşturma
+      # Bu sayede ':expo' ve ':expo-localization' kütüphaneleri 'release not found' hatası vermez.
+      - name: Expo Prebuild with Stable Template
+        run: npx expo prebuild --platform android --template expo-template-blank
 
-      # 6. Üretilen APK'yı Yakala ve Yükle
+      # 6. Çalıştırma İzni Tanımlama
+      - name: Make Gradle Wrapper Executable
+        run: chmod +x android/gradlew
+
+      # 7. APK Derleme
+      - name: Build Release APK
+        run: |
+          cd android
+          ./gradlew assembleRelease
+
+      # 8. APK Dosyasını Summary Ekranına Çıkarma
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: app-release
-          path: ./*.apk # EAS local build, APK'yı genellikle projenin kök dizinine bırakır
+          path: android/app/build/outputs/apk/release/*.apk
