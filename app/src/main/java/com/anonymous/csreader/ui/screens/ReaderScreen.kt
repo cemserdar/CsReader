@@ -8,6 +8,8 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.webkit.WebChromeClient
 import android.webkit.ConsoleMessage
+import android.webkit.WebResourceRequest
+import android.webkit.WebResourceResponse
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.animation.*
@@ -248,8 +250,9 @@ fun ReaderScreen(
 
     // Load WebView function
     val loadBookInWebView = {
-        // Use file:// URL - directly accessible since we enabled file access in WebView
-        val bookUrl = "file://${book.uri}"
+        // Use virtual URL - directly accessible via custom WebViewClient interception
+        val bookFileName = File(book.uri).name
+        val bookUrl = "https://appassets.androidplatform.net/files/$bookFileName"
         val payload = mapOf(
             "bookPath" to bookUrl,
             "initialCfi" to (book.lastCfi ?: ""),
@@ -381,10 +384,56 @@ fun ReaderScreen(
                                 loadBookInWebView()
                             }
                         }
+
+                        override fun shouldInterceptRequest(
+                            view: WebView?,
+                            request: WebResourceRequest?
+                        ): WebResourceResponse? {
+                            val url = request?.url ?: return null
+                            if (url.scheme == "https" && url.host == "appassets.androidplatform.net") {
+                                val path = url.path ?: ""
+                                if (path.startsWith("/assets/")) {
+                                    val assetName = path.substringAfter("/assets/")
+                                    val mimeType = when {
+                                        assetName.endsWith(".html") -> "text/html"
+                                        assetName.endsWith(".js") -> "text/javascript"
+                                        assetName.endsWith(".css") -> "text/css"
+                                        else -> "application/octet-stream"
+                                    }
+                                    return try {
+                                        val stream = ctx.assets.open(assetName)
+                                        WebResourceResponse(mimeType, "UTF-8", stream)
+                                    } catch (e: Exception) {
+                                        Log.e("ReaderWebView", "Error loading asset: $assetName", e)
+                                        null
+                                    }
+                                } else if (path.startsWith("/files/")) {
+                                    val fileName = path.substringAfter("/files/")
+                                    val file = File(ctx.filesDir, fileName)
+                                    if (file.exists()) {
+                                        val mimeType = if (fileName.endsWith(".epub")) {
+                                            "application/epub+zip"
+                                        } else {
+                                            "application/pdf"
+                                        }
+                                        return try {
+                                            val stream = file.inputStream()
+                                            WebResourceResponse(mimeType, null, stream)
+                                        } catch (e: Exception) {
+                                            Log.e("ReaderWebView", "Error loading book file: $fileName", e)
+                                            null
+                                        }
+                                    } else {
+                                        Log.e("ReaderWebView", "Book file not found: ${file.absolutePath}")
+                                    }
+                                }
+                            }
+                            return super.shouldInterceptRequest(view, request)
+                        }
                     }
 
                     val assetFile = if (book.type == "epub") "reader.html" else "pdf_viewer.html"
-                    loadUrl("file:///android_asset/$assetFile")
+                    loadUrl("https://appassets.androidplatform.net/assets/$assetFile")
                 }
             },
             modifier = Modifier.fillMaxSize(),
