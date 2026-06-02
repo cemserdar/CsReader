@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>CsReader PDF Viewer</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #525659;
+      font-family: system-ui, -apple-system, sans-serif;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    #viewer-container {
+      width: 100vw;
+      height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 0;
+      box-sizing: border-box;
+    }
+
+    .page-container {
+      position: relative;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      background-color: #ffffff;
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+
+    .page-container canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Text Layer for Selection */
+    .textLayer {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      opacity: 0.25;
+      line-height: 1.0;
+      user-select: text;
+      -webkit-user-select: text;
+    }
+
+    .textLayer span {
+      color: transparent;
+      position: absolute;
+      white-space: pre;
+      cursor: text;
+      transform-origin: 0% 0%;
+    }
+
+    /* Spinner for loading pages */
+    .loading-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fafafa;
+      color: #666;
+      font-size: 14px;
+    }
+
+    /* UI Dark/Light/Sepia modes */
+    body.theme-light {
+      background-color: #f3f4f6;
+    }
+
+    body.theme-sepia {
+      background-color: #f4ecd8;
+    }
+
+    body.theme-dark {
+      background-color: #1a1a1a;
+    }
+
+    body.theme-light .page-container {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    body.theme-sepia .page-container {
+      box-shadow: 0 2px 4px rgba(92, 64, 51, 0.15);
+    }
+
+    body.theme-dark .page-container {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+      filter: brightness(0.85);
+    }
+  </style>
+  <script src="pdf.min.js"></script>
+</head>
+
+<body class="theme-light">
+  <div id="viewer-container"></div>
+
+  <script>
+    // Point to local worker
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdf.worker.min.js';
+
+    let pdfDoc = null;
+    let container = document.getElementById("viewer-container");
+    let pagesToRender = new Set();
+    let renderedPages = {}; // pageNum -> { canvas, textLayer }
+    let pageHeights = {}; // pageNum -> height
+    let scale = 1.2;
+    let observer = null;
+    let currentPage = 1;
+    let currentTheme = "light";
+    let currentTransition = "none";
+
+    function sendToRN(type, payload) {
+      if (window.ReactNativeWebView) {
+        window.ReactNativeWebView.postMessage(JSON.stringify({ type, ...payload }));
+      }
+    }
+
+    window.addEventListener("message", function (event) {
+      const message = JSON.parse(event.data);
+      switch (message.action) {
+        case "load":
+          loadPDF(message.bookPath, message.initialPage, message.theme, message.pageTransition);
+          break;
+        case "goToPage":
+          goToPage(message.page);
+          break;
+        case "setTheme":
+          applyTheme(message.theme);
+          break;
+        case "setTransition":
+          applyPageTransition(message.pageTransition);
+          break;
+      }
+    });
+
+    async function loadPDF(pdfPath, initialPage, theme, transition) {
+      try {
+        applyTheme(theme || "light");
+        applyPageTransition(transition || 'none');
+
+        pdfDoc = await pdfjsLib.getDocument(pdfPath).promise;
+        sendToRN("metadata", {
+          totalPages: pdfDoc.numPages,
+          title: pdfPath.substring(pdfPath.lastIndexOf('/') + 1)
+        });
+
+        // Initialize layout and placeholder heights
+        container.innerHTML = "";
+
+        // We will fetch page 1 size to estimate all pages' aspect ratios initially
+        const firstPage = await pdfDoc.getPage(1);
+        const viewport = firstPage.getViewport({ scale: scale });
+        const aspectRatio = viewport.height / viewport.width;
+        const screenWidth = window.innerWidth;
+        const pageContainerWidth = Math.min(screenWidth * 0.95, 600);
+        const estimatedHeight = pageContainerWidth * aspectRatio;
+
+        firstPage.cleanup();
+
+        // Create placeholders for all pages
+        for (let i = 1; i <= pdfDoc.numPages; i++) {
+          createPagePlaceholder(i, pageContainerWidth, estimatedHeight);
+        }
+
+        // Set up IntersectionObserver to lazy load
+        setupObserver();
+
+        // Scroll to initial page
+        if (initialPage && initialPage > 1) {
+          setTimeout(() => goToPage(initialPage), 200);
+        }
+
+        // Listen to scroll to track current page progress
+        setupScrollTracker();
+
+      } catch (error) {
+        sendToRN("error", { message: error.message });
+      }
+    }
+
+    function createPagePlaceholder(pageNum, width, height) {
+      const pageDiv = document.createElement("div");
+      pageDiv.id = `page-container-${pageNum}`;
+      pageDiv.className = "page-container";
+      pageDiv.style.width = `${width}px`;
+      pageDiv.style.height = `${height}px`;
+      pageDiv.setAttribute("data-page", pageNum);
+
+      const placeholder = document.createElement("div");
+      placeholder.className = "loading-placeholder";
+      placeholder.innerText = `Sayfa ${pageNum} yükleniyor...`;
+      pageDiv.appendChild(placeholder);
+
+      container.appendChild(pageDiv);
+      pageHeights[pageNum] = height;
+    }
+
+    function setupObserver() {
+      const options = {
+        root: container,
+        rootMargin: "200px 0px 200px 0px", // Trigger slightly before it scrolls into view
+        threshold: 0.1
+      };
+
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const pageNum = parseInt(entry.target.getAttribute("data-page"));
+          if (entry.isIntersecting) {
+            renderPage(pageNum);
+          } else {
+            unloadPage(pageNum);
+          }
+        });
+      }, options);
+
+      // Observe all placeholders
+      document.querySelectorAll(".page-container").forEach(el => observer.observe(el));
+    }
+
+    async function renderPage(pageNum) {
+      if (renderedPages[pageNum]) return; // Already rendered
+
+      const pageDiv = document.getElementById(`page-container-${pageNum}`);
+      if (!pageDiv) return;
+
+      try {
+        const page = await pdfDoc.getPage(pageNum);
+        const placeholder = pageDiv.querySelector(".loading-placeholder");
+        if (placeholder) placeholder.remove();
+
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        // Calculate scale to fit page container width
+        const width = pageDiv.clientWidth;
+        const unscaledViewport = page.getViewport({ scale: 1 });
+        const calculatedScale = width / unscaledViewport.width;
+        const viewport = page.getViewport({ scale: calculatedScale });
+
+        // Update container height with exact rendered height
+        pageDiv.style.height = `${viewport.height}px`;
+        pageHeights[pageNum] = viewport.height;
+
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        pageDiv.appendChild(canvas);
+
+        // Render PDF page to canvas
+        const renderContext = {
+          canvasContext: ctx,
+          viewport: viewport
+        };
+        await page.render(renderContext).promise;
+
+        // Render Text Layer for Text Selection
+        const textContent = await page.getTextContent();
+        const textLayerDiv = document.createElement("div");
+        textLayerDiv.className = "textLayer";
+        pageDiv.appendChild(textLayerDiv);
+
+        pdfjsLib.renderTextLayer({
+          textContent: textContent,
+          container: textLayerDiv,
+          viewport: viewport,
+          textDivs: []
+        });
+
+        // Track rendered page elements
+        renderedPages[pageNum] = {
+          canvas: canvas,
+          textLayer: textLayerDiv
+        };
+
+        // Text Selection listener for high quality selection
+        textLayerDiv.addEventListener("mouseup", () => handleTextSelection(pageNum));
+        textLayerDiv.addEventListener("touchend", () => handleTextSelection(pageNum));
+
+        page.cleanup();
+
+      } catch (err) {
+        console.error(`Page ${pageNum} render error:`, err);
+      }
+    }
+
+    function unloadPage(pageNum) {
+      if (!renderedPages[pageNum]) return;
+
+      const pageDiv = document.getElementById(`page-container-${pageNum}`);
+      if (!pageDiv) return;
+
+      // Keep page height to prevent jumping layout
+      pageDiv.innerHTML = "";
+
+      const placeholder = document.createElement("div");
+      placeholder.className = "loading-placeholder";
+      placeholder.innerText = `Sayfa ${pageNum} yükleniyor...`;
+      pageDiv.appendChild(placeholder);
+
+      delete renderedPages[pageNum];
+    }
+
+    function handleTextSelection(pageNum) {
+      const selection = window.getSelection();
+      const text = selection.toString().trim();
+      if (text.length > 0) {
+        sendToRN("selected", {
+          page: pageNum,
+          text: text
+        });
+      }
+    }
+
+    function goToPage(pageNum) {
+      const pageDiv = document.getElementById(`page-container-${pageNum}`);
+      if (pageDiv) {
+        if (currentTransition === 'fade') {
+          pageDiv.style.opacity = '0.3';
+          requestAnimationFrame(() => {
+            pageDiv.style.transition = 'opacity 260ms ease';
+            pageDiv.style.opacity = '1';
+          });
+        } else if (currentTransition === 'slide') {
+          pageDiv.style.transform = 'translateX(12px)';
+          pageDiv.style.opacity = '0.5';
+          requestAnimationFrame(() => {
+            pageDiv.style.transition = 'transform 260ms ease, opacity 260ms ease';
+            pageDiv.style.transform = 'translateX(0)';
+            pageDiv.style.opacity = '1';
+          });
+        }
+
+        pageDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+        currentPage = pageNum;
+        sendToRN("pageChange", { page: pageNum });
+      }
+    }
+
+    function applyTheme(theme) {
+      currentTheme = theme;
+      updateBodyClass();
+    }
+
+    function applyPageTransition(transition) {
+      currentTransition = transition || 'none';
+      updateBodyClass();
+    }
+
+    function updateBodyClass() {
+      document.body.className = `theme-${currentTheme} transition-${currentTransition}`;
+    }
+
+    function setupScrollTracker() {
+      let scrollTimeout;
+      container.addEventListener("scroll", () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          // Find which page is in the middle of viewport
+          const containerRect = container.getBoundingClientRect();
+          const midY = containerRect.top + (containerRect.height / 2);
+
+          let middlePage = 1;
+          let minDistance = Infinity;
+
+          document.querySelectorAll(".page-container").forEach(el => {
+            const rect = el.getBoundingClientRect();
+            const elMidY = rect.top + (rect.height / 2);
+            const dist = Math.abs(midY - elMidY);
+            if (dist < minDistance) {
+              minDistance = dist;
+              middlePage = parseInt(el.getAttribute("data-page"));
+            }
+          });
+
+          if (currentPage !== middlePage) {
+            currentPage = middlePage;
+            sendToRN("pageChange", { page: currentPage });
+          }
+        }, 150);
+      });
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>CsReader EPUB Viewer</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #faf8f5;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    #viewer {
+      width: 100vw;
+      height: 100vh;
+      transition: transform 260ms ease, opacity 260ms ease;
+    }
+
+    /* Selection highlight style */
+    .epubjs-hl {
+      fill-opacity: 0.3;
+      mix-blend-mode: multiply;
+      cursor: pointer;
+    }
+
+    .epubjs-hl-yellow {
+      fill: #fef08a;
+      background-color: rgba(254, 240, 138, 0.4);
+    }
+
+    .epubjs-hl-green {
+      fill: #bbf7d0;
+      background-color: rgba(187, 247, 208, 0.4);
+    }
+
+    .epubjs-hl-pink {
+      fill: #fbcfe8;
+      background-color: rgba(251, 207, 232, 0.4);
+    }
+
+    .epubjs-hl-blue {
+      fill: #bfdbfe;
+      background-color: rgba(191, 219, 254, 0.4);
+    }
+
+    .epubjs-hl-underline {
+      fill: transparent;
+      border-bottom: 2px dashed #ef4444;
+    }
+  </style>
+  <script src="epub.min.js"></script>
+</head>
+
+<body>
+  <div id="viewer"></div>
+
+  <script>
+    let book = null;
+    let rendition = null;
+    let currentCfi = "";
+    let currentTheme = "light";
+    let currentTransition = "none";
+    let highlights = {}; // Map of cfiRange -> color
+
+    function sendToRN(type, payload) {
+      if (window.ReactNativeWebView) {
+        window.ReactNativeWebView.postMessage(JSON.stringify({ type, ...payload }));
+      }
+    }
+
+    // Set up message listener from React Native
+    window.addEventListener("message", function (event) {
+      const message = JSON.parse(event.data);
+      switch (message.action) {
+        case "load":
+          loadBook(message.bookPath, message.initialCfi, message.theme, message.fontSize, message.highlights || []);
+          break;
+        case "goToCfi":
+          if (rendition) rendition.display(message.cfi);
+          break;
+        case "prev":
+          if (rendition) rendition.prev();
+          break;
+        case "next":
+          if (rendition) rendition.next();
+          break;
+        case "setTheme":
+          applyTheme(message.theme);
+          break;
+        case "setFontSize":
+          if (rendition) {
+            rendition.themes.fontSize(message.fontSize + "px");
+          }
+          break;
+        case "setTransition":
+          applyPageTransition(message.pageTransition);
+          break;
+        case "addHighlight":
+          addHighlight(message.cfiRange, message.color, true);
+          break;
+        case "removeHighlight":
+          removeHighlight(message.cfiRange);
+          break;
+      }
+    });
+
+    function loadBook(bookPath, initialCfi, theme, fontSize, savedHighlights) {
+      try {
+        if (book) {
+          book.destroy();
+        }
+
+        book = ePub(bookPath);
+
+        // Load metadata and table of contents
+        book.loaded.navigation.then(function (toc) {
+          const chapters = toc.map(chapter => ({
+            label: chapter.label.trim(),
+            href: chapter.href
+          }));
+          sendToRN("toc", { chapters });
+        });
+
+        book.loaded.metadata.then(function (meta) {
+          sendToRN("metadata", {
+            title: meta.title,
+            creator: meta.creator,
+            description: meta.description
+          });
+        });
+
+        rendition = book.renderTo("viewer", {
+          width: "100%",
+          height: "100%",
+          spread: "none",
+          flow: "paginated"
+        });
+
+        // Apply configuration
+        applyTheme(theme || "light");
+        applyPageTransition(message.pageTransition || 'none');
+        rendition.themes.fontSize((fontSize || 16) + "px");
+
+        // Load page
+        rendition.display(initialCfi || undefined);
+
+        // Setup page change listener
+        rendition.on("relocated", function (location) {
+          animatePageTransition();
+          currentCfi = location.start.cfi;
+          const progress = book.locations.percentageFromCfi(currentCfi);
+          sendToRN("relocated", {
+            cfi: currentCfi,
+            progress: progress,
+            atStart: location.atStart,
+            atEnd: location.atEnd
+          });
+        });
+
+        // Setup text selection listener
+        rendition.on("selected", function (cfiRange, contents) {
+          const selection = contents.window.getSelection();
+          const text = selection.toString().trim();
+          if (text.length > 0) {
+            sendToRN("selected", {
+              cfiRange: cfiRange,
+              text: text
+            });
+          }
+        });
+
+        // Generate locations for progress calculation
+        book.ready.then(() => {
+          book.locations.generate(1024).then(() => {
+            if (currentCfi) {
+              const progress = book.locations.percentageFromCfi(currentCfi);
+              sendToRN("progressReady", { progress });
+            }
+          });
+        });
+
+        // Add saved highlights
+        rendition.on("rendered", () => {
+          savedHighlights.forEach(hl => {
+            addHighlight(hl.cfiRange, hl.color, false);
+          });
+        });
+
+        // Setup touch swipe gestures
+        setupSwipeGestures();
+
+      } catch (error) {
+        sendToRN("error", { message: error.message });
+      }
+    }
+
+    function applyTheme(theme) {
+      currentTheme = theme;
+      let bg = "#faf8f5";
+      let color = "#1c1917";
+
+      if (theme === "dark") {
+        bg = "#121212";
+        color = "#e5e5e5";
+      } else if (theme === "sepia") {
+        bg = "#f4ecd8";
+        color = "#5c4033";
+      } else if (theme === "forest") {
+        bg = "#eef1eb";
+        color = "#2d3a24";
+      }
+
+      document.body.style.backgroundColor = bg;
+
+      if (rendition) {
+        rendition.themes.default({
+          body: {
+            "background-color": bg + " !important",
+            "color": color + " !important",
+            "font-family": "system-ui, -apple-system, sans-serif !important",
+            "line-height": "1.6 !important"
+          },
+          p: {
+            "color": color + " !important"
+          },
+          span: {
+            "color": color + " !important"
+          },
+          a: {
+            "color": (theme === "dark" ? "#60a5fa" : "#2563eb") + " !important"
+          }
+        });
+      }
+    }
+
+    function applyPageTransition(transition) {
+      currentTransition = transition || 'none';
+      const viewerEl = document.getElementById('viewer');
+      if (!viewerEl) return;
+      viewerEl.style.transition = 'transform 260ms ease, opacity 260ms ease';
+      if (currentTransition === 'none') {
+        viewerEl.style.opacity = '1';
+        viewerEl.style.transform = 'translateX(0)';
+      }
+    }
+
+    function animatePageTransition() {
+      const viewerEl = document.getElementById('viewer');
+      if (!viewerEl || currentTransition === 'none') return;
+
+      if (currentTransition === 'fade') {
+        viewerEl.style.opacity = '0.3';
+        requestAnimationFrame(() => {
+          viewerEl.style.opacity = '1';
+        });
+      } else if (currentTransition === 'slide') {
+        viewerEl.style.transform = 'translateX(12px)';
+        viewerEl.style.opacity = '0.55';
+        requestAnimationFrame(() => {
+          viewerEl.style.transform = 'translateX(0px)';
+          viewerEl.style.opacity = '1';
+        });
+      }
+    }
+
+    function addHighlight(cfiRange, color, save) {
+      if (!rendition) return;
+
+      let className = "epubjs-hl-yellow";
+      if (color === "green") className = "epubjs-hl-green";
+      else if (color === "pink") className = "epubjs-hl-pink";
+      else if (color === "blue") className = "epubjs-hl-blue";
+      else if (color === "underline") className = "epubjs-hl-underline";
+
+      // Add to epubjs renderer annotations
+      rendition.annotations.add("highlight", cfiRange, {}, (e) => {
+        // When clicked, tell RN we clicked this highlight
+        sendToRN("highlightClicked", { cfiRange });
+      }, className);
+
+      highlights[cfiRange] = color;
+    }
+
+    function removeHighlight(cfiRange) {
+      if (!rendition) return;
+      rendition.annotations.remove(cfiRange, "highlight");
+      delete highlights[cfiRange];
+    }
+
+    function setupSwipeGestures() {
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let touchEndX = 0;
+      let touchEndY = 0;
+
+      rendition.on("touchstart", function (event) {
+        touchStartX = event.changedTouches[0].screenX;
+        touchStartY = event.changedTouches[0].screenY;
+      });
+
+      rendition.on("touchend", function (event) {
+        touchEndX = event.changedTouches[0].screenX;
+        touchEndY = event.changedTouches[0].screenY;
+        handleSwipe();
+      });
+
+      function handleSwipe() {
+        const diffX = touchEndX - touchStartX;
+        const diffY = touchEndY - touchStartY;
+
+        // Ensure vertical movement is small compared to horizontal
+        if (Math.abs(diffX) > 50 && Math.abs(diffY) < 40) {
+          if (diffX > 0) {
+            rendition.prev();
+          } else {
+            rendition.next();
+          }
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>
