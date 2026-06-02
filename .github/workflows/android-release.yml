@@ -1,3 +1,11 @@
+name: Build Android Release
+
+on:
+  push:
+    branches: [ "main" ] # ya da projenin ana branch adı neyse (master, main vb.)
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch: # Bu satır, GitHub panelinden el ile (manuel) tetikleme butonu ekler
 jobs:
   build:
     runs-on: ubuntu-latest
