@@ -13,53 +13,38 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 1. Java 17 Kurulumu (Hata veren cache parametresi tamamen kaldırıldı)
+      # 1. Java 17 Kurulumu
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      # 2. Node.js Kurulumu (Hata riski taşımaması için cache parametresi tamamen kaldırıldı)
+      # 2. Node.js Kurulumu
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      # 3. Bağımlılıkların Temiz Kurulumu
+      # 3. Bağımlılıkların Yüklenmesi
       - name: Install Dependencies
         run: |
           npm config set fetch-retries 5
           npm install --legacy-peer-deps
 
-      # 4. Expo CLI Kurulumu
-      - name: Setup Expo
+      # 4. Expo ve EAS CLI Kurulumu
+      - name: Setup Expo & EAS
         uses: expo/expo-github-action@v8
         with:
           expo-version: latest
           eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }} # İsteğe bağlı: Eğer EAS bulutunu kullansaydın gerekecekti, lokalde boş kalabilir ama kalsın.
 
-      # 5. Expo Prebuild (Android klasörü üretimi)
-      - name: Expo Prebuild
-        run: npx expo prebuild --platform android
+      # 5. EAS ile Kurulabilir Android Klasörünü ve Gradle Ayarlarını Otomatik Optimize Etme
+      - name: Build APK Local via EAS
+        run: npx eas build --platform android --local --profile preview --non-interactive
 
-      # 6. Gradle Sürümünü En Kararlı Expo Yapısına Çekme (8.0.2)
-      - name: Downgrade Gradle Version for Expo Compatibility
-        run: |
-          cd android
-          ./gradlew wrapper --gradle-version 8.0.2 --distribution-type all
-
-      # 7. Çalıştırma İzni Tanımlama
-      - name: Make Gradle Wrapper Executable
-        run: chmod +x android/gradlew
-
-      # 8. APK Derleme
-      - name: Build Release APK
-        run: |
-          cd android
-          ./gradlew assembleRelease
-
-      # 9. APK Dosyasını Summary Ekranına Çıkarma
+      # 6. Üretilen APK'yı Yakala ve Yükle
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: app-release
-          path: android/app/build/outputs/apk/release/*.apk
+          path: ./*.apk # EAS local build, APK'yı genellikle projenin kök dizinine bırakır
