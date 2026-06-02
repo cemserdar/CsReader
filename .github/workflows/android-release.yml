@@ -2,10 +2,11 @@ name: Build Android Release
 
 on:
   push:
-    branches: [ "main" ] # ya da projenin ana branch adı neyse (master, main vb.)
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-  workflow_dispatch: # Bu satır, GitHub panelinden el ile (manuel) tetikleme butonu ekler
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,7 +16,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '21' # Java sürümü 21 olarak güncellendi
 
       - name: Make Gradle Wrapper Executable
         run: |
