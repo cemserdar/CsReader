@@ -42,14 +42,21 @@ jobs:
         run: |
           npx expo prebuild --platform android --clean
 
-      # 6. KESİN ÇÖZÜM: Gradle Dağıtım Dosyasına Doğrudan Müdahale
-      # Gradle Wrapper'ın tetiklenip hata vermesini engellemek için direkt text bazlı sürümü değiştiriyoruz.
-      - name: Force Fix Gradle Properties to 8.5
+      # 6. KESİN ÇÖZÜM: Gradle ve Android Gradle Plugin (AGP) Sürümlerini Tam Uyumlu Aralığa Sabitleme
+      # Hem Wrapper sürümünü 8.3'e çekiyoruz hem de build.gradle içindeki AGP sürümünü 8.1.1'e senkronize ediyoruz.
+      - name: Sync Gradle and AGP Sivirms to Stable Matrix
         run: |
+          # 1. Gradle Wrapper Sürümünü Değiştir (8.3)
           cd android/gradle/wrapper
-          sed -i 's/gradle-9.3.1-bin.zip/gradle-8.5-all.zip/g' gradle-wrapper.properties
-          sed -i 's/gradle-9.3.1-all.zip/gradle-8.5-all.zip/g' gradle-wrapper.properties
-          cat gradle-wrapper.properties # Değişikliği doğrulamak için loglara basalım
+          sed -i 's/gradle-9.3.1-bin.zip/gradle-8.3-all.zip/g' gradle-wrapper.properties
+          sed -i 's/gradle-9.3.1-all.zip/gradle-8.3-all.zip/g' gradle-wrapper.properties
+          sed -i 's/gradle-8.5-all.zip/gradle-8.3-all.zip/g' gradle-wrapper.properties
+          
+          # 2. Kök build.gradle dosyasındaki com.android.application (AGP) sürümünü 8.1.1'e çek
+          cd ../..
+          if [ -f build.gradle ]; then
+            sed -i 's/com.android.application" version "[^"]*"/com.android.application" version "8.1.1"/g' build.gradle
+          fi
 
       # 7. Çalıştırma İzni Tanımlama
       - name: Make Gradle Wrapper Executable
@@ -71,7 +78,7 @@ jobs:
           name: app-release
           path: android/app/build/outputs/apk/release/*.apk
 
-      # 10. Otomatik Tag ve Sürüm Oluşturup APK'yı Yükleme
+      # 10. Otomatik Tag ve Sürüm Sürümü Oluşturup APK'yı Yükleme
       - name: Create Release and Upload APK
         uses: softprops/action-gh-release@v2
         with:
