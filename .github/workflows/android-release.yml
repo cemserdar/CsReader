@@ -2,7 +2,7 @@ name: Build Android Release
 
 on:
   push:
-    branches: [ "master", "main" ] # Repondaki branch adı 'master' olduğu için buraya master ekledik
+    branches: [ "master", "main" ]
   pull_request:
     branches: [ "master", "main" ]
   workflow_dispatch:
@@ -25,14 +25,13 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      # 3. Bağımlılıkların Yüklenmesi
-     # 3. Bağımlılıkların Yüklenmesi (Ağ hatalarına karşı network timeout ve retry eklendi)
+      # 3. Bağımlılıkların Yüklenmesi (Ağ hatalarına karşı dayanıklı yapı)
       - name: Install Dependencies
         run: |
           npm config set fetch-retries 5
           npm config set fetch-retry-mintimeout 20000
           npm config set fetch-retry-maxtimeout 120000
-          npm install --legacy-peer-deps || npm ci
+          npm ci || npm install --legacy-peer-deps
 
       # 4. Expo CLI Kurulumu
       - name: Setup Expo
@@ -41,21 +40,27 @@ jobs:
           expo-version: latest
           eas-version: latest
 
-      # 5. Olmayan Android Klasörünü Expo ile Otomatik Oluşturma (Prebuild)
-      - name: Expo Prebuild (Generate Android Folder)
+      # 5. Expo Prebuild (Android Klasörünü oluşturma)
+      - name: Expo Prebuild
         run: npx expo prebuild --platform android
 
-      # 6. Oluşan gradlew Dosyasına Çalıştırma Yetkisi Verme
+      # 6. KRİTİK ADIM: Gradle Sürümünü Expo ile Uyumlu Olan 8.8 Sürümüne Çekme
+      - name: Downgrade Gradle Version for Expo Compatibility
+        run: |
+          cd android
+          ./gradlew wrapper --gradle-version 8.8 --distribution-type all
+
+      # 7. Oluşan gradlew Dosyasına Çalıştırma Yetkisi Verme
       - name: Make Gradle Wrapper Executable
         run: chmod +x android/gradlew
 
-      # 7. APK Derleme Aşaması
+      # 8. APK Derleme Aşaması
       - name: Build Release APK
         run: |
           cd android
           ./gradlew assembleRelease
 
-      # 8. Çıktı APK'sını GitHub Ortamına Yükleme
+      # 9. Çıktı APK'sını GitHub Ortamına Yükleme
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
