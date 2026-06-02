@@ -1,0 +1,78 @@
+name: Build Android Release
+
+on:
+  push:
+    branches: [ "master", "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      # 1. Java 17 Kurulumu (EAS Cloud build için gerekli değil ama bazı araçlar için)
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      # 2. Node.js Kurulumu
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 3. Bağımlılıkların YARN ile Kurulması
+      - name: Install Dependencies via Yarn
+        run: |
+          yarn config set network-timeout 300000
+          yarn install --ignore-engines --non-interactive
+
+      # 4. Expo ve EAS CLI Kurulumu
+      - name: Setup Expo & EAS
+        uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      # 5. EAS Projesini Başlat (Non-interactive) – HATANIN ÇÖZÜMÜ
+      - name: Initialize EAS Project
+        run: eas init --non-interactive --force
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
+      # 6. Expo Go uyarısını bastır (isteğe bağlı)
+      - name: Build Android App via EAS Cloud
+        run: eas build --platform android --non-interactive
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          EAS_BUILD_NO_EXPO_GO_WARNING: true   # Uyarıyı kapatır
+
+      # 7. Üretilen APK/AAB Çıktısını Yakalama (EAS Cloud output path)
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release
+          path: |
+            *.apk
+            *.aab
+
+      # 8. Otomatik GitHub Sürümü Oluşturma ve Dosyayı Ekleme
+      - name: Create Release and Upload Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}-${{ github.sha }}
+          name: "CsReader Otomatik Sürüm #${{ github.run_number }}"
+          body: |
+            Bu sürüm Expo EAS Build altyapısı kullanılarak otomatik olarak üretilmiştir.
+            Commit Mesajı: ${{ github.event.head_commit.message }}
+          draft: false
+          prerelease: false
+          files: |
+            *.apk
+            *.aab
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

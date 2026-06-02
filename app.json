@@ -17,7 +17,11 @@
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
+<<<<<<< HEAD
       "package": "com.anonymous.CsReader"
+=======
+      "package": "com.cemserdar.CsReader"
+>>>>>>> 4e1634ea37a719f027f2cba395e2581c815f18bf
     },
     "web": {
       "favicon": "./assets/favicon.png"
