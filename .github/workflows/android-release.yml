@@ -13,18 +13,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 1. Java 17 Kurulumu (Expo şablonu ve AGP uyumu için Java 17 idealdir)
+      # 1. Java 17 Kurulumu
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      # 2. Node.js Kurulumu (Hata veren 18 sürümü yerine en az v20.12.0 isteyen paketi tatmin etmek için v20 yapıldı)
+      # 2. Node.js Kurulumu
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      # 3. Bağımlılıkların YARN ile Kurulması (Hem network timeout eklendi hem de engine kontrolü esnetildi)
+      # 3. Bağımlılıkların YARN ile Kurulması
       - name: Install Dependencies via Yarn
         run: |
           yarn config set network-timeout 300000
@@ -37,13 +37,17 @@ jobs:
           expo-version: latest
           eas-version: latest
 
-      # 5. Stabil Android Klasörü Üretimi
+      # 5. DÜZELTİLEN ADIM: Kalıntıları temizle ve kendi sürüm şablonuyla prebuild et
       - name: Expo Prebuild
-        run: npx expo prebuild --platform android --template expo-template-blank
+        run: |
+          npx expo prebuild --platform android --clean
 
       # 6. Çalıştırma İzni Tanımlama
       - name: Make Gradle Wrapper Executable
-        run: chmod +x android/gradlew
+        run: |
+          if [ -d android ]; then
+            chmod +x android/gradlew
+          fi
 
       # 7. APK Derleme
       - name: Build Release APK
