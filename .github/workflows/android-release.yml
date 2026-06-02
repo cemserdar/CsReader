@@ -30,19 +30,19 @@ jobs:
           yarn config set network-timeout 300000
           yarn install --ignore-engines --non-interactive
 
-      # 4. Expo ve EAS CLI Araçlarının Kurulması
+      # 4. Expo ve EAS CLI Araçlarının Kurulması (Global olarak kurar ve sisteme tanıtır)
       - name: Setup Expo & EAS
         uses: expo/expo-github-action@v8
         with:
           expo-version: latest
           eas-version: latest
 
-      # 5. DÜZELTİLEN ADIM: npx yerine yarn üzerinden direkt tetikleme
+      # 5. DÜZELTİLEN ADIM: 'eas' komutunu doğrudan çalıştırma
       - name: Build Android App via EAS CLI
         run: |
-          yarn eas build --platform android --local --non-interactive
+          eas build --platform android --local --non-interactive
 
-      # 6. Üretilen APK veya AAB Çıktısını Yakalama
+      # 6. Üretilen APK Çıktısını Yakalama
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
