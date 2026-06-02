@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.anonymous.csreader.test.app-mergeDebugAndroidTestResources-32:/values-v16/values-v16.xml",
+            "map": [
+                {
+                    "source": "/home/cemserdar/.gradle/caches/9.3.1/transforms/5f510c55cb5e4e1c49c1ecb8e2668762/transformed/core-1.12.0/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                }
+            ]
+        }
+    ]
+}
