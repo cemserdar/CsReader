@@ -13,17 +13,34 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # 1. Java 21 Kurulumu
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '21' # Java sürümü 21 olarak güncellendi
+          java-version: '21'
 
+      # 2. Node.js Kurulumu (React Native derleme araçları için ŞART)
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Projene uygun stabil LTS Node sürümü
+
+      # 3. Projenin Node Paketlerinin (node_modules) Yüklenmesi
+      - name: Install Dependencies
+        run: |
+          if [ -f "yarn.lock" ]; then
+            yarn install --frozen-lockfile
+          else
+            npm ci
+          fi
+
+      # 4. Gradle Çalıştırma İzni
       - name: Make Gradle Wrapper Executable
         run: |
           if [ -f android/gradlew ]; then
             chmod +x android/gradlew
           fi
 
+      # 5. Wrapper Eksikse Oluşturulması
       - name: Generate Android Wrapper if Missing
         run: |
           cd android
@@ -34,11 +51,13 @@ jobs:
             echo "Gradle wrapper zaten mevcut."
           fi
 
+      # 6. APK Derleme
       - name: Build Release APK
         run: |
           cd android
           ./gradlew assembleRelease
 
+      # 7. Çıktıyı Yükleme
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
