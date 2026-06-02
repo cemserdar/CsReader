@@ -30,6 +30,13 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
+    - name: Set up Android SDK
+      uses: android-actions/setup-android@v4
+
+    - name: Write local.properties with SDK path
+      run: |
+        echo "sdk.dir=$ANDROID_SDK_ROOT" > android/local.properties
+
     - name: Grant Execute Permission for Gradlew
       run: |
         if [ -f "android/gradlew" ]; then
