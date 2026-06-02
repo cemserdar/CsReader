@@ -19,10 +19,26 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'npm'
 
-    - name: Install Dependencies
-      run: npm install --legacy-peer-deps
+    - name: Dynamically Find Project Root and Install Dependencies
+      run: |
+        # settings.gradle dosyasının olduğu gerçek android klasörünü buluyoruz
+        ANDROID_PATH=$(find . -name "settings.gradle" -not -path "*/node_modules/*" | head -n 1)
+        
+        if [ -z "$ANDROID_PATH" ]; then
+          echo "HATA: Projede hiçbir Android yapılandırması (settings.gradle) bulunamadı!"
+          exit 1
+        fi
+        
+        # Android klasörünün bir üst dizini, bizim React Native projemizin ana kök dizinidir
+        PROJECT_ROOT=$(dirname "$ANDROID_PATH"/..)
+        echo "React Native Kök Dizini Tespit Edildi: $PROJECT_ROOT"
+        echo "PROJECT_ROOT=$PROJECT_ROOT" >> $GITHUB_ENV
+        echo "ANDROID_DIR=$(dirname "$ANDROID_PATH")" >> $GITHUB_ENV
+        
+        # Bağımlılıkları doğru klasörde yüklüyoruz
+        cd $PROJECT_ROOT
+        npm install --legacy-peer-deps
 
     - name: Set up JDK 17
       uses: actions/setup-java@v4
@@ -31,37 +47,24 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
-    - name: Generate Android Wrapper if Missing
+    - name: Ensure Gradle Wrapper Exists
       run: |
-        if [ -d "android" ]; then
-          cd android
-          if [ ! -f "gradlew" ]; then
-            echo "gradlew bulunamadı, yeniden oluşturuluyor..."
-            gradle wrapper --gradle-version 8.0
-          fi
-          chmod +x gradlew
-        else
-          if [ ! -f "gradlew" ]; then
-            echo "Ana dizinde gradlew bulunamadı, yeniden oluşturuluyor..."
-            gradle wrapper --gradle-version 8.0
-          fi
-          chmod +x gradlew
+        cd ${{ env.ANDROID_DIR }}
+        if [ ! -f "gradlew" ]; then
+          echo "gradlew bulunamadı, bu alt klasörde yeniden oluşturuluyor..."
+          gradle wrapper --gradle-version 8.0
         fi
+        chmod +x gradlew
 
     - name: Build Release APK
       run: |
-        if [ -d "android" ]; then
-          cd android
-          ./gradlew assembleRelease --no-daemon
-        else
-          ./gradlew assembleRelease --no-daemon
-        fi
+        cd ${{ env.ANDROID_DIR }}
+        ./gradlew assembleRelease --no-daemon
 
     - name: Upload APK to Release Assets
       uses: softprops/action-gh-release@v2
       with:
         files: |
-          android/app/build/outputs/apk/release/*.apk
-          app/build/outputs/apk/release/*.apk
+          **/build/outputs/apk/release/*.apk
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
