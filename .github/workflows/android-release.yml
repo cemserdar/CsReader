@@ -9,19 +9,32 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Generate Android Wrapper if Missing
-        working-directory: ./android
+      # 1. Adım: Eğer gradlew dosyası varsa Linux üzerinde çalıştırılabilir (executable) izni veriyoruz.
+      # Bu adım, ilerleyen aşamalarda "Permission Denied" (Erişim Engellendi) hatası almanı önler.
+      - name: Make Gradle Wrapper Executable
         run: |
-          if [ ! -f gradlew ]; then
-            gradle wrapper
-          else
-            echo "Gradle wrapper already exists."
+          if [ -f android/gradlew ]; then
+            chmod +x android/gradlew
           fi
 
-      - name: Build Release APK
-        working-directory: ./android
-        run: ./gradlew assembleRelease
+      # 2. Adım: Wrapper eksikse android klasörünün içine girip oluşturuyoruz.
+      - name: Generate Android Wrapper if Missing
+        run: |
+          cd android
+          if [ ! -f gradlew ]; then
+            echo "Gradlew bulunamadı, oluşturuluyor..."
+            gradle wrapper
+          else
+            echo "Gradle wrapper zaten mevcut."
+          fi
 
+      # 3. Adım: Android klasörüne girip derleme işlemini başlatıyoruz.
+      - name: Build Release APK
+        run: |
+          cd android
+          ./gradlew assembleRelease
+
+      # 4. Adım: Üretilen APK dosyasını GitHub Actions paneline yüklüyoruz.
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
