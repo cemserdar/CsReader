@@ -15,26 +15,16 @@ import * as FileSystem from 'expo-file-system/legacy';
 import { Book, getBooks, saveBook, toggleFavorite, deleteBook, scanBooks } from '../utils/storage';
 import { useTheme } from '../utils/themeContext';
 import { BookOpen, FileText, Star, Trash2, Plus, Search, Settings as SettingsIcon, ClipboardList } from 'lucide-react-native';
+import { useI18n } from '../utils/i18n/useI18n';
 
 interface LibraryScreenProps {
   onSelectBook: (book: Book) => void;
   onNavigate: (screen: 'library' | 'notes' | 'settings') => void;
 }
 
-const Logo: React.FC<{ color: string }> = ({ color }) => (
-  <View style={styles.logoWrapper}>
-    <View style={[styles.logoBadge, { backgroundColor: color }]}>
-      <Text style={styles.logoBadgeText}>CS</Text>
-    </View>
-    <View style={styles.logoTextContainer}>
-      <Text style={[styles.logoTitle, { color }]}>CsReader</Text>
-      <Text style={styles.logoSubtitle}>Hızlı ve sade kitap okuma</Text>
-    </View>
-  </View>
-);
-
 export const LibraryScreen: React.FC<LibraryScreenProps> = ({ onSelectBook, onNavigate }) => {
   const { colors } = useTheme();
+  const i18n = useI18n();
   const [books, setBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState(true);
   const [importing, setImporting] = useState(false);
@@ -92,7 +82,7 @@ export const LibraryScreen: React.FC<LibraryScreenProps> = ({ onSelectBook, onNa
       }
 
       let title = fileBaseName;
-      let author = 'Bilinmeyen Yazar';
+      let author = 'Unknown Author';
 
       const dashIndex = fileBaseName.indexOf('-');
       if (dashIndex > 0) {
@@ -118,12 +108,11 @@ export const LibraryScreen: React.FC<LibraryScreenProps> = ({ onSelectBook, onNa
       const updatedBooks = await saveBook(newBook);
       setBooks(updatedBooks);
 
-      // Auto open the book after import!
       onSelectBook(newBook);
-
+      Alert.alert(i18n('common.success'), i18n('library.importSuccess'));
     } catch (error: any) {
       console.error(error);
-      Alert.alert('Hata', `Kitap eklenirken bir hata oluştu: ${error.message}`);
+      Alert.alert(i18n('common.error'), `${i18n('library.importError')}: ${error.message}`);
     } finally {
       setImporting(false);
     }
@@ -139,10 +128,10 @@ export const LibraryScreen: React.FC<LibraryScreenProps> = ({ onSelectBook, onNa
       setScanning(true);
       const scannedBooks = await scanBooks();
       setBooks(scannedBooks);
-      Alert.alert('Tarama Tamamlandı', `${scannedBooks.length} kitap kütüphaneye eklendi veya güncellendi.`);
+      Alert.alert(i18n('library.scanBooks'), `${scannedBooks.length} ${i18n('library.scanBooks').toLowerCase()}`);
     } catch (error: any) {
       console.error('Error scanning library', error);
-      Alert.alert('Tarama Hatası', error?.message || 'Kitap taraması sırasında bir hata oluştu.');
+      Alert.alert(i18n('common.error'), error?.message || i18n('library.importError'));
     } finally {
       setScanning(false);
     }
@@ -150,16 +139,17 @@ export const LibraryScreen: React.FC<LibraryScreenProps> = ({ onSelectBook, onNa
 
   const handleDeleteBook = (id: string, title: string) => {
     Alert.alert(
-      'Kitabı Sil',
-      `"${title}" kitabını ve tüm notlarını silmek istediğinize emin misiniz?`,
+      i18n('library.deleteBook'),
+      `"${title}" - ${i18n('common.delete')}?`,
       [
-        { text: 'İptal', style: 'cancel' },
+        { text: i18n('common.cancel'), style: 'cancel' },
         {
-          text: 'Sil',
+          text: i18n('common.delete'),
           style: 'destructive',
           onPress: async () => {
             const updatedBooks = await deleteBook(id);
             setBooks(updatedBooks);
+            Alert.alert(i18n('common.success'), i18n('library.deletedSuccess'));
           },
         },
       ]
@@ -179,6 +169,21 @@ export const LibraryScreen: React.FC<LibraryScreenProps> = ({ onSelectBook, onNa
     if (activeTab === 'favorite') return book.favorite;
     return true;
   });
+
+  const getTabLabel = (tab: string) => {
+    switch (tab) {
+      case 'all':
+        return i18n('library.allBooks');
+      case 'epub':
+        return 'EPUB';
+      case 'pdf':
+        return 'PDF';
+      case 'favorite':
+        return i18n('library.favorites');
+      default:
+        return tab;
+    }
+  };
 
   const renderBookItem = ({ item }: { item: Book }) => {
     const progressPercent = Math.round(item.progress * 100);
@@ -227,7 +232,7 @@ export const LibraryScreen: React.FC<LibraryScreenProps> = ({ onSelectBook, onNa
               />
             </View>
             <Text style={[styles.progressText, { color: colors.textMuted }]}>
-              %{progressPercent} tamamlandı
+              {progressPercent}% {i18n('reader.progress')}
             </Text>
           </View>
 
@@ -264,7 +269,7 @@ export const LibraryScreen: React.FC<LibraryScreenProps> = ({ onSelectBook, onNa
       <View style={[styles.header, { borderBottomColor: colors.border }]}>
         <View>
           <Text style={[styles.headerTitle, { color: colors.text }]}>CsReader</Text>
-          <Text style={[styles.headerSubtitle, { color: colors.textMuted }]}>E-Kitap ve PDF Kütüphanesi</Text>
+          <Text style={[styles.headerSubtitle, { color: colors.textMuted }]}>{i18n('app.subtitle')}</Text>
         </View>
 
         <View style={styles.headerButtons}>
@@ -301,7 +306,7 @@ export const LibraryScreen: React.FC<LibraryScreenProps> = ({ onSelectBook, onNa
         <Search size={20} color={colors.textMuted} style={styles.searchIcon} />
         <TextInput
           style={[styles.searchInput, { color: colors.text }]}
-          placeholder="Kitap veya yazar ara..."
+          placeholder={i18n('library.searchPlaceholder')}
           placeholderTextColor={colors.textMuted}
           value={searchQuery}
           onChangeText={setSearchQuery}
@@ -333,10 +338,7 @@ export const LibraryScreen: React.FC<LibraryScreenProps> = ({ onSelectBook, onNa
                 },
               ]}
             >
-              {tab === 'all' && 'Tümü'}
-              {tab === 'epub' && 'EPUB'}
-              {tab === 'pdf' && 'PDF'}
-              {tab === 'favorite' && 'Favoriler'}
+              {getTabLabel(tab)}
             </Text>
           </TouchableOpacity>
         ))}
@@ -350,9 +352,9 @@ export const LibraryScreen: React.FC<LibraryScreenProps> = ({ onSelectBook, onNa
       ) : filteredBooks.length === 0 ? (
         <View style={styles.centerContainer}>
           <BookOpen size={64} color={colors.border} />
-          <Text style={[styles.emptyTitle, { color: colors.text }]}>Kitap Bulunamadı</Text>
+          <Text style={[styles.emptyTitle, { color: colors.text }]}>{i18n('library.emptyLibrary')}</Text>
           <Text style={[styles.emptySubtitle, { color: colors.textMuted }]}>
-            {searchQuery ? 'Aramanızla eşleşen kitap bulunmamaktadır.' : 'Kütüphanenizde henüz kitap bulunmamaktadır.'}
+            {searchQuery ? i18n('library.searchPlaceholder') : i18n('library.emptyLibraryMessage')}
           </Text>
           {!searchQuery && (
             <>
@@ -361,7 +363,7 @@ export const LibraryScreen: React.FC<LibraryScreenProps> = ({ onSelectBook, onNa
                 onPress={handleImportBook}
                 disabled={importing}
               >
-                <Text style={styles.emptyBtnText}>Kitap Ekle</Text>
+                <Text style={styles.emptyBtnText}>{i18n('library.addBook')}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[styles.emptyBtn, { backgroundColor: colors.border, marginTop: 12 }]}
@@ -369,7 +371,7 @@ export const LibraryScreen: React.FC<LibraryScreenProps> = ({ onSelectBook, onNa
                 disabled={scanning}
               >
                 <Text style={[styles.emptyBtnText, { color: colors.text }]}>
-                  {scanning ? 'Taranıyor...' : 'Kütüphaneyi Tara'}
+                  {scanning ? i18n('library.scanningBooks') : i18n('library.scanBooks')}
                 </Text>
               </TouchableOpacity>
             </>
@@ -564,35 +566,6 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontSize: 15,
     fontWeight: 'bold',
-  },
-  logoWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  logoBadge: {
-    width: 46,
-    height: 46,
-    borderRadius: 14,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 12,
-  },
-  logoBadgeText: {
-    color: '#FFF',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  logoTextContainer: {
-    flexShrink: 1,
-  },
-  logoTitle: {
-    fontSize: 22,
-    fontWeight: 'bold',
-  },
-  logoSubtitle: {
-    fontSize: 12,
-    color: '#6B7280',
-    marginTop: 2,
   },
   fab: {
     position: 'absolute',

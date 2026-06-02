@@ -18,6 +18,7 @@ import { Asset } from 'expo-asset';
 import * as FileSystem from 'expo-file-system/legacy';
 import { Book, Highlight, updateBookProgress, addHighlight, getHighlightsForBook, deleteHighlight, updateHighlightNote } from '../utils/storage';
 import { useTheme } from '../utils/themeContext';
+import { useI18n } from '../utils/i18n/useI18n';
 import { ChevronLeft, Type, BookOpen, Star, Trash2, Edit3, Share2, Palette, X } from 'lucide-react-native';
 
 interface ReaderScreenProps {
@@ -28,6 +29,7 @@ interface ReaderScreenProps {
 
 export const ReaderScreen: React.FC<ReaderScreenProps> = ({ book, onBack, onUpdateBookProgress }) => {
   const { colors, themeName, fontSize, pageTransition, setTheme, setFontSize } = useTheme();
+  const i18n = useI18n();
   const webViewRef = useRef<WebView>(null);
 
   const [loading, setLoading] = useState(true);

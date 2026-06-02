@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { useTheme, ThemeName } from '../utils/themeContext';
+import { useI18n } from '../utils/i18n/useI18n';
 import { clearAllDatabase } from '../utils/storage';
 import { ChevronLeft, Trash2, ShieldAlert, Palette, Type, HelpCircle } from 'lucide-react-native';
 
@@ -18,21 +19,22 @@ interface SettingsScreenProps {
 
 export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onDatabaseCleared }) => {
   const { colors, themeName, fontSize, pageTransition, setTheme, setFontSize, setPageTransition } = useTheme();
+  const i18n = useI18n();
 
   const handleClearDatabase = () => {
     Alert.alert(
-      'Uygulama Verilerini Sıfırla',
-      'Tüm e-kitaplar, PDF dosyaları, aldığınız notlar ve vurgulamalar kalıcı olarak silinecektir. Bu işlem geri alınamaz. Sıfırlamak istediğinize emin misiniz?',
+      i18n('settings.clearDatabase'),
+      i18n('settings.clearDatabaseMessage'),
       [
-        { text: 'İptal', style: 'cancel' },
+        { text: i18n('common.cancel'), style: 'cancel' },
         {
-          text: 'Sıfırla',
+          text: i18n('settings.reset'),
           style: 'destructive',
           onPress: async () => {
             await clearAllDatabase();
-            Alert.alert('Başarılı', 'Uygulama başarıyla sıfırlandı.', [
+            Alert.alert(i18n('settings.resetSuccess'), i18n('settings.resetSuccessMessage'), [
               {
-                text: 'Tamam',
+                text: i18n('common.ok'),
                 onPress: () => {
                   onDatabaseCleared();
                   onBack();
@@ -61,7 +63,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onDataba
         <TouchableOpacity onPress={onBack} style={styles.backBtn}>
           <ChevronLeft size={26} color={colors.text} />
         </TouchableOpacity>
-        <Text style={[styles.headerTitle, { color: colors.text }]}>Ayarlar</Text>
+        <Text style={[styles.headerTitle, { color: colors.text }]}>{i18n('settings.title')}</Text>
         <View style={{ width: 26 }} />
       </View>
 
@@ -70,10 +72,10 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onDataba
         <View style={[styles.sectionCard, { backgroundColor: colors.cardBg, borderColor: colors.border }]}>
           <View style={styles.sectionHeader}>
             <Palette size={20} color={colors.primary} style={{ marginRight: 8 }} />
-            <Text style={[styles.sectionTitle, { color: colors.text }]}>Görünüm Teması</Text>
+            <Text style={[styles.sectionTitle, { color: colors.text }]}>{i18n('settings.appearance')}</Text>
           </View>
           <Text style={[styles.sectionSubtitle, { color: colors.textMuted }]}>
-            Uygulamanın genel renk şemasını değiştirin.
+            {i18n('settings.appearanceDesc')}
           </Text>
 
           <View style={styles.themesContainer}>
@@ -102,10 +104,10 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onDataba
                   }
                 ]} />
                 <Text style={[styles.themeLabel, { color: colors.text, fontWeight: themeName === t ? 'bold' : 'normal' }]}>
-                  {t === 'light' && 'Aydınlık'}
-                  {t === 'dark' && 'Karanlık'}
-                  {t === 'sepia' && 'Sepya'}
-                  {t === 'forest' && 'Yeşil'}
+                  {t === 'light' && i18n('settings.light')}
+                  {t === 'dark' && i18n('settings.dark')}
+                  {t === 'sepia' && i18n('settings.sepia')}
+                  {t === 'forest' && i18n('settings.forest')}
                 </Text>
               </TouchableOpacity>
             ))}
@@ -116,10 +118,10 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onDataba
         <View style={[styles.sectionCard, { backgroundColor: colors.cardBg, borderColor: colors.border }]}>
           <View style={styles.sectionHeader}>
             <Type size={20} color={colors.primary} style={{ marginRight: 8 }} />
-            <Text style={[styles.sectionTitle, { color: colors.text }]}>Varsayılan Yazı Boyutu</Text>
+            <Text style={[styles.sectionTitle, { color: colors.text }]}>{i18n('settings.fontSize')}</Text>
           </View>
           <Text style={[styles.sectionSubtitle, { color: colors.textMuted }]}>
-            EPUB okuyucu için varsayılan metin boyutu.
+            {i18n('settings.fontSizeDesc')}
           </Text>
 
           <View style={styles.fontAdjuster}>
@@ -145,9 +147,9 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onDataba
         <View style={[styles.sectionCard, { backgroundColor: colors.cardBg, borderColor: colors.border }]}>
           <View style={styles.sectionHeader}>
             <Type size={20} color={colors.primary} style={{ marginRight: 8 }} />
-            <Text style={[styles.sectionTitle, { color: colors.text }]}>Sayfa Geçişi</Text>
+            <Text style={[styles.sectionTitle, { color: colors.text }]}>{i18n('settings.pageTransition')}</Text>
           </View>
-          <Text style={[styles.sectionSubtitle, { color: colors.textMuted }]}>Okuma sırasında tercih ettiğiniz sayfa geçiş efektini seçin.</Text>
+          <Text style={[styles.sectionSubtitle, { color: colors.textMuted }]}>{i18n('settings.pageTransitionDesc')}</Text>
 
           <View style={styles.transitionOptions}>
             {(['none', 'slide', 'fade'] as const).map(option => (
@@ -163,7 +165,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onDataba
                 ]}
               >
                 <Text style={[styles.transitionOptionText, { color: pageTransition === option ? '#FFF' : colors.text }]}>
-                  {option === 'none' ? 'Yok' : option === 'slide' ? 'Kaydır' : 'Solma'}
+                  {option === 'none' ? i18n('settings.none') : option === 'slide' ? i18n('settings.slide') : i18n('settings.fade')}
                 </Text>
               </TouchableOpacity>
             ))}
@@ -174,10 +176,10 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onDataba
         <View style={[styles.sectionCard, { backgroundColor: colors.cardBg, borderColor: colors.border }]}>
           <View style={styles.sectionHeader}>
             <ShieldAlert size={20} color="#EF4444" style={{ marginRight: 8 }} />
-            <Text style={[styles.sectionTitle, { color: '#EF4444' }]}>Tehlikeli Bölge</Text>
+            <Text style={[styles.sectionTitle, { color: '#EF4444' }]}>{i18n('settings.clearData')}</Text>
           </View>
           <Text style={[styles.sectionSubtitle, { color: colors.textMuted }]}>
-            Tüm uygulama verilerini ve e-kitapları cihazınızdan temizleyin.
+            {i18n('settings.clearDataDesc')}
           </Text>
 
           <TouchableOpacity
@@ -186,7 +188,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onDataba
             activeOpacity={0.8}
           >
             <Trash2 size={18} color="#FFF" style={{ marginRight: 8 }} />
-            <Text style={styles.dangerBtnText}>Kütüphaneyi Sıfırla</Text>
+            <Text style={styles.dangerBtnText}>{i18n('settings.clearDatabase')}</Text>
           </TouchableOpacity>
         </View>
 
@@ -194,7 +196,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack, onDataba
         <View style={[styles.sectionCard, { backgroundColor: colors.cardBg, borderColor: colors.border, marginBottom: 40 }]}>
           <View style={styles.sectionHeader}>
             <HelpCircle size={20} color={colors.textMuted} style={{ marginRight: 8 }} />
-            <Text style={[styles.sectionTitle, { color: colors.text }]}>Uygulama Hakkında</Text>
+            <Text style={[styles.sectionTitle, { color: colors.text }]}>{i18n('settings.about')}</Text>
           </View>
           <Text style={[styles.aboutText, { color: colors.text }]}>
             CsReader v1.0.0{'\n'}

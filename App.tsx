@@ -8,6 +8,7 @@ import {
   StatusBar,
 } from 'react-native';
 import { ThemeProvider, useTheme } from './utils/themeContext';
+import { LanguageProvider, useI18n } from './utils/i18n';
 import { prepareReaderAssets } from './utils/assets';
 import { LibraryScreen } from './screens/LibraryScreen';
 import { ReaderScreen } from './screens/ReaderScreen';
@@ -17,10 +18,11 @@ import { Book, updateBookProgress } from './utils/storage';
 
 function AppContent() {
   const { colors, themeName } = useTheme();
-  
+  const i18n = useI18n();
+
   // App initialization state
   const [initializing, setInitializing] = useState(true);
-  
+
   // Navigation states
   const [activeScreen, setActiveScreen] = useState<'library' | 'reader' | 'notes' | 'settings'>('library');
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
@@ -46,7 +48,7 @@ function AppContent() {
   // Animate screen transitions
   useEffect(() => {
     if (initializing) return;
-    
+
     fadeAnim.setValue(0);
     Animated.timing(fadeAnim, {
       toValue: 1,
@@ -74,7 +76,7 @@ function AppContent() {
   const handleUpdateBookProgress = async (id: string, progress: number, lastLocation: { cfi?: string; page?: number }) => {
     // Save to storage
     const updatedBooks = await updateBookProgress(id, progress, lastLocation);
-    
+
     // Update local book state if it is currently open
     if (selectedBook && selectedBook.id === id) {
       setSelectedBook(prev => prev ? {
@@ -95,7 +97,7 @@ function AppContent() {
     return (
       <View style={[styles.loadingContainer, { backgroundColor: '#F3F4F6' }]}>
         <ActivityIndicator size="large" color="#3B82F6" />
-        <Text style={styles.loadingText}>CsReader Hazırlanıyor...</Text>
+        <Text style={styles.loadingText}>{i18n('app.preparing')}</Text>
       </View>
     );
   }
@@ -149,9 +151,11 @@ function AppContent() {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <AppContent />
-    </ThemeProvider>
+    <LanguageProvider>
+      <ThemeProvider>
+        <AppContent />
+      </ThemeProvider>
+    </LanguageProvider>
   );
 }
 

@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { Highlight, Book, getHighlights, getBooks, deleteHighlight } from '../utils/storage';
 import { useTheme } from '../utils/themeContext';
+import { useI18n } from '../utils/i18n/useI18n';
 import { ChevronLeft, Search, Trash2, Share2, MessageSquare, BookOpen } from 'lucide-react-native';
 
 interface NotesScreenProps {
@@ -21,6 +22,7 @@ interface NotesScreenProps {
 
 export const NotesScreen: React.FC<NotesScreenProps> = ({ onBack, onSelectBookAtLocation }) => {
   const { colors } = useTheme();
+  const i18n = useI18n();
   const [highlights, setHighlights] = useState<Highlight[]>([]);
   const [books, setBooks] = useState<Book[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -39,16 +41,17 @@ export const NotesScreen: React.FC<NotesScreenProps> = ({ onBack, onSelectBookAt
 
   const handleDelete = (id: string) => {
     Alert.alert(
-      'Notu Sil',
-      'Bu vurgulamayı ve notu kalıcı olarak silmek istediğinize emin misiniz?',
+      i18n('notes.deleteNote'),
+      i18n('notes.deleteNoteMessage'),
       [
-        { text: 'İptal', style: 'cancel' },
+        { text: i18n('common.cancel'), style: 'cancel' },
         {
-          text: 'Sil',
+          text: i18n('common.delete'),
           style: 'destructive',
           onPress: async () => {
             const updated = await deleteHighlight(id);
             setHighlights(updated);
+            Alert.alert(i18n('common.success'), i18n('notes.deleteSuccess'));
           },
         },
       ]
@@ -59,10 +62,10 @@ export const NotesScreen: React.FC<NotesScreenProps> = ({ onBack, onSelectBookAt
     try {
       let message = `"${hl.text}"\n`;
       if (hl.note) {
-        message += `Notum: ${hl.note}\n`;
+        message += `${i18n('notes.myNote')}: ${hl.note}\n`;
       }
-      message += `\n- "${bookTitle}" kitabından CsReader ile paylaşıldı.`;
-      
+      message += `\n- "${bookTitle}" ${i18n('notes.sharedFrom')}`;
+
       await Share.share({ message });
     } catch (error) {
       console.error('Error sharing:', error);
@@ -74,7 +77,7 @@ export const NotesScreen: React.FC<NotesScreenProps> = ({ onBack, onSelectBookAt
     if (associatedBook) {
       onSelectBookAtLocation(associatedBook, { cfi: hl.cfiRange, page: hl.page });
     } else {
-      Alert.alert('Hata', 'Bu nota ait kitap bulunamadı. Silinmiş olabilir.');
+      Alert.alert(i18n('common.error'), i18n('notes.noBookFound'));
     }
   };
 
@@ -92,13 +95,13 @@ export const NotesScreen: React.FC<NotesScreenProps> = ({ onBack, onSelectBookAt
 
     if (!matchesSearch) return false;
     if (activeColorFilter !== 'all' && hl.color !== activeColorFilter) return false;
-    
+
     return true;
   }).sort((a, b) => b.date - a.date); // Sort by date descending
 
   const renderNoteItem = ({ item }: { item: Highlight }) => {
     const book = books.find(b => b.id === item.bookId);
-    const bookTitle = book ? book.title : 'Bilinmeyen Kitap';
+    const bookTitle = book ? book.title : i18n('library.emptyLibrary');
     const bookAuthor = book ? book.author : '';
 
     return (
@@ -116,17 +119,17 @@ export const NotesScreen: React.FC<NotesScreenProps> = ({ onBack, onSelectBookAt
           <View style={[
             styles.colorIndicator,
             {
-              backgroundColor: 
+              backgroundColor:
                 item.color === 'yellow' ? '#fef08a' :
-                item.color === 'green' ? '#bbf7d0' :
-                item.color === 'pink' ? '#fbcfe8' :
-                item.color === 'blue' ? '#bfdbfe' : 'transparent',
+                  item.color === 'green' ? '#bbf7d0' :
+                    item.color === 'pink' ? '#fbcfe8' :
+                      item.color === 'blue' ? '#bfdbfe' : 'transparent',
               borderWidth: item.color === 'underline' ? 1 : 0,
               borderColor: '#EF4444',
             }
           ]} />
           <Text style={[styles.dateText, { color: colors.textMuted }]}>
-            {new Date(item.date).toLocaleDateString('tr-TR')} {item.page ? `(Sayfa ${item.page})` : ''}
+            {new Date(item.date).toLocaleDateString()} {item.page ? `(${i18n('reader.progress')} ${item.page})` : ''}
           </Text>
         </View>
 
@@ -153,7 +156,7 @@ export const NotesScreen: React.FC<NotesScreenProps> = ({ onBack, onSelectBookAt
             onPress={() => handleNotePress(item)}
             style={styles.actionBtn}
           >
-            <Text style={{ color: colors.primary, fontSize: 12, fontWeight: 'bold' }}>Kitapta Git</Text>
+            <Text style={{ color: colors.primary, fontSize: 12, fontWeight: 'bold' }}>{i18n('notes.title')}</Text>
           </TouchableOpacity>
 
           <View style={styles.rightActions}>
@@ -183,7 +186,7 @@ export const NotesScreen: React.FC<NotesScreenProps> = ({ onBack, onSelectBookAt
         <TouchableOpacity onPress={onBack} style={styles.backBtn}>
           <ChevronLeft size={26} color={colors.text} />
         </TouchableOpacity>
-        <Text style={[styles.headerTitle, { color: colors.text }]}>Tüm Notlarım</Text>
+        <Text style={[styles.headerTitle, { color: colors.text }]}>{i18n('notes.title')}</Text>
         <View style={{ width: 26 }} />
       </View>
 
@@ -192,7 +195,7 @@ export const NotesScreen: React.FC<NotesScreenProps> = ({ onBack, onSelectBookAt
         <Search size={20} color={colors.textMuted} style={styles.searchIcon} />
         <TextInput
           style={[styles.searchInput, { color: colors.text }]}
-          placeholder="Notlarında ara..."
+          placeholder={i18n('notes.searchPlaceholder')}
           placeholderTextColor={colors.textMuted}
           value={searchQuery}
           onChangeText={setSearchQuery}
@@ -230,11 +233,11 @@ export const NotesScreen: React.FC<NotesScreenProps> = ({ onBack, onSelectBookAt
             <View style={[
               styles.colorDot,
               {
-                backgroundColor: 
+                backgroundColor:
                   color === 'yellow' ? '#fef08a' :
-                  color === 'green' ? '#bbf7d0' :
-                  color === 'pink' ? '#fbcfe8' :
-                  color === 'blue' ? '#bfdbfe' : 'transparent',
+                    color === 'green' ? '#bbf7d0' :
+                      color === 'pink' ? '#fbcfe8' :
+                        color === 'blue' ? '#bfdbfe' : 'transparent',
                 borderWidth: color === 'underline' ? 1 : 0,
                 borderColor: '#EF4444',
               }
@@ -258,9 +261,9 @@ export const NotesScreen: React.FC<NotesScreenProps> = ({ onBack, onSelectBookAt
       {filteredNotes.length === 0 ? (
         <View style={styles.centerContainer}>
           <MessageSquare size={64} color={colors.border} />
-          <Text style={[styles.emptyTitle, { color: colors.text }]}>Not Bulunmadı</Text>
+          <Text style={[styles.emptyTitle, { color: colors.text }]}>{i18n('notes.emptyNotes')}</Text>
           <Text style={[styles.emptySubtitle, { color: colors.textMuted }]}>
-            {searchQuery ? 'Aramanıza uyan not veya vurgulama bulunamadı.' : 'Henüz not almadınız. Okuyucu ekranından bir metni seçerek başlayabilirsiniz.'}
+            {searchQuery ? i18n('notes.searchPlaceholder') : i18n('notes.emptyNotesMessage')}
           </Text>
         </View>
       ) : (

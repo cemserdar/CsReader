@@ -1,0 +1,19 @@
+{
+    "python.linting.enabled": false,
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "search.exclude": {
+        "node_modules": true,
+        ".expo": true,
+        "android": true,
+        "ios": true
+    }
+}
