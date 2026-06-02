@@ -6,53 +6,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>CsReader EPUB Viewer</title>
   <style>
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
       padding: 0;
       overflow: hidden;
       background-color: #faf8f5;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       user-select: none;
       -webkit-user-select: none;
     }
 
     #viewer {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100vw;
       height: 100vh;
-      transition: transform 260ms ease, opacity 260ms ease;
+      background-color: transparent;
+      /* Default: visible, no transform */
+      opacity: 1;
+      transform: translateX(0);
     }
 
-    /* Selection highlight style */
-    .epubjs-hl {
-      fill-opacity: 0.3;
-      mix-blend-mode: multiply;
-      cursor: pointer;
-    }
-
-    .epubjs-hl-yellow {
-      fill: #fef08a;
-      background-color: rgba(254, 240, 138, 0.4);
-    }
-
-    .epubjs-hl-green {
-      fill: #bbf7d0;
-      background-color: rgba(187, 247, 208, 0.4);
-    }
-
-    .epubjs-hl-pink {
-      fill: #fbcfe8;
-      background-color: rgba(251, 207, 232, 0.4);
-    }
-
-    .epubjs-hl-blue {
-      fill: #bfdbfe;
-      background-color: rgba(191, 219, 254, 0.4);
-    }
-
-    .epubjs-hl-underline {
-      fill: transparent;
-      border-bottom: 2px dashed #ef4444;
-    }
+    .epubjs-hl       { fill-opacity: 0.3; mix-blend-mode: multiply; cursor: pointer; }
+    .epubjs-hl-yellow  { fill: #fef08a; background-color: rgba(254,240,138,0.4); }
+    .epubjs-hl-green   { fill: #bbf7d0; background-color: rgba(187,247,208,0.4); }
+    .epubjs-hl-pink    { fill: #fbcfe8; background-color: rgba(251,207,232,0.4); }
+    .epubjs-hl-blue    { fill: #bfdbfe; background-color: rgba(191,219,254,0.4); }
+    .epubjs-hl-underline { fill: transparent; border-bottom: 2px dashed #ef4444; }
   </style>
   <script src="epub.min.js"></script>
 </head>
@@ -61,268 +44,338 @@
   <div id="viewer"></div>
 
   <script>
-    let book = null;
-    let rendition = null;
-    let currentCfi = "";
+    // ── State ──────────────────────────────────────────────────────────────────
+    let book        = null;
+    let rendition   = null;
+    let currentCfi  = "";
     let currentTheme = "light";
-    let currentTransition = "none";
-    let highlights = {}; // Map of cfiRange -> color
+    let currentTransition = "slide";
 
-    function sendToRN(type, payload) {
-      if (window.ReactNativeWebView) {
-        window.ReactNativeWebView.postMessage(JSON.stringify({ type, ...payload }));
+    // Single nav-lock: true while an animation + epub.js navigation is in flight
+    let navBusy = false;
+    let navBusyTimer = null;
+
+    let highlights  = {};
+
+    const viewer = document.getElementById('viewer');
+
+    // ── Bridge ─────────────────────────────────────────────────────────────────
+    // Use AndroidBridge directly (injected by Kotlin via addJavascriptInterface).
+    // Fallback to window.ReactNativeWebView shim for compatibility.
+    function sendToAndroid(type, payload) {
+      const msg = JSON.stringify({ type, ...payload });
+      try {
+        if (typeof AndroidBridge !== 'undefined') {
+          AndroidBridge.postMessage(msg);
+        } else if (window.ReactNativeWebView) {
+          window.ReactNativeWebView.postMessage(msg);
+        }
+      } catch(e) {
+        console.error('Bridge error:', e);
       }
     }
 
-    // Set up message listener from React Native
-    window.addEventListener("message", function (event) {
-      const message = JSON.parse(event.data);
-      switch (message.action) {
-        case "load":
-          loadBook(message.bookPath, message.initialCfi, message.theme, message.fontSize, message.pageTransition, message.highlights || []);
+    // ── Commands from Android ──────────────────────────────────────────────────
+    // Android calls this function directly via evaluateJavascript
+    function handleCommand(json) {
+      let msg;
+      try { msg = JSON.parse(json); } catch(e) { return; }
+
+      switch (msg.action) {
+        case 'load':
+          loadBook(msg.bookPath, msg.initialCfi, msg.theme, msg.fontSize, msg.pageTransition, msg.highlights || []);
           break;
-        case "goToCfi":
-          if (rendition) rendition.display(message.cfi);
+        case 'next':       doNext(); break;
+        case 'prev':       doPrev(); break;
+        case 'goToCfi':
+          if (rendition) rendition.display(msg.cfi);
           break;
-        case "prev":
-          if (rendition) rendition.prev();
+        case 'setTheme':
+          applyTheme(msg.theme);
           break;
-        case "next":
-          if (rendition) rendition.next();
+        case 'setFontSize':
+          if (rendition) rendition.themes.fontSize(msg.fontSize + 'px');
           break;
-        case "setTheme":
-          applyTheme(message.theme);
+        case 'setTransition':
+          currentTransition = msg.pageTransition || 'slide';
           break;
-        case "setFontSize":
-          if (rendition) {
-            rendition.themes.fontSize(message.fontSize + "px");
-          }
+        case 'addHighlight':
+          addHighlight(msg.cfiRange, msg.color, true);
           break;
-        case "setTransition":
-          applyPageTransition(message.pageTransition);
-          break;
-        case "addHighlight":
-          addHighlight(message.cfiRange, message.color, true);
-          break;
-        case "removeHighlight":
-          removeHighlight(message.cfiRange);
+        case 'removeHighlight':
+          removeHighlight(msg.cfiRange);
           break;
       }
+    }
+
+    // Also keep the postMessage listener as secondary fallback
+    window.addEventListener('message', function(event) {
+      let msg;
+      try {
+        msg = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+      } catch(e) { return; }
+      handleCommand(JSON.stringify(msg));
     });
 
-    function loadBook(bookPath, initialCfi, theme, fontSize, pageTransition, savedHighlights) {
-      try {
-        if (book) {
-          book.destroy();
-        }
+    // ── Nav lock helpers ───────────────────────────────────────────────────────
+    function lockNav(ms) {
+      navBusy = true;
+      clearTimeout(navBusyTimer);
+      navBusyTimer = setTimeout(() => { navBusy = false; }, ms);
+    }
 
-        book = ePub(bookPath);
+    function unlockNav() {
+      navBusy = false;
+      clearTimeout(navBusyTimer);
+    }
 
-        // Load metadata and table of contents
-        book.loaded.navigation.then(function (toc) {
-          const chapters = toc.map(chapter => ({
-            label: chapter.label.trim(),
-            href: chapter.href
-          }));
-          sendToRN("toc", { chapters });
-        });
+    // ── Viewer animation ───────────────────────────────────────────────────────
+    function viewerSlideOut(direction) {
+      // direction: 'next' slides left-out, 'prev' slides right-out
+      return new Promise(resolve => {
+        viewer.style.transition = 'transform 0.22s ease-out, opacity 0.22s ease-out';
+        viewer.style.transform  = direction === 'next' ? 'translateX(-30%)' : 'translateX(30%)';
+        viewer.style.opacity    = '0';
+        setTimeout(resolve, 230);
+      });
+    }
 
-        book.loaded.metadata.then(function (meta) {
-          sendToRN("metadata", {
-            title: meta.title,
-            creator: meta.creator,
-            description: meta.description
-          });
-        });
+    function viewerSlideIn(direction) {
+      // position off-screen first (no transition), then animate in
+      viewer.style.transition = 'none';
+      viewer.style.transform  = direction === 'next' ? 'translateX(30%)' : 'translateX(-30%)';
+      viewer.style.opacity    = '0';
+      // force reflow
+      void viewer.offsetWidth;
+      viewer.style.transition = 'transform 0.22s ease-out, opacity 0.22s ease-out';
+      viewer.style.transform  = 'translateX(0)';
+      viewer.style.opacity    = '1';
+    }
 
-        rendition = book.renderTo("viewer", {
-          width: "100%",
-          height: "100%",
-          spread: "none",
-          flow: "paginated"
-        });
+    function viewerFadeOut() {
+      return new Promise(resolve => {
+        viewer.style.transition = 'opacity 0.18s ease';
+        viewer.style.opacity    = '0';
+        setTimeout(resolve, 190);
+      });
+    }
 
-        // Apply configuration
-        applyTheme(theme || "light");
-        applyPageTransition(pageTransition || 'none');
-        rendition.themes.fontSize((fontSize || 16) + "px");
+    function viewerFadeIn() {
+      viewer.style.transition = 'opacity 0.22s ease';
+      viewer.style.opacity    = '1';
+    }
 
-        // Load page
-        rendition.display(initialCfi || undefined);
+    function viewerReset() {
+      viewer.style.transition = 'none';
+      viewer.style.transform  = 'translateX(0)';
+      viewer.style.opacity    = '1';
+    }
 
-        // Setup page change listener
-        rendition.on("relocated", function (location) {
-          animatePageTransition();
-          currentCfi = location.start.cfi;
-          const progress = book.locations.percentageFromCfi(currentCfi);
-          sendToRN("relocated", {
-            cfi: currentCfi,
-            progress: progress,
-            atStart: location.atStart,
-            atEnd: location.atEnd
-          });
-        });
+    // ── Navigation ─────────────────────────────────────────────────────────────
+    async function doNext() {
+      if (navBusy || !rendition) return;
+      lockNav(900);
 
-        // Setup text selection listener
-        rendition.on("selected", function (cfiRange, contents) {
-          const selection = contents.window.getSelection();
-          const text = selection.toString().trim();
-          if (text.length > 0) {
-            sendToRN("selected", {
-              cfiRange: cfiRange,
-              text: text
-            });
-          }
-        });
-
-        // Generate locations for progress calculation
-        book.ready.then(() => {
-          book.locations.generate(1024).then(() => {
-            if (currentCfi) {
-              const progress = book.locations.percentageFromCfi(currentCfi);
-              sendToRN("progressReady", { progress });
-            }
-          });
-        });
-
-        // Add saved highlights
-        rendition.on("rendered", () => {
-          savedHighlights.forEach(hl => {
-            addHighlight(hl.cfiRange, hl.color, false);
-          });
-        });
-
-        // Setup touch swipe gestures
-        setupSwipeGestures();
-
-      } catch (error) {
-        sendToRN("error", { message: error.message });
+      if (currentTransition === 'slide') {
+        await viewerSlideOut('next');
+        await rendition.next();
+        viewerSlideIn('next');
+      } else if (currentTransition === 'fade') {
+        await viewerFadeOut();
+        await rendition.next();
+        viewerFadeIn();
+      } else {
+        await rendition.next();
       }
     }
 
-    function applyTheme(theme) {
-      currentTheme = theme;
-      let bg = "#faf8f5";
-      let color = "#1c1917";
+    async function doPrev() {
+      if (navBusy || !rendition) return;
+      lockNav(900);
 
-      if (theme === "dark") {
-        bg = "#121212";
-        color = "#e5e5e5";
-      } else if (theme === "sepia") {
-        bg = "#f4ecd8";
-        color = "#5c4033";
-      } else if (theme === "forest") {
-        bg = "#eef1eb";
-        color = "#2d3a24";
+      if (currentTransition === 'slide') {
+        await viewerSlideOut('prev');
+        await rendition.prev();
+        viewerSlideIn('prev');
+      } else if (currentTransition === 'fade') {
+        await viewerFadeOut();
+        await rendition.prev();
+        viewerFadeIn();
+      } else {
+        await rendition.prev();
+      }
+    }
+
+    // ── Load Book ──────────────────────────────────────────────────────────────
+    function loadBook(bookPath, initialCfi, theme, fontSize, pageTransition, savedHighlights) {
+      currentTransition = pageTransition || 'slide';
+      viewerReset();
+
+      if (book) {
+        try { book.destroy(); } catch(e) {}
       }
 
-      document.body.style.backgroundColor = bg;
+      book = ePub(bookPath);
+
+      book.opened.catch(err => {
+        sendToAndroid('error', { message: 'Kitap açılamadı: ' + err.message });
+      });
+
+      book.loaded.navigation.then(function(toc) {
+        const chapters = toc.map(ch => ({
+          label: (ch.label || '').trim(),
+          href:  ch.href
+        }));
+        sendToAndroid('toc', { chapters });
+      }).catch(() => {});
+
+      book.loaded.metadata.then(function(meta) {
+        sendToAndroid('metadata', {
+          title:   meta.title,
+          creator: meta.creator
+        });
+      }).catch(() => {});
+
+      rendition = book.renderTo('viewer', {
+        width:   '100%',
+        height:  '100%',
+        spread:  'none',
+        minSpreadWidth: 9999, // force single column always
+        flow:    'paginated',
+        manager: 'default'
+      });
+
+      applyTheme(theme || 'light');
+      rendition.themes.fontSize((fontSize || 16) + 'px');
+
+      // Display initial location
+      rendition.display(initialCfi || undefined).catch(err => {
+        console.error('display error:', err);
+        rendition.display();
+      });
+
+      // ── relocated: always reset viewer visibility ─────────────────────────
+      rendition.on('relocated', function(location) {
+        // Always ensure viewer is visible after navigation
+        viewerReset();
+        unlockNav();
+
+        currentCfi = location.start.cfi;
+        let progress = 0;
+        try {
+          progress = book.locations.percentageFromCfi(currentCfi) || 0;
+        } catch(e) {}
+
+        sendToAndroid('relocated', {
+          cfi:      currentCfi,
+          progress: progress,
+          atStart:  location.atStart,
+          atEnd:    location.atEnd
+        });
+      });
+
+      rendition.on('selected', function(cfiRange, contents) {
+        const sel  = contents.window.getSelection();
+        const text = sel ? sel.toString().trim() : '';
+        if (text.length > 0) {
+          sendToAndroid('selected', { cfiRange, text });
+        }
+      });
+
+      rendition.on('click', function() {
+        sendToAndroid('click', {});
+      });
+
+      // Swipe gestures (separate touch tracking per rendered view)
+      rendition.on('rendered', function(section, view) {
+        setupSwipe(view.contents);
+        // Re-apply highlights for this section
+        savedHighlights.forEach(hl => {
+          addHighlight(hl.cfiRange, hl.color, false);
+        });
+      });
+
+      // Generate locations for progress (background, non-blocking)
+      book.ready.then(() => {
+        book.locations.generate(1024).then(() => {
+          if (currentCfi) {
+            try {
+              const p = book.locations.percentageFromCfi(currentCfi) || 0;
+              sendToAndroid('progressReady', { progress: p });
+            } catch(e) {}
+          }
+        });
+      }).catch(() => {});
+    }
+
+    // ── Theme ──────────────────────────────────────────────────────────────────
+    function applyTheme(theme) {
+      currentTheme = theme;
+      const themes = {
+        light:  { bg: '#faf8f5', color: '#1c1917', link: '#2563eb' },
+        dark:   { bg: '#121212', color: '#e5e5e5', link: '#60a5fa' },
+        sepia:  { bg: '#f4ecd8', color: '#5c4033', link: '#92400e' },
+        forest: { bg: '#eef1eb', color: '#2d3a24', link: '#166534' }
+      };
+      const t = themes[theme] || themes.light;
+      document.body.style.backgroundColor = t.bg;
 
       if (rendition) {
         rendition.themes.default({
-          body: {
-            "background-color": bg + " !important",
-            "color": color + " !important",
-            "font-family": "system-ui, -apple-system, sans-serif !important",
-            "line-height": "1.6 !important"
-          },
-          p: {
-            "color": color + " !important"
-          },
-          span: {
-            "color": color + " !important"
-          },
-          a: {
-            "color": (theme === "dark" ? "#60a5fa" : "#2563eb") + " !important"
-          }
+          body:  { 'background-color': t.bg + ' !important', 'color': t.color + ' !important',
+                   'font-family': 'system-ui,-apple-system,sans-serif !important', 'line-height': '1.7 !important' },
+          p:     { 'color': t.color + ' !important' },
+          span:  { 'color': t.color + ' !important' },
+          a:     { 'color': t.link + ' !important' }
         });
       }
     }
 
-    function applyPageTransition(transition) {
-      currentTransition = transition || 'none';
-      const viewerEl = document.getElementById('viewer');
-      if (!viewerEl) return;
-      viewerEl.style.transition = 'transform 260ms ease, opacity 260ms ease';
-      if (currentTransition === 'none') {
-        viewerEl.style.opacity = '1';
-        viewerEl.style.transform = 'translateX(0)';
-      }
-    }
-
-    function animatePageTransition() {
-      const viewerEl = document.getElementById('viewer');
-      if (!viewerEl || currentTransition === 'none') return;
-
-      if (currentTransition === 'fade') {
-        viewerEl.style.opacity = '0.3';
-        requestAnimationFrame(() => {
-          viewerEl.style.opacity = '1';
-        });
-      } else if (currentTransition === 'slide') {
-        viewerEl.style.transform = 'translateX(12px)';
-        viewerEl.style.opacity = '0.55';
-        requestAnimationFrame(() => {
-          viewerEl.style.transform = 'translateX(0px)';
-          viewerEl.style.opacity = '1';
-        });
-      }
-    }
-
+    // ── Highlights ─────────────────────────────────────────────────────────────
     function addHighlight(cfiRange, color, save) {
-      if (!rendition) return;
-
-      let className = "epubjs-hl-yellow";
-      if (color === "green") className = "epubjs-hl-green";
-      else if (color === "pink") className = "epubjs-hl-pink";
-      else if (color === "blue") className = "epubjs-hl-blue";
-      else if (color === "underline") className = "epubjs-hl-underline";
-
-      // Add to epubjs renderer annotations
-      rendition.annotations.add("highlight", cfiRange, {}, (e) => {
-        // When clicked, tell RN we clicked this highlight
-        sendToRN("highlightClicked", { cfiRange });
-      }, className);
-
-      highlights[cfiRange] = color;
+      if (!rendition || !cfiRange) return;
+      const classMap = { yellow: 'epubjs-hl-yellow', green: 'epubjs-hl-green',
+                         pink: 'epubjs-hl-pink', blue: 'epubjs-hl-blue', underline: 'epubjs-hl-underline' };
+      const cls = classMap[color] || 'epubjs-hl-yellow';
+      try {
+        rendition.annotations.add('highlight', cfiRange, {}, () => {
+          sendToAndroid('highlightClicked', { cfiRange });
+        }, cls);
+        highlights[cfiRange] = color;
+      } catch(e) {}
     }
 
     function removeHighlight(cfiRange) {
-      if (!rendition) return;
-      rendition.annotations.remove(cfiRange, "highlight");
-      delete highlights[cfiRange];
+      if (!rendition || !cfiRange) return;
+      try {
+        rendition.annotations.remove(cfiRange, 'highlight');
+        delete highlights[cfiRange];
+      } catch(e) {}
     }
 
-    function setupSwipeGestures() {
-      let touchStartX = 0;
-      let touchStartY = 0;
-      let touchEndX = 0;
-      let touchEndY = 0;
+    // ── Swipe Gestures ─────────────────────────────────────────────────────────
+    function setupSwipe(contents) {
+      let startX = 0, startY = 0;
+      let startTime = 0;
 
-      rendition.on("touchstart", function (event) {
-        touchStartX = event.changedTouches[0].screenX;
-        touchStartY = event.changedTouches[0].screenY;
+      contents.on('touchstart', (e) => {
+        startX    = e.changedTouches[0].clientX;
+        startY    = e.changedTouches[0].clientY;
+        startTime = Date.now();
       });
 
-      rendition.on("touchend", function (event) {
-        touchEndX = event.changedTouches[0].screenX;
-        touchEndY = event.changedTouches[0].screenY;
-        handleSwipe();
-      });
+      contents.on('touchend', (e) => {
+        if (navBusy) return;  // ignore swipes while nav is in progress
+        const dx = e.changedTouches[0].clientX - startX;
+        const dy = e.changedTouches[0].clientY - startY;
+        const dt = Date.now() - startTime;
 
-      function handleSwipe() {
-        const diffX = touchEndX - touchStartX;
-        const diffY = touchEndY - touchStartY;
-
-        // Ensure vertical movement is small compared to horizontal
-        if (Math.abs(diffX) > 50 && Math.abs(diffY) < 40) {
-          if (diffX > 0) {
-            rendition.prev();
-          } else {
-            rendition.next();
-          }
+        // Only horizontal swipes (not vertical scrolls), fast enough, far enough
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5 && dt < 400) {
+          if (dx > 0) doPrev();
+          else        doNext();
         }
-      }
+      });
     }
   </script>
 </body>

@@ -4,9 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.webkit.JavascriptInterface
-import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.webkit.WebChromeClient
+import android.webkit.ConsoleMessage
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.animation.*
 import androidx.compose.foundation.background
@@ -43,6 +45,7 @@ import com.anonymous.csreader.utils.AssetUtils
 import java.io.File
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -84,6 +87,11 @@ class ReaderViewModel(
     fun setFontSize(size: Int) {
         settingsManager.fontSize = size
         fontSizeState.value = size
+    }
+
+    fun setPageTransition(transition: String) {
+        settingsManager.pageTransition = transition
+        pageTransitionState.value = transition
     }
 
     fun addHighlight(text: String, cfiRange: String?, page: Int?, color: String, onComplete: (HighlightEntity) -> Unit) {
@@ -168,6 +176,11 @@ fun ReaderScreen(
     var totalPagesEstimate by remember { mutableStateOf(0) }
     var bookRealTitle by remember { mutableStateOf(book.title) }
 
+    // Navigation debounce - must be longer than animation duration
+    var lastNavTime by remember { mutableLongStateOf(0L) }
+    val navDebounce = 800L
+    var bookLoaded by remember { mutableStateOf(false) }
+
     // TOC
     var tocList by remember { mutableStateOf<List<TocChapter>>(emptyList()) }
 
@@ -185,21 +198,60 @@ fun ReaderScreen(
     var noteText by remember { mutableStateOf("") }
 
     // Helper functions to send actions to JS
+    // Calls handleCommand() directly — more reliable than window.postMessage from evaluateJavascript
     val triggerAction = { action: String, payload: Map<String, Any> ->
         webViewRef?.let { webView ->
             val payloadMap = mutableMapOf<String, Any>("action" to action)
             payloadMap.putAll(payload)
             val jsonString = Gson().toJson(payloadMap)
             val jsStringLiteral = Gson().toJson(jsonString)
-            val js = "window.postMessage($jsStringLiteral, '*');"
+            val js = "typeof handleCommand === 'function' && handleCommand($jsStringLiteral);"
             webView.evaluateJavascript(js, null)
+        }
+    }
+
+    val navigateNext = {
+        val now = System.currentTimeMillis()
+        if (now - lastNavTime > navDebounce) {
+            lastNavTime = now  // set BEFORE sending command to block rapid re-entry
+            if (book.type == "pdf") {
+                if (currentPage < totalPagesEstimate) {
+                    triggerAction("goToPage", mapOf("page" to currentPage + 1))
+                }
+            } else {
+                triggerAction("next", emptyMap())
+            }
+        }
+    }
+
+    val navigatePrev = {
+        val now = System.currentTimeMillis()
+        if (now - lastNavTime > navDebounce) {
+            lastNavTime = now  // set BEFORE sending command to block rapid re-entry
+            if (book.type == "pdf") {
+                if (currentPage > 1) {
+                    triggerAction("goToPage", mapOf("page" to currentPage - 1))
+                }
+            } else {
+                triggerAction("prev", emptyMap())
+            }
+        }
+    }
+
+    // Safety fallback: if book never fires relocated/pageChange, hide loader after 10s
+    LaunchedEffect(bookLoaded) {
+        if (!bookLoaded) {
+            delay(10_000L)
+            loading = false
         }
     }
 
     // Load WebView function
     val loadBookInWebView = {
+        // Use file:// URL - directly accessible since we enabled file access in WebView
+        val bookUrl = "file://${book.uri}"
         val payload = mapOf(
-            "bookPath" to "file://${book.uri}",
+            "bookPath" to bookUrl,
             "initialCfi" to (book.lastCfi ?: ""),
             "initialPage" to (book.lastPage ?: 1),
             "theme" to themeName,
@@ -208,7 +260,7 @@ fun ReaderScreen(
             "highlights" to highlights.map { mapOf("cfiRange" to it.cfiRange, "color" to it.color) }
         )
         triggerAction("load", payload)
-        loading = false
+        // loading overlay will be hidden after the first 'relocated'/'pageChange' event fires
     }
 
     // Handles messages from JS
@@ -222,6 +274,7 @@ fun ReaderScreen(
                     val progress = (map["progress"] as? Double)?.toFloat() ?: 0f
                     bookProgress = progress
                     currentCfi = cfi
+                    if (!bookLoaded) { bookLoaded = true; loading = false }
                     viewModel.updateProgress(progress, cfi, null)
                 }
                 "pageChange" -> {
@@ -229,6 +282,7 @@ fun ReaderScreen(
                     currentPage = page
                     val pdfProgress = if (totalPagesEstimate > 0) (page - 1).toFloat() / totalPagesEstimate else 0f
                     bookProgress = pdfProgress
+                    if (!bookLoaded) { bookLoaded = true; loading = false }
                     viewModel.updateProgress(pdfProgress, null, page)
                 }
                 "progressReady" -> {
@@ -293,36 +347,44 @@ fun ReaderScreen(
                     settings.javaScriptEnabled = true
                     settings.domStorageEnabled = true
                     settings.databaseEnabled = true
+                    // Allow file access so epub.js can fetch the epub binary from internal storage
+                    @Suppress("DEPRECATION")
                     settings.allowFileAccess = true
+                    @Suppress("DEPRECATION")
                     settings.allowContentAccess = true
+                    @Suppress("DEPRECATION")
                     settings.allowFileAccessFromFileURLs = true
+                    @Suppress("DEPRECATION")
                     settings.allowUniversalAccessFromFileURLs = true
 
                     addJavascriptInterface(AndroidBridge { handleMessage(it) }, "AndroidBridge")
 
+                    webChromeClient = object : WebChromeClient() {
+                        override fun onConsoleMessage(consoleMessage: ConsoleMessage?): Boolean {
+                            consoleMessage?.let {
+                                Log.d("ReaderWebView", "${it.message()} -- line ${it.lineNumber()} of ${it.sourceId()}")
+                            }
+                            return true
+                        }
+                    }
+
                     webViewClient = object : WebViewClient() {
                         override fun onPageFinished(view: WebView?, url: String?) {
                             super.onPageFinished(view, url)
-                            // Inject React Native shim compatibility layer
+                            // Inject AndroidBridge shim for sendToAndroid() fallback
                             val shimScript = """
                                 window.ReactNativeWebView = {
-                                    postMessage: function(data) {
-                                        AndroidBridge.postMessage(data);
-                                    }
+                                    postMessage: function(data) { AndroidBridge.postMessage(data); }
                                 };
                             """.trimIndent()
-                            view?.evaluateJavascript(shimScript, null)
-                            // Load book
-                            loadBookInWebView()
+                            view?.evaluateJavascript(shimScript) {
+                                loadBookInWebView()
+                            }
                         }
                     }
 
                     val assetFile = if (book.type == "epub") "reader.html" else "pdf_viewer.html"
-                    val localFile = File(ctx.filesDir, assetFile)
-                    if (!localFile.exists()) {
-                        AssetUtils.copyAssetsToFilesDir(ctx)
-                    }
-                    loadUrl("file://" + localFile.absolutePath)
+                    loadUrl("file:///android_asset/$assetFile")
                 }
             },
             modifier = Modifier.fillMaxSize(),
@@ -331,8 +393,30 @@ fun ReaderScreen(
             }
         )
 
+        // Left tap zone for prev page (only visible as a touch target when controls are hidden)
+        if (!showControls && !loading) {
+            Box(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .width(80.dp)
+                    .align(Alignment.CenterStart)
+                    .clickable { navigatePrev() }
+            )
+            Box(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .width(80.dp)
+                    .align(Alignment.CenterEnd)
+                    .clickable { navigateNext() }
+            )
+        }
+
         // Loading Overlay
-        if (loading) {
+        AnimatedVisibility(
+            visible = loading,
+            enter = fadeIn(),
+            exit = fadeOut()
+        ) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -405,21 +489,15 @@ fun ReaderScreen(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Button(
-                    onClick = {
-                        if (book.type == "pdf") {
-                            if (currentPage > 1) {
-                                triggerAction("goToPage", mapOf("page" to currentPage - 1))
-                            }
-                        } else {
-                            triggerAction("prev", emptyMap())
-                        }
-                    },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
-                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-                    modifier = Modifier.border(1.dp, CsReaderTheme.colors.border, RoundedCornerShape(8.dp))
+                IconButton(
+                    onClick = navigatePrev,
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(10.dp))
+                        .background(CsReaderTheme.colors.bg)
+                        .border(1.dp, CsReaderTheme.colors.border, RoundedCornerShape(10.dp))
+                        .size(44.dp)
                 ) {
-                    Text("Geri", color = CsReaderTheme.colors.text, fontSize = 13.sp)
+                    Icon(Icons.Default.ChevronLeft, contentDescription = "Geri", tint = CsReaderTheme.colors.text, modifier = Modifier.size(26.dp))
                 }
 
                 Text(
@@ -428,21 +506,15 @@ fun ReaderScreen(
                     color = CsReaderTheme.colors.textMuted
                 )
 
-                Button(
-                    onClick = {
-                        if (book.type == "pdf") {
-                            if (currentPage < totalPagesEstimate) {
-                                triggerAction("goToPage", mapOf("page" to currentPage + 1))
-                            }
-                        } else {
-                            triggerAction("next", emptyMap())
-                        }
-                    },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
-                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-                    modifier = Modifier.border(1.dp, CsReaderTheme.colors.border, RoundedCornerShape(8.dp))
+                IconButton(
+                    onClick = navigateNext,
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(10.dp))
+                        .background(CsReaderTheme.colors.bg)
+                        .border(1.dp, CsReaderTheme.colors.border, RoundedCornerShape(10.dp))
+                        .size(44.dp)
                 ) {
-                    Text("İleri", color = CsReaderTheme.colors.text, fontSize = 13.sp)
+                    Icon(Icons.Default.ChevronRight, contentDescription = "İleri", tint = CsReaderTheme.colors.text, modifier = Modifier.size(26.dp))
                 }
             }
         }
@@ -576,6 +648,50 @@ fun ReaderScreen(
                                     .border(1.dp, CsReaderTheme.colors.border, CircleShape)
                             ) {
                                 Text("A+", fontWeight = FontWeight.Bold, color = CsReaderTheme.colors.text)
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(20.dp))
+
+                    Text("SAYFA EFEKTİ", fontSize = 12.sp, fontWeight = FontWeight.Bold, color = CsReaderTheme.colors.textMuted)
+
+                    Spacer(modifier = Modifier.height(10.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        listOf(
+                            "none" to "Yok",
+                            "slide" to "Kaydır",
+                            "fade" to "Solma"
+                        ).forEach { (transId, transLabel) ->
+                            val active = pageTransition == transId
+                            Box(
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .padding(vertical = 4.dp)
+                                    .clip(RoundedCornerShape(10.dp))
+                                    .background(if (active) CsReaderTheme.colors.accent else CsReaderTheme.colors.bg)
+                                    .border(
+                                        2.dp,
+                                        if (active) CsReaderTheme.colors.primary else CsReaderTheme.colors.border,
+                                        RoundedCornerShape(10.dp)
+                                    )
+                                    .clickable {
+                                        viewModel.setPageTransition(transId)
+                                        triggerAction("setTransition", mapOf("pageTransition" to transId))
+                                    }
+                                    .padding(vertical = 12.dp),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = transLabel,
+                                    color = if (active) CsReaderTheme.colors.primary else CsReaderTheme.colors.textMuted,
+                                    fontSize = 13.sp,
+                                    fontWeight = if (active) FontWeight.Bold else FontWeight.Normal
+                                )
                             }
                         }
                     }

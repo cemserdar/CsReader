@@ -18,9 +18,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import com.anonymous.csreader.data.AppDatabase
 import com.anonymous.csreader.data.BookEntity
 import com.anonymous.csreader.data.SettingsManager
@@ -29,16 +26,10 @@ import com.anonymous.csreader.ui.screens.NotesScreen
 import com.anonymous.csreader.ui.screens.ReaderScreen
 import com.anonymous.csreader.ui.screens.SettingsScreen
 import com.anonymous.csreader.ui.theme.CsReaderTheme
-import com.anonymous.csreader.utils.AssetUtils
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
-
-        // Copy viewer assets to internal storage for WebView local loading
-        lifecycleScope.launch(Dispatchers.IO) {
-            AssetUtils.copyAssetsToFilesDir(this@MainActivity)
-        }
 
         // Enable edge-to-edge drawing
         WindowCompat.setDecorFitsSystemWindows(window, false)

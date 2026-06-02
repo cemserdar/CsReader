@@ -4,24 +4,24 @@
             "outputFile": "com.anonymous.csreader.app-mergeDebugResources-60:/values-ms/values-ms.xml",
             "map": [
                 {
-                    "source": "/home/cemserdar/.gradle/caches/9.3.1/transforms/fcd0d5cceb69c03ec34394104665c3b7/transformed/ui-release/res/values-ms/values-ms.xml",
+                    "source": "/home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/res/values-ms/values-ms.xml",
                     "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,195,279,375,477,562,645,740,827,912,978,1045,1130,1216,1288,1364,1430",
-                        "endColumns": "89,83,95,101,84,82,94,86,84,65,66,84,85,71,75,65,119",
-                        "endOffsets": "190,274,370,472,557,640,735,822,907,973,1040,1125,1211,1283,1359,1425,1545"
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,150,252,349,459,565,683,798",
+                        "endColumns": "94,101,96,109,105,117,114,100",
+                        "endOffsets": "145,247,344,454,560,678,793,894"
                     },
                     "to": {
-                        "startLines": "36,37,38,39,40,41,42,99,100,101,102,103,104,106,108,109,110",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "3543,3633,3717,3813,3915,4000,4083,10379,10466,10551,10617,10684,10769,10936,11109,11185,11251",
-                        "endColumns": "89,83,95,101,84,82,94,86,84,65,66,84,85,71,75,65,119",
-                        "endOffsets": "3628,3712,3808,3910,3995,4078,4173,10461,10546,10612,10679,10764,10850,11003,11180,11246,11366"
+                        "startLines": "29,30,31,32,33,34,35,107",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "2800,2895,2997,3094,3204,3310,3428,11008",
+                        "endColumns": "94,101,96,109,105,117,114,100",
+                        "endOffsets": "2890,2992,3089,3199,3305,3423,3538,11104"
                     }
                 },
                 {
-                    "source": "/home/cemserdar/.gradle/caches/9.3.1/transforms/d29a10d88f5fd62cc70c2e5483d0adf2/transformed/material3-release/res/values-ms/values-ms.xml",
+                    "source": "/home/cemserdar/.gradle/caches/9.3.1/transforms/f30117f50375ece2b6de6fb16e93095e/transformed/material3-release/res/values-ms/values-ms.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -38,24 +38,7 @@
                     }
                 },
                 {
-                    "source": "/home/cemserdar/.gradle/caches/9.3.1/transforms/b72373c3d2263daddd2341c4b6de13a1/transformed/foundation-release/res/values-ms/values-ms.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,142",
-                        "endColumns": "86,90",
-                        "endOffsets": "137,228"
-                    },
-                    "to": {
-                        "startLines": "111,112",
-                        "startColumns": "4,4",
-                        "startOffsets": "11371,11458",
-                        "endColumns": "86,90",
-                        "endOffsets": "11453,11544"
-                    }
-                },
-                {
-                    "source": "/home/cemserdar/.gradle/caches/9.3.1/transforms/14a28962f5829d2e5d22efdf6779531d/transformed/appcompat-1.6.1/res/values-ms/values-ms.xml",
+                    "source": "/home/cemserdar/.gradle/caches/9.3.1/transforms/8fe83786bebb5dfbd3682df5ad7785a3/transformed/appcompat-1.6.1/res/values-ms/values-ms.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -72,20 +55,37 @@
                     }
                 },
                 {
-                    "source": "/home/cemserdar/.gradle/caches/9.3.1/transforms/5f510c55cb5e4e1c49c1ecb8e2668762/transformed/core-1.12.0/res/values-ms/values-ms.xml",
+                    "source": "/home/cemserdar/.gradle/caches/9.3.1/transforms/07c72928c183c9f87ec75e08607cf166/transformed/ui-release/res/values-ms/values-ms.xml",
                     "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,150,252,349,459,565,683,798",
-                        "endColumns": "94,101,96,109,105,117,114,100",
-                        "endOffsets": "145,247,344,454,560,678,793,894"
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,195,279,375,477,562,645,740,827,912,978,1045,1130,1216,1288,1364,1430",
+                        "endColumns": "89,83,95,101,84,82,94,86,84,65,66,84,85,71,75,65,119",
+                        "endOffsets": "190,274,370,472,557,640,735,822,907,973,1040,1125,1211,1283,1359,1425,1545"
                     },
                     "to": {
-                        "startLines": "29,30,31,32,33,34,35,107",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "2800,2895,2997,3094,3204,3310,3428,11008",
-                        "endColumns": "94,101,96,109,105,117,114,100",
-                        "endOffsets": "2890,2992,3089,3199,3305,3423,3538,11104"
+                        "startLines": "36,37,38,39,40,41,42,99,100,101,102,103,104,106,108,109,110",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3543,3633,3717,3813,3915,4000,4083,10379,10466,10551,10617,10684,10769,10936,11109,11185,11251",
+                        "endColumns": "89,83,95,101,84,82,94,86,84,65,66,84,85,71,75,65,119",
+                        "endOffsets": "3628,3712,3808,3910,3995,4078,4173,10461,10546,10612,10679,10764,10850,11003,11180,11246,11366"
+                    }
+                },
+                {
+                    "source": "/home/cemserdar/.gradle/caches/9.3.1/transforms/8d159d2a598c8d96272720431dc3d097/transformed/foundation-release/res/values-ms/values-ms.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,142",
+                        "endColumns": "86,90",
+                        "endOffsets": "137,228"
+                    },
+                    "to": {
+                        "startLines": "111,112",
+                        "startColumns": "4,4",
+                        "startOffsets": "11371,11458",
+                        "endColumns": "86,90",
+                        "endOffsets": "11453,11544"
                     }
                 }
             ]

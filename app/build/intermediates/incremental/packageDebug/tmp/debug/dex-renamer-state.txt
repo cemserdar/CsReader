@@ -1,4 +1,4 @@
-#Tue Jun 02 18:41:41 TRT 2026
+#Tue Jun 02 19:57:46 TRT 2026
 base.0=/home/cemserdar/Project/CsReader/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 base.1=/home/cemserdar/Project/CsReader/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
 base.2=/home/cemserdar/Project/CsReader/app/build/intermediates/dex/debug/mergeProjectDexDebug/1/classes.dex

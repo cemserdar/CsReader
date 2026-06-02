@@ -6,13 +6,7 @@ import java.io.FileOutputStream
 import java.io.IOException
 
 object AssetUtils {
-    private val ASSETS_TO_COPY = listOf(
-        "reader.html",
-        "pdf_viewer.html",
-        "epub.min.js",
-        "pdf.min.js",
-        "pdf.worker.min.js"
-    )
+    private val ASSETS_TO_COPY = emptyList<String>()
 
     fun copyAssetsToFilesDir(context: Context) {
         val filesDir = context.filesDir

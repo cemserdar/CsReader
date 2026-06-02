@@ -1,7 +1,0 @@
-#Tue Jun 02 18:33:17 TRT 2026
-base.0=/home/cemserdar/Project/CsReader/app/build/intermediates/dex/debugAndroidTest/mergeExtDexDebugAndroidTest/classes.dex
-base.1=/home/cemserdar/Project/CsReader/app/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/0/classes.dex
-path.0=classes.dex
-path.1=0/classes.dex
-renamed.0=classes.dex
-renamed.1=classes2.dex
