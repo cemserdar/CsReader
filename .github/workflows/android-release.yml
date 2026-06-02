@@ -8,11 +8,13 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: Generate Android Wrapper if Missing
-        working-directory: ./android
-        run: |
-          if [ ! -f gradlew ]; then
-            gradle wrapper
-          fi
+  working-directory: ./android   # <-- BU ÇOK ÖNEMLİ
+  run: |
+    if [ ! -f gradlew ]; then
+      gradle wrapper
+    else
+      echo "Gradle wrapper already exists."
+    fi
       - name: Build Release APK
         working-directory: ./android
         run: ./gradlew assembleRelease
