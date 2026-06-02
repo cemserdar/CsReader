@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 1. Java 17 Kurulumu
+      # 1. Java 17 Kurulumu (EAS'in kararlı çalışması için ideal)
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
@@ -24,71 +24,45 @@ jobs:
         with:
           node-version: '20'
 
-      # 3. Bağımlılıkların YARN ile Kurulması
+      # 3. Bağımlılıkların YARN ile Kurulması (Ağ hatalarına karşı tam koruma)
       - name: Install Dependencies via Yarn
         run: |
           yarn config set network-timeout 300000
           yarn install --ignore-engines --non-interactive
 
-      # 4. Expo CLI Kurulumu
-      - name: Setup Expo
+      # 4. Expo ve EAS CLI Araçlarının Kurulması
+      - name: Setup Expo & EAS
         uses: expo/expo-github-action@v8
         with:
           expo-version: latest
           eas-version: latest
 
-      # 5. Doğal Expo Prebuild Süreci
-      - name: Expo Prebuild
+      # 5. KESİN ÇÖZÜM: Android Klasörünü ve Gradle Yapılandırmasını EAS'e Bırakma
+      # Bu komut, projedeki kütüphane sürümlerine tam uyan kararlı yapıyı arka planda otomatik kurar.
+      # '--local' parametresi derlemenin GitHub sunucusunda ücretsiz yapılmasını sağlar.
+      - name: Build Android App via EAS CLI
         run: |
-          npx expo prebuild --platform android --clean
+          npx eas build --platform android --local --non-interactive
 
-      # 6. KESİN ÇÖZÜM: Gradle ve Android Gradle Plugin (AGP) Sürümlerini Tam Uyumlu Aralığa Sabitleme
-      # Hem Wrapper sürümünü 8.3'e çekiyoruz hem de build.gradle içindeki AGP sürümünü 8.1.1'e senkronize ediyoruz.
-      - name: Sync Gradle and AGP Sivirms to Stable Matrix
-        run: |
-          # 1. Gradle Wrapper Sürümünü Değiştir (8.3)
-          cd android/gradle/wrapper
-          sed -i 's/gradle-9.3.1-bin.zip/gradle-8.3-all.zip/g' gradle-wrapper.properties
-          sed -i 's/gradle-9.3.1-all.zip/gradle-8.3-all.zip/g' gradle-wrapper.properties
-          sed -i 's/gradle-8.5-all.zip/gradle-8.3-all.zip/g' gradle-wrapper.properties
-          
-          # 2. Kök build.gradle dosyasındaki com.android.application (AGP) sürümünü 8.1.1'e çek
-          cd ../..
-          if [ -f build.gradle ]; then
-            sed -i 's/com.android.application" version "[^"]*"/com.android.application" version "8.1.1"/g' build.gradle
-          fi
-
-      # 7. Çalıştırma İzni Tanımlama
-      - name: Make Gradle Wrapper Executable
-        run: |
-          if [ -d android ]; then
-            chmod +x android/gradlew
-          fi
-
-      # 8. APK Derleme
-      - name: Build Release APK
-        run: |
-          cd android
-          ./gradlew assembleRelease
-
-      # 9. APK Dosyasını Summary (Artifacts) Ekranına Çıkarma
-      - name: Upload APK
+      # 6. Üretilen APK veya AAB Çıktısını Yakalama
+      # EAS local build çıktıyı doğrudan projenin kök dizinine bırakır.
+      - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release
-          path: android/app/build/outputs/apk/release/*.apk
+          path: ./*.apk
 
-      # 10. Otomatik Tag ve Sürüm Sürümü Oluşturup APK'yı Yükleme
-      - name: Create Release and Upload APK
+      # 7. Otomatik GitHub Sürümü (Release) Oluşturma ve Dosyayı Ekleme
+      - name: Create Release and Upload Asset
         uses: softprops/action-gh-release@v2
         with:
           tag_name: build-${{ github.run_number }}-${{ github.sha }}
           name: "CsReader Otomatik Sürüm #${{ github.run_number }}"
           body: |
-            Bu sürüm GitHub Actions tarafından otomatik olarak oluşturulmuştur.
+            Bu sürüm Expo EAS Build altyapısı kullanılarak otomatik olarak üretilmiştir.
             Commit Mesajı: ${{ github.event.head_commit.message }}
           draft: false
           prerelease: false
-          files: android/app/build/outputs/apk/release/*.apk
+          files: ./*.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
