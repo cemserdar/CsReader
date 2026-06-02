@@ -31,12 +31,25 @@ jobs:
         cache: gradle
 
     - name: Grant Execute Permission for Gradlew
-      run: chmod +x android/gradlew
+      run: |
+        if [ -f "android/gradlew" ]; then
+          chmod +x android/gradlew
+        elif [ -f "gradlew" ]; then
+          chmod +x gradlew
+        else
+          echo "gradlew bulunamadı, mevcut dizin kontrol ediliyor:"
+          ls -la
+          find . -name "gradlew"
+        fi
 
     - name: Build Release APK
       run: |
-        cd android
-        ./gradlew assembleRelease --no-daemon
+        if [ -d "android" ]; then
+          cd android
+          ./gradlew assembleRelease --no-daemon
+        else
+          ./gradlew assembleRelease --no-daemon
+        fi
 
     - name: Upload APK to Release Assets
       uses: softprops/action-gh-release@v2
