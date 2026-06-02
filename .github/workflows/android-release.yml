@@ -13,18 +13,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 1. Java 11 Kurulumu (Eski AGP ve Gradle sürümleri için Java 11 en stabil olanıdır)
+      # 1. Java 17 Kurulumu (Gradle 9.3.1'in çalışabilmesi için ŞART)
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '11'
+          java-version: '17'
 
       # 2. Node.js Kurulumu
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      # 3. Bağımlılıkların YARN ile Kurulması
+      # 3. Bağımlılıkların YARN ile Kurulması (Node motor kısıtlamaları bypass ediliyor)
       - name: Install Dependencies via Yarn
         run: |
           yarn config set network-timeout 300000
@@ -37,11 +37,8 @@ jobs:
           expo-version: latest
           eas-version: latest
 
-      # 5. KRİTİK ADIM: Çevre değişkenleri ile Gradle ve AGP sürümlerini geriye zorlama
-      - name: Expo Prebuild (Forced Legacy Versions)
-        env:
-          EXPO_ANDROID_GRADLE_PLUGIN_VERSION: 7.4.2
-          EXPO_ANDROID_GRADLE_VERSION: 7.6
+      # 5. Doğal Expo Prebuild Süreci (Bırakalım projenin orijinal güncel şablonu üretilsin)
+      - name: Expo Prebuild
         run: |
           npx expo prebuild --platform android --clean
 
@@ -52,7 +49,7 @@ jobs:
             chmod +x android/gradlew
           fi
 
-      # 7. APK Derleme
+      # 7. APK Derleme (Java 17 sayesinde Gradle 9.3.1 artık hata vermeden derleyecek)
       - name: Build Release APK
         run: |
           cd android
