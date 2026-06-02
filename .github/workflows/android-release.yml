@@ -13,22 +13,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 1. Java 11 Kurulumu (Eski kararlı Expo/Gradle şablonları için Java 11 en güvenlisidir)
+      # 1. Java 17 Kurulumu (Expo şablonu ve AGP uyumu için Java 17 idealdir)
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '11'
+          java-version: '17'
 
-      # 2. Node.js Kurulumu
+      # 2. Node.js Kurulumu (Hata veren 18 sürümü yerine en az v20.12.0 isteyen paketi tatmin etmek için v20 yapıldı)
       - uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
 
-      # 3. Bağımlılıkların YARN ile Kurulması (Ağ hatalarına karşı npm yerine çok daha kararlıdır)
+      # 3. Bağımlılıkların YARN ile Kurulması (Hem network timeout eklendi hem de engine kontrolü esnetildi)
       - name: Install Dependencies via Yarn
         run: |
           yarn config set network-timeout 300000
-          yarn install --frozen-lockfile || yarn install --non-interactive
+          yarn install --ignore-engines --non-interactive
 
       # 4. Expo CLI Kurulumu
       - name: Setup Expo
@@ -37,9 +37,8 @@ jobs:
           expo-version: latest
           eas-version: latest
 
-      # 5. KRİTİK DEĞİŞİKLİK: Eski ve Kararlı Gradle/AGP Şablonu ile Android Klasörü Oluşturma
-      # Bu sayede ':expo' ve ':expo-localization' kütüphaneleri 'release not found' hatası vermez.
-      - name: Expo Prebuild with Stable Template
+      # 5. Stabil Android Klasörü Üretimi
+      - name: Expo Prebuild
         run: npx expo prebuild --platform android --template expo-template-blank
 
       # 6. Çalıştırma İzni Tanımlama
