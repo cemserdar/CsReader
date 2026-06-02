@@ -5,7 +5,7 @@ on:
     types: [published]
 
 permissions:
-  contents: write # İş akışının release varlıklarına kesin olarak yazabilmesi için güvenceye alıyoruz
+  contents: write
 
 jobs:
   build_apk:
@@ -31,11 +31,20 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
-    - name: Grant Execute Permission for Gradlew
+    - name: Generate Android Wrapper if Missing
       run: |
-        if [ -f "android/gradlew" ]; then
-          chmod +x android/gradlew
-        elif [ -f "gradlew" ]; then
+        if [ -d "android" ]; then
+          cd android
+          if [ ! -f "gradlew" ]; then
+            echo "gradlew bulunamadı, yeniden oluşturuluyor..."
+            gradle wrapper --gradle-version 8.0
+          fi
+          chmod +x gradlew
+        else
+          if [ ! -f "gradlew" ]; then
+            echo "Ana dizinde gradlew bulunamadı, yeniden oluşturuluyor..."
+            gradle wrapper --gradle-version 8.0
+          fi
           chmod +x gradlew
         fi
 
