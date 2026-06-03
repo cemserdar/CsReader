@@ -100,7 +100,7 @@ class ReaderViewModel(
         }
     }
 
-    fun addHighlight(text: String, cfiRange: String?, page: Int?, color: String, onComplete: (HighlightEntity) -> Unit) {
+    fun addHighlight(text: String, cfiRange: String?, page: Int?, color: String, note: String?, onComplete: (HighlightEntity) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             val newHl = HighlightEntity(
                 id = "hl_${System.currentTimeMillis()}_${(1000..9999).random()}",
@@ -108,7 +108,7 @@ class ReaderViewModel(
                 cfiRange = cfiRange,
                 page = page,
                 text = text,
-                note = null,
+                note = note?.takeIf { it.isNotBlank() },
                 color = color,
                 date = System.currentTimeMillis()
             )
@@ -137,6 +137,11 @@ fun ReaderScreen(
     var loading by remember { mutableStateOf(true) }
     var showControls by remember { mutableStateOf(false) }
 
+    var highlightSelection by remember { mutableStateOf<org.readium.r2.navigator.Selection?>(null) }
+    var showHighlightDialog by remember { mutableStateOf(false) }
+    var activeNote by remember { mutableStateOf<String?>(null) }
+    var showNoteDialog by remember { mutableStateOf(false) }
+    
     // Parse book with Readium PublicationOpener (v3.1.1)
     LaunchedEffect(book.uri) {
         withContext(Dispatchers.IO) {
@@ -176,13 +181,38 @@ fun ReaderScreen(
     val highlights by viewModel.highlightsState.collectAsState()
     val pageTransition by viewModel.pageTransitionState.collectAsState()
     val scope = rememberCoroutineScope()
-    var viewId by remember { mutableStateOf(android.view.View.generateViewId()) }
+    val viewId = remember(pageTransition) { android.view.View.generateViewId() }
+
+    LaunchedEffect(highlights, pageTransition, viewId) {
+        // Wait for the fragment to be committed and ready
+        kotlinx.coroutines.delay(300)
+        val fragmentManager = activity.supportFragmentManager
+        val fragment = fragmentManager.findFragmentById(viewId)
+        if (fragment is DecorableNavigator) {
+            val decorations = highlights.mapNotNull { hl ->
+                try {
+                    val locatorJson = org.json.JSONObject(hl.cfiRange!!)
+                    val locator = Locator.fromJSON(locatorJson)
+                    if (locator != null) {
+                        val parsedColor = try { android.graphics.Color.parseColor(hl.color) } catch (e: Exception) { android.graphics.Color.YELLOW }
+                        Decoration(
+                            id = hl.id,
+                            locator = locator,
+                            style = Decoration.Style.Highlight(tint = parsedColor)
+                        )
+                    } else null
+                } catch (e: Exception) { null }
+            }
+            fragment.applyDecorations(decorations, "highlights")
+        }
+    }
 
     Box(modifier = Modifier.fillMaxSize().background(CsReaderTheme.colors.bg)) {
         if (loading) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         } else if (publication != null) {
-            AndroidView(
+            key(pageTransition) {
+                AndroidView(
                 modifier = Modifier.fillMaxSize().clickable { showControls = !showControls },
                 factory = { ctx ->
                     FragmentContainerView(ctx).apply {
@@ -192,7 +222,7 @@ fun ReaderScreen(
                         
                         val factory = if (isEpub) {
                             val prefs = EpubPreferences(
-                                scroll = pageTransition == "scroll_vertical"
+                                scroll = pageTransition == "scroll"
                             )
                             EpubNavigatorFactory(publication!!, EpubNavigatorFactory.Configuration()).createFragmentFactory(
                                 initialLocator = null,
@@ -200,7 +230,7 @@ fun ReaderScreen(
                             )
                         } else {
                             val prefs = PdfiumPreferences(
-                                scrollAxis = if (pageTransition == "scroll_vertical") Axis.VERTICAL else Axis.HORIZONTAL
+                                scrollAxis = if (pageTransition == "scroll") Axis.VERTICAL else Axis.HORIZONTAL
                             )
                             val pdfFactory = PdfNavigatorFactory(publication!!, PdfiumEngineProvider())
                             pdfFactory.createFragmentFactory(initialLocator = null, initialPreferences = prefs)
@@ -228,49 +258,23 @@ fun ReaderScreen(
                             }
                             
                             if (fragment is DecorableNavigator) {
-                                val decorations = highlights.mapNotNull { hl ->
-                                    try {
-                                        val locatorJson = org.json.JSONObject(hl.cfiRange!!)
-                                        val locator = Locator.fromJSON(locatorJson)
-                                        if (locator != null) {
-                                            Decoration(
-                                                id = hl.id,
-                                                locator = locator,
-                                                style = Decoration.Style.Highlight(tint = android.graphics.Color.YELLOW)
-                                            )
-                                        } else null
-                                    } catch (e: Exception) { null }
-                                }
-                                scope.launch {
-                                    fragment.applyDecorations(decorations, "highlights")
-                                }
+                                fragment.addDecorationListener("highlights", object : DecorableNavigator.Listener {
+                                    override fun onDecorationActivated(event: DecorableNavigator.OnActivatedEvent): Boolean {
+                                        val hl = highlights.find { it.id == event.decoration.id }
+                                        if (hl != null && !hl.note.isNullOrBlank()) {
+                                            activeNote = hl.note
+                                            showNoteDialog = true
+                                        }
+                                        return true
+                                    }
+                                })
                             }
                         }
                     }
                 },
-                update = { view ->
-                    val fragmentManager = activity.supportFragmentManager
-                    val fragment = fragmentManager.findFragmentById(view.id)
-                    if (fragment is DecorableNavigator) {
-                        val decorations = highlights.mapNotNull { hl ->
-                            try {
-                                val locatorJson = org.json.JSONObject(hl.cfiRange!!)
-                                val locator = Locator.fromJSON(locatorJson)
-                                if (locator != null) {
-                                    Decoration(
-                                        id = hl.id,
-                                        locator = locator,
-                                        style = Decoration.Style.Highlight(tint = android.graphics.Color.YELLOW)
-                                    )
-                                } else null
-                            } catch (e: Exception) { null }
-                        }
-                        scope.launch {
-                            fragment.applyDecorations(decorations, "highlights")
-                        }
-                    }
-                }
+                update = {}
             )
+            }
         } else {
             Text("Kitap yüklenemedi.", modifier = Modifier.align(Alignment.Center), color = Color.Red)
         }
@@ -314,17 +318,14 @@ fun ReaderScreen(
                         scope.launch {
                             val selection = fragment.currentSelection()
                             if (selection != null) {
-                                val locator = selection.locator
-                                val text = locator.text.highlight ?: ""
-                                val cfi = locator.toJSON().toString()
-                                viewModel.addHighlight(text, cfi, locator.locations.position, "#FFFF00") {
-                                    fragment.clearSelection()
-                                    Toast.makeText(context, "Vurgulandı!", Toast.LENGTH_SHORT).show()
-                                }
+                                highlightSelection = selection
+                                showHighlightDialog = true
                             } else {
-                                Toast.makeText(context, "Önce metin seçin.", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "Önce metin seçin. (Eğer metin seçiliyse WebView odak kaybettiği için seçim silinmiş olabilir)", Toast.LENGTH_LONG).show()
                             }
                         }
+                    } else {
+                        Toast.makeText(context, "Bu belgede metin seçimi desteklenmiyor.", Toast.LENGTH_SHORT).show()
                     }
                 },
                 modifier = Modifier
@@ -336,5 +337,81 @@ fun ReaderScreen(
                 Icon(Icons.Default.Edit, contentDescription = "Vurgula")
             }
         }
+    }
+
+    if (showHighlightDialog && highlightSelection != null) {
+        var note by remember { mutableStateOf("") }
+        var selectedColor by remember { mutableStateOf("#FFFF00") }
+        val colors = listOf("#FFFF00" to "Sarı", "#FF0000" to "Kırmızı", "#00FF00" to "Yeşil", "#0000FF" to "Mavi")
+
+        AlertDialog(
+            onDismissRequest = { showHighlightDialog = false },
+            title = { Text("Vurgula ve Not Ekle") },
+            text = {
+                Column {
+                    Text("Seçilen Metin: ${highlightSelection!!.locator.text.highlight?.take(30)}...")
+                    Spacer(modifier = Modifier.height(16.dp))
+                    OutlinedTextField(
+                        value = note,
+                        onValueChange = { note = it },
+                        label = { Text("Notunuz (İsteğe bağlı)") },
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Text("Renk:")
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        colors.forEach { (colorHex, colorName) ->
+                            Box(
+                                modifier = Modifier
+                                    .size(36.dp)
+                                    .clip(CircleShape)
+                                    .background(Color(android.graphics.Color.parseColor(colorHex)))
+                                    .border(
+                                        width = if (selectedColor == colorHex) 3.dp else 1.dp,
+                                        color = if (selectedColor == colorHex) CsReaderTheme.colors.text else Color.Gray,
+                                        shape = CircleShape
+                                    )
+                                    .clickable { selectedColor = colorHex }
+                            )
+                        }
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        val locator = highlightSelection!!.locator
+                        val text = locator.text.highlight ?: ""
+                        val cfi = locator.toJSON().toString()
+                        viewModel.addHighlight(text, cfi, locator.locations.position, selectedColor, note) {
+                            val fragment = activity.supportFragmentManager.findFragmentById(viewId) as? SelectableNavigator
+                            fragment?.clearSelection()
+                            showHighlightDialog = false
+                            Toast.makeText(context, "Vurgulandı!", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                ) {
+                    Text("Kaydet")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showHighlightDialog = false }) {
+                    Text("İptal")
+                }
+            }
+        )
+    }
+
+    if (showNoteDialog && activeNote != null) {
+        AlertDialog(
+            onDismissRequest = { showNoteDialog = false },
+            title = { Text("Notunuz") },
+            text = { Text(activeNote ?: "") },
+            confirmButton = {
+                TextButton(onClick = { showNoteDialog = false }) {
+                    Text("Kapat")
+                }
+            }
+        )
     }
 }

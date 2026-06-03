@@ -335,11 +335,8 @@ fun SettingsScreen(
                             horizontalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
                             listOf(
-                                "scroll" to "Aşağı Kaydır",
-                                "none" to "Yok",
-                                "slide" to "Sağa Kaydır",
-                                "fade" to "Solma",
-                                "page" to "Sayfa"
+                                "scroll" to "Aşağı Kaydır (Dikey)",
+                                "slide" to "Yatay Sayfalama"
                             ).forEach { (pType, pLabel) ->
                                 val active = pageTransition == pType
                                 Box(
