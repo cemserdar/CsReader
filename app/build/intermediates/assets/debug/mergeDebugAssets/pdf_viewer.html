@@ -58,7 +58,7 @@
     }
 
     .textLayer span {
-      color: transparent;
+      color: rgba(0, 0, 0, 0.01);
       position: absolute;
       white-space: pre;
       cursor: text;
@@ -155,10 +155,18 @@
     let currentTransition = "none";
 
     function sendToRN(type, payload) {
-      if (window.ReactNativeWebView) {
-        window.ReactNativeWebView.postMessage(JSON.stringify({ type, ...payload }));
+      const msg = JSON.stringify({ type, ...payload });
+      if (typeof AndroidBridge !== 'undefined') {
+        AndroidBridge.postMessage(msg);
+      } else if (window.ReactNativeWebView) {
+        window.ReactNativeWebView.postMessage(msg);
       }
     }
+
+    container.addEventListener('click', function(e) {
+      if (e.target.closest('.textLayer')) return; // ignore text selection clicks
+      sendToRN('click', {});
+    });
 
     window.addEventListener("message", function (event) {
       const message = JSON.parse(event.data);
@@ -184,8 +192,52 @@
         case "setTransition":
           applyPageTransition(message.pageTransition);
           break;
+        case "addHighlight":
+          addHighlight(message.cfiRange, message.color);
+          break;
       }
     });
+
+    let currentSelectionRange = null;
+
+    function addHighlight(cfiRange, color) {
+      if (!currentSelectionRange) return;
+      
+      const rects = currentSelectionRange.getClientRects();
+      const containerRect = container.getBoundingClientRect();
+      
+      // We must append highlights to the specific page to survive scrolling!
+      // Find the page container based on the first rect
+      const pageDiv = document.getElementById(`page-container-${currentPage}`);
+      if (!pageDiv) return;
+      const pageRect = pageDiv.getBoundingClientRect();
+
+      for (let i = 0; i < rects.length; i++) {
+        const rect = rects[i];
+        const highlight = document.createElement('div');
+        highlight.className = 'custom-highlight';
+        highlight.style.position = 'absolute';
+        highlight.style.left = (rect.left - pageRect.left) + 'px';
+        highlight.style.top = (rect.top - pageRect.top) + 'px';
+        highlight.style.width = rect.width + 'px';
+        highlight.style.height = rect.height + 'px';
+        highlight.style.backgroundColor = color;
+        highlight.style.opacity = '0.4';
+        highlight.style.pointerEvents = 'auto'; // allow clicking
+        highlight.style.cursor = 'pointer';
+        highlight.setAttribute('data-cfi', cfiRange);
+        
+        highlight.addEventListener('click', (e) => {
+          e.stopPropagation();
+          sendToRN('highlightClicked', { cfiRange: cfiRange });
+        });
+
+        pageDiv.appendChild(highlight);
+      }
+      
+      currentSelectionRange = null;
+      window.getSelection().removeAllRanges();
+    }
 
     async function loadPDF(pdfPath, initialPage, theme, transition) {
       try {
@@ -326,8 +378,8 @@
         };
 
         // Text Selection listener for high quality selection
-        textLayerDiv.addEventListener("mouseup", () => handleTextSelection(pageNum));
-        textLayerDiv.addEventListener("touchend", () => handleTextSelection(pageNum));
+        // Use global selectionchange for Android native handles
+        document.addEventListener("selectionchange", handleTextSelectionDebounced);
 
         page.cleanup();
 
@@ -353,15 +405,29 @@
       delete renderedPages[pageNum];
     }
 
-    function handleTextSelection(pageNum) {
-      const selection = window.getSelection();
-      const text = selection.toString().trim();
-      if (text.length > 0) {
-        sendToRN("selected", {
-          page: pageNum,
-          text: text
-        });
-      }
+    let selectionTimeout = null;
+    function handleTextSelectionDebounced() {
+      clearTimeout(selectionTimeout);
+      selectionTimeout = setTimeout(() => {
+        const selection = window.getSelection();
+        const text = selection ? selection.toString().trim() : "";
+        if (text.length > 0) {
+          currentSelectionRange = selection.getRangeAt(0).cloneRange();
+          // Find the active page based on selection anchor node
+          let pageNum = currentPage;
+          if (selection.anchorNode) {
+            const pageContainer = selection.anchorNode.parentElement?.closest('.page-container');
+            if (pageContainer) {
+              pageNum = parseInt(pageContainer.getAttribute('data-page')) || currentPage;
+            }
+          }
+          sendToRN("selected", {
+            page: pageNum,
+            text: text,
+            cfiRange: `page_${pageNum}_${Date.now()}` // Fake CFI for PDF notes
+          });
+        }
+      }, 500);
     }
 
     function goToPage(pageNum) {

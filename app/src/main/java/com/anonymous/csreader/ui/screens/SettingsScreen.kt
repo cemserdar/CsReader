@@ -20,6 +20,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
@@ -331,12 +332,14 @@ fun SettingsScreen(
 
                         Row(
                             modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.spacedBy(10.dp)
+                            horizontalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
                             listOf(
+                                "scroll" to "Aşağı Kaydır",
                                 "none" to "Yok",
-                                "slide" to "Kaydır",
-                                "fade" to "Solma"
+                                "slide" to "Sağa Kaydır",
+                                "fade" to "Solma",
+                                "page" to "Sayfa"
                             ).forEach { (pType, pLabel) ->
                                 val active = pageTransition == pType
                                 Box(
@@ -355,8 +358,10 @@ fun SettingsScreen(
                                 ) {
                                     Text(
                                         text = pLabel,
-                                        fontSize = 14.sp,
+                                        fontSize = 11.sp,
                                         fontWeight = FontWeight.SemiBold,
+                                        maxLines = 1,
+                                        overflow = TextOverflow.Ellipsis,
                                         color = if (active) Color.White else CsReaderTheme.colors.text
                                     )
                                 }

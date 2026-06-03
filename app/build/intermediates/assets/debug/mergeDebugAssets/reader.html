@@ -13,9 +13,8 @@
       height: 100%;
       overflow: hidden;
       background-color: #faf8f5;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      user-select: none;
       -webkit-user-select: none;
+      user-select: none;
     }
 
     #viewer-container {
@@ -24,6 +23,11 @@
       width: 100vw;
       height: 100vh;
       overflow: hidden;
+    }
+
+    /* Scroll mode: allow vertical scroll inside the iframe */
+    #viewer-container.scroll-mode {
+      overflow-y: auto;
     }
 
     #viewer {
@@ -36,7 +40,7 @@
       will-change: transform, opacity;
     }
 
-    /* epub.js iframe must fill the viewer */
+    /* Force iframe to fill the viewer div */
     #viewer iframe {
       border: none !important;
       width: 100% !important;
@@ -44,12 +48,23 @@
       display: block !important;
     }
 
+    /* Scroll mode: iframe can be taller than screen */
+    #viewer-container.scroll-mode #viewer {
+      position: relative;
+      height: auto;
+      min-height: 100vh;
+    }
+    #viewer-container.scroll-mode #viewer iframe {
+      height: auto !important;
+      min-height: 100vh !important;
+    }
+
     #error-overlay {
       display: none;
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0,0,0,0.85);
+      background: rgba(0,0,0,0.88);
       color: #fff;
       z-index: 9999;
       align-items: center;
@@ -60,14 +75,14 @@
     }
     #error-overlay.show { display: flex; }
     #error-title { font-size: 18px; font-weight: bold; margin-bottom: 12px; }
-    #error-msg { font-size: 13px; opacity: 0.8; line-height: 1.6; }
+    #error-detail { font-size: 13px; opacity: 0.75; line-height: 1.6; word-break: break-all; }
 
-    .epubjs-hl       { fill-opacity: 0.3; mix-blend-mode: multiply; cursor: pointer; }
-    .epubjs-hl-yellow  { fill: #fef08a; background-color: rgba(254,240,138,0.4); }
-    .epubjs-hl-green   { fill: #bbf7d0; background-color: rgba(187,247,208,0.4); }
-    .epubjs-hl-pink    { fill: #fbcfe8; background-color: rgba(251,207,232,0.4); }
-    .epubjs-hl-blue    { fill: #bfdbfe; background-color: rgba(191,219,254,0.4); }
-    .epubjs-hl-underline { fill: transparent; border-bottom: 2px dashed #ef4444; }
+    .epubjs-hl         { fill-opacity: 0.3; mix-blend-mode: multiply; cursor: pointer; }
+    .epubjs-hl-yellow  { fill: #fef08a; }
+    .epubjs-hl-green   { fill: #bbf7d0; }
+    .epubjs-hl-pink    { fill: #fbcfe8; }
+    .epubjs-hl-blue    { fill: #bfdbfe; }
+    .epubjs-hl-underline { fill: transparent; text-decoration: underline dashed #ef4444; }
   </style>
   <script src="epub.min.js"></script>
 </head>
@@ -78,63 +93,62 @@
   </div>
   <div id="error-overlay">
     <div id="error-title">⚠️ Kitap Açılamadı</div>
-    <div id="error-msg"></div>
+    <div id="error-detail"></div>
   </div>
 
   <script>
-    // ── Global error handler ────────────────────────────────────────────────────
+    // ── Global JS error catcher ────────────────────────────────────────────────
     window.addEventListener('error', function(e) {
-      sendToAndroid('error', { message: 'JS Hata: ' + e.message });
+      sendToAndroid('error', { message: 'JS hatası: ' + e.message });
     });
 
     // ── State ──────────────────────────────────────────────────────────────────
-    let book        = null;
-    let rendition   = null;
-    let currentCfi  = '';
-    let currentTheme = 'light';
-    let currentTransition = 'slide';
+    var book = null;
+    var rendition = null;
+    var currentCfi = '';
+    var currentTheme = 'light';
+    var currentTransition = 'slide';
+    var navBusy = false;
+    var navBusyTimer = null;
+    var highlights = {};
+    var lastBookParams = null;   // stored so we can reload on flow change
 
-    let navBusy = false;
-    let navBusyTimer = null;
+    var container = document.getElementById('viewer-container');
+    var viewer    = document.getElementById('viewer');
 
-    let highlights  = {};
-
-    const viewer    = document.getElementById('viewer');
-    const errOverlay = document.getElementById('error-overlay');
-    const errMsg    = document.getElementById('error-msg');
-
-    // ── Bridge ─────────────────────────────────────────────────────────────────
+    // ── Android bridge ────────────────────────────────────────────────────────
     function sendToAndroid(type, payload) {
-      const msg = JSON.stringify({ type, ...payload });
       try {
-        if (typeof AndroidBridge !== 'undefined') {
-          AndroidBridge.postMessage(msg);
-        } else if (window.ReactNativeWebView) {
-          window.ReactNativeWebView.postMessage(msg);
-        }
+        var msg = JSON.stringify(Object.assign({ type: type }, payload));
+        if (typeof AndroidBridge !== 'undefined') AndroidBridge.postMessage(msg);
       } catch(e) {}
     }
 
     function showError(title, detail) {
-      errOverlay.classList.add('show');
-      document.getElementById('error-title').textContent = '⚠️ ' + title;
-      errMsg.textContent = detail || '';
+      document.getElementById('error-overlay').classList.add('show');
+      document.getElementById('error-title').textContent  = '⚠️ ' + title;
+      document.getElementById('error-detail').textContent = detail || '';
       sendToAndroid('error', { message: title + ' ' + (detail || '') });
     }
 
-    // ── Commands from Android ──────────────────────────────────────────────────
+    // ── Commands from Android ─────────────────────────────────────────────────
     function handleCommand(json) {
-      let msg;
+      var msg;
       try { msg = JSON.parse(json); } catch(e) { return; }
 
       switch (msg.action) {
         case 'load':
-          loadBook(msg.bookPath, msg.initialCfi, msg.theme, msg.fontSize, msg.pageTransition, msg.highlights || []);
+          loadBook(msg.bookPath, msg.initialCfi, msg.theme,
+                   msg.fontSize, msg.pageTransition, msg.highlights || []);
           break;
-        case 'next':        doNext(); break;
-        case 'prev':        doPrev(); break;
+        case 'next':
+          doNext();
+          break;
+        case 'prev':
+          doPrev();
+          break;
         case 'goToCfi':
-          if (rendition) rendition.display(msg.cfi).catch(() => {});
+          if (rendition) rendition.display(msg.cfi).catch(function(){});
           break;
         case 'setTheme':
           applyTheme(msg.theme);
@@ -143,10 +157,18 @@
           if (rendition) rendition.themes.fontSize(msg.fontSize + 'px');
           break;
         case 'setTransition':
+          var wasScroll = currentTransition === 'scroll';
+          var isScroll  = msg.pageTransition === 'scroll';
           currentTransition = msg.pageTransition || 'slide';
+          // If scroll mode changed we need to reload the book with different flow
+          if (wasScroll !== isScroll && lastBookParams) {
+            var p = lastBookParams;
+            loadBook(p.bookPath, currentCfi || p.initialCfi,
+                     p.theme, p.fontSize, currentTransition, p.savedHighlights);
+          }
           break;
         case 'addHighlight':
-          addHighlight(msg.cfiRange, msg.color, true);
+          addHighlight(msg.cfiRange, msg.color);
           break;
         case 'removeHighlight':
           removeHighlight(msg.cfiRange);
@@ -154,201 +176,219 @@
       }
     }
 
-    window.addEventListener('message', function(event) {
-      let msg;
+    // PostMessage bridge (React-Native style fallback)
+    window.addEventListener('message', function(e) {
       try {
-        msg = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-      } catch(e) { return; }
-      handleCommand(JSON.stringify(msg));
+        var d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+        handleCommand(JSON.stringify(d));
+      } catch(ex) {}
     });
 
-    // ── Nav lock helpers ───────────────────────────────────────────────────────
+    // ── Nav lock ───────────────────────────────────────────────────────────────
     function lockNav(ms) {
       navBusy = true;
       clearTimeout(navBusyTimer);
-      navBusyTimer = setTimeout(() => { navBusy = false; }, ms);
+      navBusyTimer = setTimeout(function() { navBusy = false; }, ms);
     }
-
     function unlockNav() {
       navBusy = false;
       clearTimeout(navBusyTimer);
     }
 
-    // ── Viewer animation ───────────────────────────────────────────────────────
-    // "next" = current page slides LEFT, new page enters from RIGHT
-    // "prev" = current page slides RIGHT, new page enters from LEFT
-    function animateOut(direction) {
-      return new Promise(resolve => {
-        viewer.style.transition = 'transform 0.25s ease-in-out, opacity 0.25s ease-in-out';
-        viewer.style.transform  = direction === 'next' ? 'translateX(-100%)' : 'translateX(100%)';
-        viewer.style.opacity    = '0';
-        setTimeout(resolve, 260);
-      });
-    }
-
-    function animateIn(direction) {
-      // Start off-screen on the OPPOSITE side
-      viewer.style.transition = 'none';
-      viewer.style.transform  = direction === 'next' ? 'translateX(100%)' : 'translateX(-100%)';
-      viewer.style.opacity    = '0';
-      void viewer.offsetWidth; // force reflow
-      viewer.style.transition = 'transform 0.25s ease-in-out, opacity 0.25s ease-in-out';
-      viewer.style.transform  = 'translateX(0)';
-      viewer.style.opacity    = '1';
-    }
-
-    function fadeOut() {
-      return new Promise(resolve => {
-        viewer.style.transition = 'opacity 0.2s ease';
-        viewer.style.opacity    = '0';
-        setTimeout(resolve, 210);
-      });
-    }
-
-    function fadeIn() {
-      viewer.style.transition = 'opacity 0.25s ease';
-      viewer.style.opacity    = '1';
-    }
-
+    // ── Animations ─────────────────────────────────────────────────────────────
     function resetViewer() {
-      viewer.style.transition = 'none';
-      viewer.style.transform  = 'translateX(0)';
+      viewer.style.transition  = 'none';
+      viewer.style.transform   = 'translateX(0) perspective(1200px) rotateY(0deg)';
+      viewer.style.opacity     = '1';
+      viewer.style.transformOrigin = '50% 50%';
+    }
+
+    // SLIDE: full-screen horizontal slide
+    function slideOut(direction) {
+      return new Promise(function(resolve) {
+        viewer.style.transition = 'transform 0.28s ease-in-out, opacity 0.28s ease-in-out';
+        viewer.style.transform  = direction === 'next' ? 'translateX(-100%)' : 'translateX(100%)';
+        viewer.style.opacity    = '0.3';
+        setTimeout(resolve, 290);
+      });
+    }
+    function slideIn(direction) {
+      viewer.style.transition  = 'none';
+      viewer.style.transform   = direction === 'next' ? 'translateX(100%)' : 'translateX(-100%)';
+      viewer.style.opacity     = '0';
+      void viewer.offsetWidth; // force reflow
+      viewer.style.transition  = 'transform 0.28s ease-out, opacity 0.28s ease-out';
+      viewer.style.transform   = 'translateX(0)';
+      viewer.style.opacity     = '1';
+    }
+
+    // FADE
+    function fadeOut() {
+      return new Promise(function(resolve) {
+        viewer.style.transition = 'opacity 0.22s ease';
+        viewer.style.opacity    = '0';
+        setTimeout(resolve, 230);
+      });
+    }
+    function fadeIn() {
+      viewer.style.transition = 'opacity 0.22s ease';
+      viewer.style.opacity    = '1';
+    }
+
+    // PAGE TURN: 3-D flip around the spine
+    function pageOut(direction) {
+      return new Promise(function(resolve) {
+        viewer.style.transformOrigin = direction === 'next' ? 'left center' : 'right center';
+        viewer.style.transition      = 'transform 0.35s ease-in, opacity 0.25s ease-in';
+        viewer.style.transform       = direction === 'next'
+          ? 'perspective(1200px) rotateY(-90deg) scale(0.95)'
+          : 'perspective(1200px) rotateY(90deg) scale(0.95)';
+        viewer.style.opacity = '0.1';
+        setTimeout(resolve, 360);
+      });
+    }
+    function pageIn(direction) {
+      viewer.style.transition      = 'none';
+      viewer.style.transformOrigin = direction === 'next' ? 'right center' : 'left center';
+      viewer.style.transform       = direction === 'next'
+        ? 'perspective(1200px) rotateY(90deg) scale(0.95)'
+        : 'perspective(1200px) rotateY(-90deg) scale(0.95)';
+      viewer.style.opacity = '0.1';
+      void viewer.offsetWidth;
+      viewer.style.transition = 'transform 0.35s ease-out, opacity 0.25s ease-out';
+      viewer.style.transform  = 'perspective(1200px) rotateY(0deg) scale(1)';
       viewer.style.opacity    = '1';
     }
 
     // ── Navigation ─────────────────────────────────────────────────────────────
-    async function doNext() {
-      if (navBusy || !rendition) return;
-      lockNav(800);
+    function doNext() {
+      if (navBusy || !rendition || currentTransition === 'scroll') return;
+      lockNav(900);
 
       if (currentTransition === 'slide') {
-        await animateOut('next');
-        await rendition.next();
-        animateIn('next');
+        slideOut('next').then(function() {
+          rendition.next().then(function() { slideIn('next'); }).catch(unlockNav);
+        });
       } else if (currentTransition === 'fade') {
-        await fadeOut();
-        await rendition.next();
-        fadeIn();
+        fadeOut().then(function() {
+          rendition.next().then(function() { fadeIn(); }).catch(unlockNav);
+        });
+      } else if (currentTransition === 'page') {
+        pageOut('next').then(function() {
+          rendition.next().then(function() { pageIn('next'); }).catch(unlockNav);
+        });
       } else {
-        await rendition.next();
+        rendition.next().catch(function(){});
+        unlockNav();
       }
     }
 
-    async function doPrev() {
-      if (navBusy || !rendition) return;
-      lockNav(800);
+    function doPrev() {
+      if (navBusy || !rendition || currentTransition === 'scroll') return;
+      lockNav(900);
 
       if (currentTransition === 'slide') {
-        await animateOut('prev');
-        await rendition.prev();
-        animateIn('prev');
+        slideOut('prev').then(function() {
+          rendition.prev().then(function() { slideIn('prev'); }).catch(unlockNav);
+        });
       } else if (currentTransition === 'fade') {
-        await fadeOut();
-        await rendition.prev();
-        fadeIn();
+        fadeOut().then(function() {
+          rendition.prev().then(function() { fadeIn(); }).catch(unlockNav);
+        });
+      } else if (currentTransition === 'page') {
+        pageOut('prev').then(function() {
+          rendition.prev().then(function() { pageIn('prev'); }).catch(unlockNav);
+        });
       } else {
-        await rendition.prev();
+        rendition.prev().catch(function(){});
+        unlockNav();
       }
     }
 
     // ── Load Book ──────────────────────────────────────────────────────────────
     function loadBook(bookPath, initialCfi, theme, fontSize, pageTransition, savedHighlights) {
       currentTransition = pageTransition || 'slide';
-      resetViewer();
-      errOverlay.classList.remove('show');
+      lastBookParams    = {
+        bookPath: bookPath, initialCfi: initialCfi, theme: theme,
+        fontSize: fontSize, pageTransition: pageTransition, savedHighlights: savedHighlights
+      };
 
-      if (book) {
-        try { book.destroy(); } catch(e) {}
-        book = null;
-        rendition = null;
+      // Reset visuals
+      resetViewer();
+      document.getElementById('error-overlay').classList.remove('show');
+
+      // Scroll mode: modify container
+      var isScroll = currentTransition === 'scroll';
+      if (isScroll) {
+        container.classList.add('scroll-mode');
+      } else {
+        container.classList.remove('scroll-mode');
       }
 
-      // Create ePub book instance
+      // Destroy previous book
+      if (book) {
+        try { book.destroy(); } catch(e) {}
+        book       = null;
+        rendition  = null;
+        viewer.innerHTML = '';
+      }
+
+      // Create book — epub.js fetches the EPUB via HTTP from LocalWebServer
       book = ePub(bookPath);
 
-      book.opened.then(function() {
-        // Book opened successfully, proceed with rendering
-      }).catch(function(err) {
-        showError('Kitap açılamadı', err ? err.message : '');
+      // Error handling
+      book.opened.catch(function(err) {
+        showError('Kitap açılamadı', err ? err.message : bookPath);
       });
 
+      // ToC
       book.loaded.navigation.then(function(toc) {
-        const chapters = toc.map(ch => ({
-          label: (ch.label || '').trim(),
-          href:  ch.href
-        }));
-        sendToAndroid('toc', { chapters });
-      }).catch(() => {});
+        var chapters = toc.toc ? toc.toc.map(function(ch) {
+          return { label: (ch.label || '').trim(), href: ch.href };
+        }) : [];
+        sendToAndroid('toc', { chapters: chapters });
+      }).catch(function(){});
 
+      // Metadata
       book.loaded.metadata.then(function(meta) {
-        sendToAndroid('metadata', {
-          title:   meta.title,
-          creator: meta.creator
-        });
-      }).catch(() => {});
+        sendToAndroid('metadata', { title: meta.title, creator: meta.creator });
+      }).catch(function(){});
 
-      // Create rendition — NO allowScriptedContent (causes issues in some versions)
+      // ──────────────────────────────────────────────────────────────────────
+      // KEY FIX: use explicit pixel dimensions, NOT percentage strings.
+      // epub.js parses width/height as numbers when they are numbers, and as
+      // CSS when they are strings. Percentage strings cause sizing problems in
+      // Android WebView — use exact pixel values instead.
+      // ──────────────────────────────────────────────────────────────────────
+      var W = window.innerWidth;
+      var H = window.innerHeight;
+
       rendition = book.renderTo('viewer', {
-        width:   '100%',
-        height:  '100%',
-        spread:  'none',
-        flow:    'paginated',
-        manager: 'default'
+        width:    W,
+        height:   isScroll ? 9999 : H,
+        spread:   'none',
+        flow:     isScroll ? 'scrolled-continuous' : 'paginated',
+        manager:  'default'
       });
 
-      // Apply theme and font size
+      // Apply appearance
       applyTheme(theme || 'light');
       rendition.themes.fontSize((fontSize || 16) + 'px');
 
-      // Hook: set up swipe gestures and click detection inside the epub iframe
+      // Re-apply highlights whenever a section renders
       rendition.on('rendered', function(section, view) {
-        try {
-          const doc = view.document || (view.contents && view.contents.document);
-          if (doc) {
-            setupSwipe(doc);
-            setupClick(doc);
-          }
-        } catch(e) {}
-
-        // Re-apply saved highlights for this section
-        savedHighlights.forEach(hl => {
-          addHighlight(hl.cfiRange, hl.color, false);
+        savedHighlights.forEach(function(hl) {
+          addHighlight(hl.cfiRange, hl.color);
         });
       });
 
-      // Also attach swipe/click via contents hook as backup
-      rendition.on('displayed', function(section) {
-        try {
-          const view = rendition.manager && rendition.manager.current();
-          if (view && view.document) {
-            setupSwipe(view.document);
-            setupClick(view.document);
-          }
-        } catch(e) {}
-      });
-
-      // selected text → highlight dialog
-      rendition.on('selected', function(cfiRange, contents) {
-        try {
-          const sel  = contents.window.getSelection();
-          const text = sel ? sel.toString().trim() : '';
-          if (text.length > 0) {
-            sendToAndroid('selected', { cfiRange, text });
-          }
-        } catch(e) {}
-      });
-
-      // relocated → send progress back to Android
+      // Progress tracking
       rendition.on('relocated', function(location) {
-        resetViewer();
+        if (!isScroll) resetViewer();
         unlockNav();
-
         currentCfi = location.start.cfi;
-        let progress = 0;
-        try {
-          progress = book.locations.percentageFromCfi(currentCfi) || 0;
-        } catch(e) {}
-
+        var progress = 0;
+        try { progress = book.locations.percentageFromCfi(currentCfi) || 0; } catch(e) {}
         sendToAndroid('relocated', {
           cfi:      currentCfi,
           progress: progress,
@@ -357,61 +397,75 @@
         });
       });
 
-      // Display initial location
-      const displayTarget = (initialCfi && initialCfi !== '') ? initialCfi : undefined;
-      rendition.display(displayTarget).catch(function(err) {
-        // Retry without CFI on error
-        rendition.display().catch(function(err2) {
-          showError('Sayfa görüntülenemedi', err2 ? err2.message : '');
+      // Text selection
+      rendition.on('selected', function(cfiRange, contents) {
+        try {
+          var text = contents.window.getSelection().toString().trim();
+          if (text.length > 0) sendToAndroid('selected', { cfiRange: cfiRange, text: text });
+        } catch(e) {}
+      });
+
+      // Display
+      var displayTarget = (initialCfi && initialCfi !== '') ? initialCfi : undefined;
+      rendition.display(displayTarget).catch(function() {
+        rendition.display().catch(function(err) {
+          showError('Sayfa görüntülenemedi', err ? err.message : '');
         });
       });
 
-      // Generate locations for progress tracking (background, non-blocking)
-      book.ready.then(() => {
-        book.locations.generate(1024).then(() => {
+      // Background: generate locations for progress %
+      book.ready.then(function() {
+        book.locations.generate(1024).then(function() {
           if (currentCfi) {
             try {
-              const p = book.locations.percentageFromCfi(currentCfi) || 0;
+              var p = book.locations.percentageFromCfi(currentCfi) || 0;
               sendToAndroid('progressReady', { progress: p });
             } catch(e) {}
           }
-        }).catch(() => {});
-      }).catch(() => {});
+        }).catch(function(){});
+      }).catch(function(){});
     }
 
     // ── Theme ──────────────────────────────────────────────────────────────────
     function applyTheme(theme) {
       currentTheme = theme;
-      const themes = {
+      var themes = {
         light:  { bg: '#faf8f5', color: '#1c1917', link: '#2563eb' },
-        dark:   { bg: '#121212', color: '#e5e5e5', link: '#60a5fa' },
+        dark:   { bg: '#0f0f0f', color: '#e5e5e5', link: '#60a5fa' },
         sepia:  { bg: '#f4ecd8', color: '#5c4033', link: '#92400e' },
         forest: { bg: '#eef1eb', color: '#2d3a24', link: '#166534' }
       };
-      const t = themes[theme] || themes.light;
+      var t = themes[theme] || themes.light;
       document.body.style.backgroundColor = t.bg;
-      document.getElementById('viewer-container').style.backgroundColor = t.bg;
+      container.style.backgroundColor     = t.bg;
 
       if (rendition) {
         rendition.themes.default({
-          body:  { 'background-color': t.bg + ' !important', 'color': t.color + ' !important',
-                   'font-family': 'system-ui,-apple-system,sans-serif !important', 'line-height': '1.7 !important' },
-          p:     { 'color': t.color + ' !important' },
-          span:  { 'color': t.color + ' !important' },
-          a:     { 'color': t.link + ' !important' }
+          body: {
+            'background-color': t.bg + ' !important',
+            'color':            t.color + ' !important',
+            'line-height':      '1.75 !important',
+            'font-family':      'system-ui,-apple-system,sans-serif !important'
+          },
+          p:    { 'color': t.color + ' !important' },
+          span: { 'color': t.color + ' !important' },
+          a:    { 'color': t.link + ' !important' }
         });
       }
     }
 
     // ── Highlights ─────────────────────────────────────────────────────────────
-    function addHighlight(cfiRange, color, save) {
+    function addHighlight(cfiRange, color) {
       if (!rendition || !cfiRange) return;
-      const classMap = { yellow: 'epubjs-hl-yellow', green: 'epubjs-hl-green',
-                         pink: 'epubjs-hl-pink', blue: 'epubjs-hl-blue', underline: 'epubjs-hl-underline' };
-      const cls = classMap[color] || 'epubjs-hl-yellow';
+      var classMap = {
+        yellow: 'epubjs-hl-yellow', green: 'epubjs-hl-green',
+        pink:   'epubjs-hl-pink',   blue:  'epubjs-hl-blue',
+        underline: 'epubjs-hl-underline'
+      };
+      var cls = classMap[color] || 'epubjs-hl-yellow';
       try {
-        rendition.annotations.add('highlight', cfiRange, {}, () => {
-          sendToAndroid('highlightClicked', { cfiRange });
+        rendition.annotations.add('highlight', cfiRange, {}, function() {
+          sendToAndroid('highlightClicked', { cfiRange: cfiRange });
         }, cls);
         highlights[cfiRange] = color;
       } catch(e) {}
@@ -425,69 +479,46 @@
       } catch(e) {}
     }
 
-    // ── Click detection (full-screen toggle) ───────────────────────────────────
-    function setupClick(doc) {
-      try {
-        // Remove existing listener to avoid duplicates
-        doc.removeEventListener('click', onDocClick, true);
-        doc.addEventListener('click', onDocClick, true);
-      } catch(e) {}
-    }
+    // ── Gesture handling on OUTER CONTAINER ──────────────────────────────────
+    // By handling touch on the outer container (main document), we completely
+    // avoid the iframe cross-origin / passive-event issues in Android WebView.
+    var _sx = 0, _sy = 0, _st = 0, _horiz = null;
 
-    function onDocClick(e) {
+    container.addEventListener('touchstart', function(e) {
+      _sx    = e.changedTouches[0].clientX;
+      _sy    = e.changedTouches[0].clientY;
+      _st    = Date.now();
+      _horiz = null;
+    }, { passive: true });
+
+    container.addEventListener('touchmove', function(e) {
+      if (_horiz === null) {
+        var dx = Math.abs(e.changedTouches[0].clientX - _sx);
+        var dy = Math.abs(e.changedTouches[0].clientY - _sy);
+        if (dx > 8 || dy > 8) _horiz = dx > dy * 1.3;
+      }
+      // Only block default scroll for confirmed horizontal swipes in non-scroll mode
+      if (_horiz === true && currentTransition !== 'scroll') {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    container.addEventListener('touchend', function(e) {
+      if (currentTransition === 'scroll') { _horiz = null; return; }
+      var dx = e.changedTouches[0].clientX - _sx;
+      var dy = e.changedTouches[0].clientY - _sy;
+      var dt = Date.now() - _st;
+      if (_horiz === true && Math.abs(dx) > 40 && dt < 500) {
+        if (dx > 0) doPrev();
+        else        doNext();
+      }
+      _horiz = null;
+    }, { passive: true });
+
+    // Click on outer container → tell Android to toggle controls
+    container.addEventListener('click', function(e) {
       sendToAndroid('click', {});
-    }
-
-    // ── Swipe Gestures ─────────────────────────────────────────────────────────
-    // Uses native addEventListener with passive:false on touchmove so we can
-    // call e.preventDefault() to block vertical scroll during horizontal swipe.
-    function setupSwipe(doc) {
-      try {
-        // Remove old listeners (avoid duplicates on re-render)
-        doc.removeEventListener('touchstart', onTouchStart, true);
-        doc.removeEventListener('touchmove',  onTouchMove,  { passive: false, capture: true });
-        doc.removeEventListener('touchend',   onTouchEnd,   true);
-
-        doc.addEventListener('touchstart', onTouchStart, { passive: true, capture: true });
-        doc.addEventListener('touchmove',  onTouchMove,  { passive: false, capture: true });
-        doc.addEventListener('touchend',   onTouchEnd,   { passive: true, capture: true });
-      } catch(e) {}
-    }
-
-    let _startX = 0, _startY = 0, _startTime = 0, _isHoriz = null;
-
-    function onTouchStart(e) {
-      _startX    = e.changedTouches[0].clientX;
-      _startY    = e.changedTouches[0].clientY;
-      _startTime = Date.now();
-      _isHoriz   = null;
-    }
-
-    function onTouchMove(e) {
-      if (_isHoriz === null) {
-        const dx = Math.abs(e.changedTouches[0].clientX - _startX);
-        const dy = Math.abs(e.changedTouches[0].clientY - _startY);
-        if (dx > 8 || dy > 8) {
-          _isHoriz = dx > dy * 1.2;
-        }
-      }
-      if (_isHoriz === true) {
-        e.preventDefault(); // block vertical scroll while swiping horizontally
-      }
-    }
-
-    function onTouchEnd(e) {
-      if (navBusy) return;
-      const dx = e.changedTouches[0].clientX - _startX;
-      const dy = e.changedTouches[0].clientY - _startY;
-      const dt = Date.now() - _startTime;
-
-      if (_isHoriz === true && Math.abs(dx) > 40 && dt < 500) {
-        if (dx > 0) doPrev();  // swipe right → previous page
-        else        doNext();  // swipe left  → next page
-      }
-      _isHoriz = null;
-    }
+    });
   </script>
 </body>
 

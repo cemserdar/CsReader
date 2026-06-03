@@ -31,6 +31,7 @@ android {
         }
     }
     compileOptions {
+        coreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
@@ -73,14 +74,17 @@ dependencies {
     implementation("androidx.room:room-ktx:$roomVersion")
     ksp("androidx.room:room-compiler:$roomVersion")
 
-    // WebKit (for WebView features)
-    implementation("androidx.webkit:webkit:1.10.0")
+    // Core Library Desugaring
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 
-    // Gson (for parsing messages to/from WebView)
-    implementation("com.google.code.gson:gson:2.10.1")
-
-    // NanoHTTPD (Local Web Server for serving EPUBs)
-    implementation("org.nanohttpd:nanohttpd:2.3.1")
+    // Readium Toolkit
+    val readiumVersion = "3.1.1"
+    implementation("org.readium.kotlin-toolkit:readium-shared:$readiumVersion")
+    implementation("org.readium.kotlin-toolkit:readium-streamer:$readiumVersion")
+    implementation("org.readium.kotlin-toolkit:readium-navigator:$readiumVersion")
+    implementation("org.readium.kotlin-toolkit:readium-adapter-pdfium:$readiumVersion")
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
+    implementation("androidx.compose.ui:ui-viewbinding")
 
     // Testing
     testImplementation("junit:junit:4.13.2")
