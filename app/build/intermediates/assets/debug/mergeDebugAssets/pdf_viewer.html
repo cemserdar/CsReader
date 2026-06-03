@@ -113,8 +113,35 @@
   <div id="viewer-container"></div>
 
   <script>
-    // Point to local worker
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdf.worker.min.js';
+    // Global error handler
+    window.addEventListener('error', function(e) {
+      sendToRN('error', { message: 'JS Hata: ' + e.message + ' at ' + e.filename + ':' + e.lineno });
+    });
+
+    // Load worker as Blob URL to avoid same-origin/worker security restrictions in WebView
+    let workerLoaded = false;
+    let pendingLoad = null;
+
+    fetch('pdf.worker.min.js')
+      .then(response => response.blob())
+      .then(blob => {
+        const workerUrl = URL.createObjectURL(blob);
+        pdfjsLib.GlobalWorkerOptions.workerSrc = workerUrl;
+        workerLoaded = true;
+        if (pendingLoad) {
+          loadPDF(pendingLoad.pdfPath, pendingLoad.initialPage, pendingLoad.theme, pendingLoad.transition);
+          pendingLoad = null;
+        }
+      })
+      .catch(err => {
+        console.error('Failed to load worker as blob:', err);
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdf.worker.min.js';
+        workerLoaded = true;
+        if (pendingLoad) {
+          loadPDF(pendingLoad.pdfPath, pendingLoad.initialPage, pendingLoad.theme, pendingLoad.transition);
+          pendingLoad = null;
+        }
+      });
 
     let pdfDoc = null;
     let container = document.getElementById("viewer-container");
@@ -137,7 +164,16 @@
       const message = JSON.parse(event.data);
       switch (message.action) {
         case "load":
-          loadPDF(message.bookPath, message.initialPage, message.theme, message.pageTransition);
+          if (workerLoaded) {
+            loadPDF(message.bookPath, message.initialPage, message.theme, message.pageTransition);
+          } else {
+            pendingLoad = {
+              pdfPath: message.bookPath,
+              initialPage: message.initialPage,
+              theme: message.theme,
+              transition: message.pageTransition
+            };
+          }
           break;
         case "goToPage":
           goToPage(message.page);

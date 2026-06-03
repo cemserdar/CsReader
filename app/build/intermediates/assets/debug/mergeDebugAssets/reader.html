@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>CsReader EPUB Viewer</title>
   <style>
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      margin: 0;
-      padding: 0;
+    html, body {
+      width: 100%;
+      height: 100%;
       overflow: hidden;
       background-color: #faf8f5;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -18,17 +18,49 @@
       -webkit-user-select: none;
     }
 
-    #viewer {
+    #viewer-container {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: transparent;
-      /* Default: visible, no transform */
+      overflow: hidden;
+    }
+
+    #viewer {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
       opacity: 1;
       transform: translateX(0);
+      will-change: transform, opacity;
     }
+
+    /* epub.js iframe must fill the viewer */
+    #viewer iframe {
+      border: none !important;
+      width: 100% !important;
+      height: 100% !important;
+      display: block !important;
+    }
+
+    #error-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      color: #fff;
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 32px;
+      text-align: center;
+    }
+    #error-overlay.show { display: flex; }
+    #error-title { font-size: 18px; font-weight: bold; margin-bottom: 12px; }
+    #error-msg { font-size: 13px; opacity: 0.8; line-height: 1.6; }
 
     .epubjs-hl       { fill-opacity: 0.3; mix-blend-mode: multiply; cursor: pointer; }
     .epubjs-hl-yellow  { fill: #fef08a; background-color: rgba(254,240,138,0.4); }
@@ -41,27 +73,37 @@
 </head>
 
 <body>
-  <div id="viewer"></div>
+  <div id="viewer-container">
+    <div id="viewer"></div>
+  </div>
+  <div id="error-overlay">
+    <div id="error-title">⚠️ Kitap Açılamadı</div>
+    <div id="error-msg"></div>
+  </div>
 
   <script>
+    // ── Global error handler ────────────────────────────────────────────────────
+    window.addEventListener('error', function(e) {
+      sendToAndroid('error', { message: 'JS Hata: ' + e.message });
+    });
+
     // ── State ──────────────────────────────────────────────────────────────────
     let book        = null;
     let rendition   = null;
-    let currentCfi  = "";
-    let currentTheme = "light";
-    let currentTransition = "slide";
+    let currentCfi  = '';
+    let currentTheme = 'light';
+    let currentTransition = 'slide';
 
-    // Single nav-lock: true while an animation + epub.js navigation is in flight
     let navBusy = false;
     let navBusyTimer = null;
 
     let highlights  = {};
 
-    const viewer = document.getElementById('viewer');
+    const viewer    = document.getElementById('viewer');
+    const errOverlay = document.getElementById('error-overlay');
+    const errMsg    = document.getElementById('error-msg');
 
     // ── Bridge ─────────────────────────────────────────────────────────────────
-    // Use AndroidBridge directly (injected by Kotlin via addJavascriptInterface).
-    // Fallback to window.ReactNativeWebView shim for compatibility.
     function sendToAndroid(type, payload) {
       const msg = JSON.stringify({ type, ...payload });
       try {
@@ -70,13 +112,17 @@
         } else if (window.ReactNativeWebView) {
           window.ReactNativeWebView.postMessage(msg);
         }
-      } catch(e) {
-        console.error('Bridge error:', e);
-      }
+      } catch(e) {}
+    }
+
+    function showError(title, detail) {
+      errOverlay.classList.add('show');
+      document.getElementById('error-title').textContent = '⚠️ ' + title;
+      errMsg.textContent = detail || '';
+      sendToAndroid('error', { message: title + ' ' + (detail || '') });
     }
 
     // ── Commands from Android ──────────────────────────────────────────────────
-    // Android calls this function directly via evaluateJavascript
     function handleCommand(json) {
       let msg;
       try { msg = JSON.parse(json); } catch(e) { return; }
@@ -85,10 +131,10 @@
         case 'load':
           loadBook(msg.bookPath, msg.initialCfi, msg.theme, msg.fontSize, msg.pageTransition, msg.highlights || []);
           break;
-        case 'next':       doNext(); break;
-        case 'prev':       doPrev(); break;
+        case 'next':        doNext(); break;
+        case 'prev':        doPrev(); break;
         case 'goToCfi':
-          if (rendition) rendition.display(msg.cfi);
+          if (rendition) rendition.display(msg.cfi).catch(() => {});
           break;
         case 'setTheme':
           applyTheme(msg.theme);
@@ -108,7 +154,6 @@
       }
     }
 
-    // Also keep the postMessage listener as secondary fallback
     window.addEventListener('message', function(event) {
       let msg;
       try {
@@ -130,42 +175,42 @@
     }
 
     // ── Viewer animation ───────────────────────────────────────────────────────
-    function viewerSlideOut(direction) {
-      // direction: 'next' slides left-out, 'prev' slides right-out
+    // "next" = current page slides LEFT, new page enters from RIGHT
+    // "prev" = current page slides RIGHT, new page enters from LEFT
+    function animateOut(direction) {
       return new Promise(resolve => {
-        viewer.style.transition = 'transform 0.22s ease-out, opacity 0.22s ease-out';
-        viewer.style.transform  = direction === 'next' ? 'translateX(-30%)' : 'translateX(30%)';
+        viewer.style.transition = 'transform 0.25s ease-in-out, opacity 0.25s ease-in-out';
+        viewer.style.transform  = direction === 'next' ? 'translateX(-100%)' : 'translateX(100%)';
         viewer.style.opacity    = '0';
-        setTimeout(resolve, 230);
+        setTimeout(resolve, 260);
       });
     }
 
-    function viewerSlideIn(direction) {
-      // position off-screen first (no transition), then animate in
+    function animateIn(direction) {
+      // Start off-screen on the OPPOSITE side
       viewer.style.transition = 'none';
-      viewer.style.transform  = direction === 'next' ? 'translateX(30%)' : 'translateX(-30%)';
+      viewer.style.transform  = direction === 'next' ? 'translateX(100%)' : 'translateX(-100%)';
       viewer.style.opacity    = '0';
-      // force reflow
-      void viewer.offsetWidth;
-      viewer.style.transition = 'transform 0.22s ease-out, opacity 0.22s ease-out';
+      void viewer.offsetWidth; // force reflow
+      viewer.style.transition = 'transform 0.25s ease-in-out, opacity 0.25s ease-in-out';
       viewer.style.transform  = 'translateX(0)';
       viewer.style.opacity    = '1';
     }
 
-    function viewerFadeOut() {
+    function fadeOut() {
       return new Promise(resolve => {
-        viewer.style.transition = 'opacity 0.18s ease';
+        viewer.style.transition = 'opacity 0.2s ease';
         viewer.style.opacity    = '0';
-        setTimeout(resolve, 190);
+        setTimeout(resolve, 210);
       });
     }
 
-    function viewerFadeIn() {
-      viewer.style.transition = 'opacity 0.22s ease';
+    function fadeIn() {
+      viewer.style.transition = 'opacity 0.25s ease';
       viewer.style.opacity    = '1';
     }
 
-    function viewerReset() {
+    function resetViewer() {
       viewer.style.transition = 'none';
       viewer.style.transform  = 'translateX(0)';
       viewer.style.opacity    = '1';
@@ -174,16 +219,16 @@
     // ── Navigation ─────────────────────────────────────────────────────────────
     async function doNext() {
       if (navBusy || !rendition) return;
-      lockNav(900);
+      lockNav(800);
 
       if (currentTransition === 'slide') {
-        await viewerSlideOut('next');
+        await animateOut('next');
         await rendition.next();
-        viewerSlideIn('next');
+        animateIn('next');
       } else if (currentTransition === 'fade') {
-        await viewerFadeOut();
+        await fadeOut();
         await rendition.next();
-        viewerFadeIn();
+        fadeIn();
       } else {
         await rendition.next();
       }
@@ -191,16 +236,16 @@
 
     async function doPrev() {
       if (navBusy || !rendition) return;
-      lockNav(900);
+      lockNav(800);
 
       if (currentTransition === 'slide') {
-        await viewerSlideOut('prev');
+        await animateOut('prev');
         await rendition.prev();
-        viewerSlideIn('prev');
+        animateIn('prev');
       } else if (currentTransition === 'fade') {
-        await viewerFadeOut();
+        await fadeOut();
         await rendition.prev();
-        viewerFadeIn();
+        fadeIn();
       } else {
         await rendition.prev();
       }
@@ -209,16 +254,22 @@
     // ── Load Book ──────────────────────────────────────────────────────────────
     function loadBook(bookPath, initialCfi, theme, fontSize, pageTransition, savedHighlights) {
       currentTransition = pageTransition || 'slide';
-      viewerReset();
+      resetViewer();
+      errOverlay.classList.remove('show');
 
       if (book) {
         try { book.destroy(); } catch(e) {}
+        book = null;
+        rendition = null;
       }
 
+      // Create ePub book instance
       book = ePub(bookPath);
 
-      book.opened.catch(err => {
-        sendToAndroid('error', { message: 'Kitap açılamadı: ' + err.message });
+      book.opened.then(function() {
+        // Book opened successfully, proceed with rendering
+      }).catch(function(err) {
+        showError('Kitap açılamadı', err ? err.message : '');
       });
 
       book.loaded.navigation.then(function(toc) {
@@ -236,28 +287,60 @@
         });
       }).catch(() => {});
 
+      // Create rendition — NO allowScriptedContent (causes issues in some versions)
       rendition = book.renderTo('viewer', {
         width:   '100%',
         height:  '100%',
         spread:  'none',
-        minSpreadWidth: 9999, // force single column always
         flow:    'paginated',
         manager: 'default'
       });
 
+      // Apply theme and font size
       applyTheme(theme || 'light');
       rendition.themes.fontSize((fontSize || 16) + 'px');
 
-      // Display initial location
-      rendition.display(initialCfi || undefined).catch(err => {
-        console.error('display error:', err);
-        rendition.display();
+      // Hook: set up swipe gestures and click detection inside the epub iframe
+      rendition.on('rendered', function(section, view) {
+        try {
+          const doc = view.document || (view.contents && view.contents.document);
+          if (doc) {
+            setupSwipe(doc);
+            setupClick(doc);
+          }
+        } catch(e) {}
+
+        // Re-apply saved highlights for this section
+        savedHighlights.forEach(hl => {
+          addHighlight(hl.cfiRange, hl.color, false);
+        });
       });
 
-      // ── relocated: always reset viewer visibility ─────────────────────────
+      // Also attach swipe/click via contents hook as backup
+      rendition.on('displayed', function(section) {
+        try {
+          const view = rendition.manager && rendition.manager.current();
+          if (view && view.document) {
+            setupSwipe(view.document);
+            setupClick(view.document);
+          }
+        } catch(e) {}
+      });
+
+      // selected text → highlight dialog
+      rendition.on('selected', function(cfiRange, contents) {
+        try {
+          const sel  = contents.window.getSelection();
+          const text = sel ? sel.toString().trim() : '';
+          if (text.length > 0) {
+            sendToAndroid('selected', { cfiRange, text });
+          }
+        } catch(e) {}
+      });
+
+      // relocated → send progress back to Android
       rendition.on('relocated', function(location) {
-        // Always ensure viewer is visible after navigation
-        viewerReset();
+        resetViewer();
         unlockNav();
 
         currentCfi = location.start.cfi;
@@ -274,28 +357,16 @@
         });
       });
 
-      rendition.on('selected', function(cfiRange, contents) {
-        const sel  = contents.window.getSelection();
-        const text = sel ? sel.toString().trim() : '';
-        if (text.length > 0) {
-          sendToAndroid('selected', { cfiRange, text });
-        }
-      });
-
-      rendition.on('click', function() {
-        sendToAndroid('click', {});
-      });
-
-      // Swipe gestures (separate touch tracking per rendered view)
-      rendition.on('rendered', function(section, view) {
-        setupSwipe(view.contents);
-        // Re-apply highlights for this section
-        savedHighlights.forEach(hl => {
-          addHighlight(hl.cfiRange, hl.color, false);
+      // Display initial location
+      const displayTarget = (initialCfi && initialCfi !== '') ? initialCfi : undefined;
+      rendition.display(displayTarget).catch(function(err) {
+        // Retry without CFI on error
+        rendition.display().catch(function(err2) {
+          showError('Sayfa görüntülenemedi', err2 ? err2.message : '');
         });
       });
 
-      // Generate locations for progress (background, non-blocking)
+      // Generate locations for progress tracking (background, non-blocking)
       book.ready.then(() => {
         book.locations.generate(1024).then(() => {
           if (currentCfi) {
@@ -304,7 +375,7 @@
               sendToAndroid('progressReady', { progress: p });
             } catch(e) {}
           }
-        });
+        }).catch(() => {});
       }).catch(() => {});
     }
 
@@ -319,6 +390,7 @@
       };
       const t = themes[theme] || themes.light;
       document.body.style.backgroundColor = t.bg;
+      document.getElementById('viewer-container').style.backgroundColor = t.bg;
 
       if (rendition) {
         rendition.themes.default({
@@ -353,29 +425,68 @@
       } catch(e) {}
     }
 
+    // ── Click detection (full-screen toggle) ───────────────────────────────────
+    function setupClick(doc) {
+      try {
+        // Remove existing listener to avoid duplicates
+        doc.removeEventListener('click', onDocClick, true);
+        doc.addEventListener('click', onDocClick, true);
+      } catch(e) {}
+    }
+
+    function onDocClick(e) {
+      sendToAndroid('click', {});
+    }
+
     // ── Swipe Gestures ─────────────────────────────────────────────────────────
-    function setupSwipe(contents) {
-      let startX = 0, startY = 0;
-      let startTime = 0;
+    // Uses native addEventListener with passive:false on touchmove so we can
+    // call e.preventDefault() to block vertical scroll during horizontal swipe.
+    function setupSwipe(doc) {
+      try {
+        // Remove old listeners (avoid duplicates on re-render)
+        doc.removeEventListener('touchstart', onTouchStart, true);
+        doc.removeEventListener('touchmove',  onTouchMove,  { passive: false, capture: true });
+        doc.removeEventListener('touchend',   onTouchEnd,   true);
 
-      contents.on('touchstart', (e) => {
-        startX    = e.changedTouches[0].clientX;
-        startY    = e.changedTouches[0].clientY;
-        startTime = Date.now();
-      });
+        doc.addEventListener('touchstart', onTouchStart, { passive: true, capture: true });
+        doc.addEventListener('touchmove',  onTouchMove,  { passive: false, capture: true });
+        doc.addEventListener('touchend',   onTouchEnd,   { passive: true, capture: true });
+      } catch(e) {}
+    }
 
-      contents.on('touchend', (e) => {
-        if (navBusy) return;  // ignore swipes while nav is in progress
-        const dx = e.changedTouches[0].clientX - startX;
-        const dy = e.changedTouches[0].clientY - startY;
-        const dt = Date.now() - startTime;
+    let _startX = 0, _startY = 0, _startTime = 0, _isHoriz = null;
 
-        // Only horizontal swipes (not vertical scrolls), fast enough, far enough
-        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5 && dt < 400) {
-          if (dx > 0) doPrev();
-          else        doNext();
+    function onTouchStart(e) {
+      _startX    = e.changedTouches[0].clientX;
+      _startY    = e.changedTouches[0].clientY;
+      _startTime = Date.now();
+      _isHoriz   = null;
+    }
+
+    function onTouchMove(e) {
+      if (_isHoriz === null) {
+        const dx = Math.abs(e.changedTouches[0].clientX - _startX);
+        const dy = Math.abs(e.changedTouches[0].clientY - _startY);
+        if (dx > 8 || dy > 8) {
+          _isHoriz = dx > dy * 1.2;
         }
-      });
+      }
+      if (_isHoriz === true) {
+        e.preventDefault(); // block vertical scroll while swiping horizontally
+      }
+    }
+
+    function onTouchEnd(e) {
+      if (navBusy) return;
+      const dx = e.changedTouches[0].clientX - _startX;
+      const dy = e.changedTouches[0].clientY - _startY;
+      const dt = Date.now() - _startTime;
+
+      if (_isHoriz === true && Math.abs(dx) > 40 && dt < 500) {
+        if (dx > 0) doPrev();  // swipe right → previous page
+        else        doNext();  // swipe left  → next page
+      }
+      _isHoriz = null;
     }
   </script>
 </body>

@@ -1,6 +1,7 @@
 package com.anonymous.csreader.ui.screens
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.webkit.JavascriptInterface
@@ -30,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -38,6 +40,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.window.Dialog
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -144,10 +149,38 @@ class AndroidBridge(
 data class SelectionMessage(val text: String, val cfiRange: String?, val page: Int?)
 data class TocChapter(val label: String, val href: String)
 
+@Composable
+fun ReaderScreen(
+    bookDao: BookDao,
+    highlightDao: HighlightDao,
+    settingsManager: SettingsManager,
+    book: BookEntity,
+    onBack: () -> Unit
+) {
+    val viewModel: ReaderViewModel = androidx.lifecycle.viewmodel.compose.viewModel(factory = object : androidx.lifecycle.ViewModelProvider.Factory {
+        override fun <T : androidx.lifecycle.ViewModel> create(modelClass: Class<T>): T {
+            @Suppress("UNCHECKED_CAST")
+            return ReaderViewModel(bookDao, highlightDao, settingsManager, book) as T
+        }
+    })
+
+    if (book.type == "pdf") {
+        NativePdfReader(book = book, viewModel = viewModel, onBack = onBack)
+    } else {
+        EpubWebViewReader(
+            bookDao = bookDao,
+            highlightDao = highlightDao,
+            settingsManager = settingsManager,
+            book = book,
+            onBack = onBack
+        )
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
-fun ReaderScreen(
+fun EpubWebViewReader(
     bookDao: BookDao,
     highlightDao: HighlightDao,
     settingsManager: SettingsManager,
@@ -168,7 +201,8 @@ fun ReaderScreen(
     val highlights by viewModel.highlightsState.collectAsState()
 
     var loading by remember { mutableStateOf(true) }
-    var showControls by remember { mutableStateOf(true) }
+    // Start in full-screen mode — user taps center to show/hide controls
+    var showControls by remember { mutableStateOf(false) }
     var webViewRef by remember { mutableStateOf<WebView?>(null) }
 
     // Navigation and book progress state
@@ -198,6 +232,30 @@ fun ReaderScreen(
     var selectedPage by remember { mutableStateOf<Int?>(null) }
     var activeHighlight by remember { mutableStateOf<HighlightEntity?>(null) }
     var noteText by remember { mutableStateOf("") }
+
+    // Full screen logic
+    val view = LocalView.current
+    LaunchedEffect(showControls) {
+        val window = (view.context as? Activity)?.window
+        window?.let {
+            val controller = WindowCompat.getInsetsController(it, view)
+            if (showControls) {
+                controller.show(WindowInsetsCompat.Type.systemBars())
+            } else {
+                controller.hide(WindowInsetsCompat.Type.systemBars())
+                controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            }
+        }
+    }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            val window = (view.context as? Activity)?.window
+            window?.let {
+                WindowCompat.getInsetsController(it, view).show(WindowInsetsCompat.Type.systemBars())
+            }
+        }
+    }
 
     // Helper functions to send actions to JS
     // Calls handleCommand() directly — more reliable than window.postMessage from evaluateJavascript
@@ -250,9 +308,9 @@ fun ReaderScreen(
 
     // Load WebView function
     val loadBookInWebView = {
-        // Use virtual URL - directly accessible via custom WebViewClient interception
+        // Use local server URL
         val bookFileName = File(book.uri).name
-        val bookUrl = "https://appassets.androidplatform.net/files/$bookFileName"
+        val bookUrl = "http://localhost:8080/files/$bookFileName"
         val payload = mapOf(
             "bookPath" to bookUrl,
             "initialCfi" to (book.lastCfi ?: ""),
@@ -342,6 +400,19 @@ fun ReaderScreen(
             .fillMaxSize()
             .background(CsReaderTheme.colors.bg)
     ) {
+        // Start Local Web Server
+        DisposableEffect(Unit) {
+            val server = com.anonymous.csreader.utils.LocalWebServer(context, 8080)
+            try {
+                server.start()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+            onDispose {
+                server.stop()
+            }
+        }
+
         // WebView Integration
         AndroidView(
             factory = { ctx ->
@@ -350,15 +421,14 @@ fun ReaderScreen(
                     settings.javaScriptEnabled = true
                     settings.domStorageEnabled = true
                     settings.databaseEnabled = true
-                    // Allow file access so epub.js can fetch the epub binary from internal storage
-                    @Suppress("DEPRECATION")
                     settings.allowFileAccess = true
-                    @Suppress("DEPRECATION")
                     settings.allowContentAccess = true
-                    @Suppress("DEPRECATION")
-                    settings.allowFileAccessFromFileURLs = true
+                    // Required for epub.js to load EPUB content (fonts, images, CSS) inside iframes
                     @Suppress("DEPRECATION")
                     settings.allowUniversalAccessFromFileURLs = true
+                    @Suppress("DEPRECATION")
+                    settings.allowFileAccessFromFileURLs = true
+                    settings.mixedContentMode = android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
 
                     addJavascriptInterface(AndroidBridge { handleMessage(it) }, "AndroidBridge")
 
@@ -374,7 +444,6 @@ fun ReaderScreen(
                     webViewClient = object : WebViewClient() {
                         override fun onPageFinished(view: WebView?, url: String?) {
                             super.onPageFinished(view, url)
-                            // Inject AndroidBridge shim for sendToAndroid() fallback
                             val shimScript = """
                                 window.ReactNativeWebView = {
                                     postMessage: function(data) { AndroidBridge.postMessage(data); }
@@ -384,66 +453,31 @@ fun ReaderScreen(
                                 loadBookInWebView()
                             }
                         }
-
-                        override fun shouldInterceptRequest(
-                            view: WebView?,
-                            request: WebResourceRequest?
-                        ): WebResourceResponse? {
-                            val url = request?.url ?: return null
-                            if (url.scheme == "https" && url.host == "appassets.androidplatform.net") {
-                                val path = url.path ?: ""
-                                if (path.startsWith("/assets/")) {
-                                    val assetName = path.substringAfter("/assets/")
-                                    val mimeType = when {
-                                        assetName.endsWith(".html") -> "text/html"
-                                        assetName.endsWith(".js") -> "text/javascript"
-                                        assetName.endsWith(".css") -> "text/css"
-                                        else -> "application/octet-stream"
-                                    }
-                                    return try {
-                                        val stream = ctx.assets.open(assetName)
-                                        WebResourceResponse(mimeType, "UTF-8", stream)
-                                    } catch (e: Exception) {
-                                        Log.e("ReaderWebView", "Error loading asset: $assetName", e)
-                                        null
-                                    }
-                                } else if (path.startsWith("/files/")) {
-                                    val fileName = path.substringAfter("/files/")
-                                    val file = File(ctx.filesDir, fileName)
-                                    if (file.exists()) {
-                                        val mimeType = if (fileName.endsWith(".epub")) {
-                                            "application/epub+zip"
-                                        } else {
-                                            "application/pdf"
-                                        }
-                                        return try {
-                                            val stream = file.inputStream()
-                                            WebResourceResponse(mimeType, null, stream)
-                                        } catch (e: Exception) {
-                                            Log.e("ReaderWebView", "Error loading book file: $fileName", e)
-                                            null
-                                        }
-                                    } else {
-                                        Log.e("ReaderWebView", "Book file not found: ${file.absolutePath}")
-                                    }
-                                }
-                            }
+                        override fun shouldInterceptRequest(view: WebView?, request: android.webkit.WebResourceRequest?): WebResourceResponse? {
                             return super.shouldInterceptRequest(view, request)
                         }
                     }
 
-                    val assetFile = if (book.type == "epub") "reader.html" else "pdf_viewer.html"
-                    loadUrl("https://appassets.androidplatform.net/assets/$assetFile")
+                    loadUrl("http://localhost:8080/assets/reader.html")
                 }
             },
             modifier = Modifier.fillMaxSize(),
-            update = {
-                // Keep theme updated
+            update = { _ ->
+                // Propagate pageTransition changes to WebView when they change
             }
         )
 
-        // Left tap zone for prev page (only visible as a touch target when controls are hidden)
-        if (!showControls && !loading) {
+        // Send pageTransition updates to WebView whenever it changes (e.g. from settings)
+        LaunchedEffect(pageTransition) {
+            if (bookLoaded) {
+                triggerAction("setTransition", mapOf("pageTransition" to pageTransition))
+            }
+        }
+
+        // Tap zones: left=prev, center=toggle controls, right=next
+        // Always active (whether controls are shown or hidden)
+        if (!loading) {
+            // Left zone — go prev
             Box(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -451,6 +485,7 @@ fun ReaderScreen(
                     .align(Alignment.CenterStart)
                     .clickable { navigatePrev() }
             )
+            // Right zone — go next
             Box(
                 modifier = Modifier
                     .fillMaxHeight()

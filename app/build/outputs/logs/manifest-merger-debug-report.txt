@@ -1,7 +1,7 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:1:1-30:12
-MERGED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:1:1-30:12
+ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:1:1-31:12
+MERGED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:1:1-31:12
 INJECTED from /home/cemserdar/Project/CsReader/app/src/debug/AndroidManifest.xml:1:1-7:12
 INJECTED from /home/cemserdar/Project/CsReader/app/src/debug/AndroidManifest.xml:1:1-7:12
 INJECTED from /home/cemserdar/Project/CsReader/app/src/debug/AndroidManifest.xml:1:1-7:12
@@ -105,9 +105,9 @@ ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:6:5
 	android:name
 		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:6:22-78
 application
-ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:8:5-29:19
-MERGED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:8:5-29:19
-MERGED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:8:5-29:19
+ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:8:5-30:19
+MERGED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:8:5-30:19
+MERGED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:8:5-30:19
 INJECTED from /home/cemserdar/Project/CsReader/app/src/debug/AndroidManifest.xml:6:5-162
 MERGED from [androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/983684116d5ef8e23206ec32a0b4def3/transformed/ui-tooling-release/AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/983684116d5ef8e23206ec32a0b4def3/transformed/ui-tooling-release/AndroidManifest.xml:22:5-26:19
@@ -156,33 +156,34 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] /home/cemserdar/.gradle/cac
 	tools:replace
 		ADDED from /home/cemserdar/Project/CsReader/app/src/debug/AndroidManifest.xml:6:115-159
 	android:usesCleartextTraffic
-		ADDED from /home/cemserdar/Project/CsReader/app/src/debug/AndroidManifest.xml:6:18-53
+		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:15:9-44
+		REJECTED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:15:9-44
 activity#com.anonymous.csreader.MainActivity
-ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:16:9-28:20
+ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:17:9-29:20
 	android:screenOrientation
-		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:23:13-49
+		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:24:13-49
 	android:launchMode
-		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:19:13-44
+		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:20:13-44
 	android:windowSoftInputMode
-		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:20:13-55
+		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:21:13-55
 	android:exported
-		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:22:13-36
+		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:23:13-36
 	android:configChanges
-		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:18:13-122
+		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:19:13-122
 	android:theme
-		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:21:13-58
+		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:22:13-58
 	android:name
-		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:17:13-41
+		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:18:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:24:13-27:29
+ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:25:13-28:29
 action#android.intent.action.MAIN
-ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:25:17-68
+ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:26:17-68
 	android:name
-		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:25:25-66
+		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:26:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:26:17-76
+ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:27:17-76
 	android:name
-		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:26:27-74
+		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:27:27-74
 uses-permission#android.permission.SYSTEM_ALERT_WINDOW
 ADDED from /home/cemserdar/Project/CsReader/app/src/debug/AndroidManifest.xml:4:5-77
 	android:name

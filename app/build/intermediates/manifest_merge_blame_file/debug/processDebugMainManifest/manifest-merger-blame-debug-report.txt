@@ -39,7 +39,7 @@
 24-->[androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
 25
 26    <application
-26-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:8:5-29:19
+26-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:8:5-30:19
 27        android:allowBackup="true"
 27-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:12:9-35
 28        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -57,32 +57,32 @@
 35        android:theme="@style/AppTheme"
 35-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:13:9-40
 36        android:usesCleartextTraffic="true" >
-36-->/home/cemserdar/Project/CsReader/app/src/debug/AndroidManifest.xml:6:18-53
+36-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:15:9-44
 37        <activity
-37-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:16:9-28:20
+37-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:17:9-29:20
 38            android:name="com.anonymous.csreader.MainActivity"
-38-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:17:13-41
+38-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:18:13-41
 39            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode|smallestScreenSize"
-39-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:18:13-122
+39-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:19:13-122
 40            android:exported="true"
-40-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:22:13-36
+40-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:23:13-36
 41            android:launchMode="singleTask"
-41-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:19:13-44
+41-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:20:13-44
 42            android:screenOrientation="portrait"
-42-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:23:13-49
+42-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:24:13-49
 43            android:theme="@style/Theme.App.SplashScreen"
-43-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:21:13-58
+43-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:22:13-58
 44            android:windowSoftInputMode="adjustResize" >
-44-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:20:13-55
+44-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:21:13-55
 45            <intent-filter>
-45-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:24:13-27:29
+45-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:25:13-28:29
 46                <action android:name="android.intent.action.MAIN" />
-46-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:25:17-68
-46-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:25:25-66
+46-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:26:17-68
+46-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:26:25-66
 47
 48                <category android:name="android.intent.category.LAUNCHER" />
-48-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:26:17-76
-48-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:26:27-74
+48-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:27:17-76
+48-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:27:27-74
 49            </intent-filter>
 50        </activity>
 51        <activity

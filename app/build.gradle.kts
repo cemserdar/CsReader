@@ -79,6 +79,9 @@ dependencies {
     // Gson (for parsing messages to/from WebView)
     implementation("com.google.code.gson:gson:2.10.1")
 
+    // NanoHTTPD (Local Web Server for serving EPUBs)
+    implementation("org.nanohttpd:nanohttpd:2.3.1")
+
     // Testing
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
