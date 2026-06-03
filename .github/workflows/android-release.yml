@@ -2,7 +2,8 @@ name: Build Android Release
 
 on:
   push:
-    branches: [ "master", "main" ]
+    branches: 
+      - '**'  # Kısıtlama kaldırıldı. Hangi branch'e push atılırsa atılsın çalışır.
   workflow_dispatch:
 
 jobs:
@@ -14,13 +15,13 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # 1. Java 17 Kurulumu (Gradle ve Android build için zorunlu)
+      # 1. Java 17 Kurulumu
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
-          cache: 'gradle' # Derleme süresini kısaltmak için Gradle önbelleği
+          cache: 'gradle'
 
       # 2. Gradle Dosyasına Çalıştırma İzni Verme
       - name: Grant execute permission for gradlew
@@ -30,11 +31,11 @@ jobs:
       - name: Build Release APK
         run: ./gradlew assembleRelease
 
-      # 4. AAB Çıktısının Üretilmesi (Google Play için)
+      # 4. AAB Çıktısının Üretilmesi
       - name: Build Release AAB
         run: ./gradlew bundleRelease
 
-      # 5. Üretilen APK/AAB Çıktısını Yakalama (Gradle varsayılan çıktı yolları)
+      # 5. Üretilen APK/AAB Çıktısını Artifact Olarak Kaydetme
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
