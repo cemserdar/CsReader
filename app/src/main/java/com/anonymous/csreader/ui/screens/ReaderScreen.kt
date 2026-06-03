@@ -46,7 +46,15 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
+import org.readium.r2.navigator.epub.EpubPreferences
+import org.readium.adapter.pdfium.navigator.PdfiumPreferences
+import org.readium.r2.navigator.preferences.Axis
 import org.readium.r2.navigator.Decoration
+import org.readium.r2.navigator.VisualNavigator
+import org.readium.r2.navigator.input.InputListener
+import org.readium.r2.navigator.input.TapEvent
+import org.readium.r2.navigator.input.DragEvent
+import org.readium.r2.navigator.input.KeyEvent
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -166,6 +174,7 @@ fun ReaderScreen(
     }
 
     val highlights by viewModel.highlightsState.collectAsState()
+    val pageTransition by viewModel.pageTransitionState.collectAsState()
     val scope = rememberCoroutineScope()
     var viewId by remember { mutableStateOf(android.view.View.generateViewId()) }
 
@@ -182,12 +191,19 @@ fun ReaderScreen(
                         val isEpub = book.type == "epub"
                         
                         val factory = if (isEpub) {
+                            val prefs = EpubPreferences(
+                                scroll = pageTransition == "scroll_vertical"
+                            )
                             EpubNavigatorFactory(publication!!, EpubNavigatorFactory.Configuration()).createFragmentFactory(
-                                initialLocator = null
+                                initialLocator = null,
+                                initialPreferences = prefs
                             )
                         } else {
+                            val prefs = PdfiumPreferences(
+                                scrollAxis = if (pageTransition == "scroll_vertical") Axis.VERTICAL else Axis.HORIZONTAL
+                            )
                             val pdfFactory = PdfNavigatorFactory(publication!!, PdfiumEngineProvider())
-                            pdfFactory.createFragmentFactory(initialLocator = null)
+                            pdfFactory.createFragmentFactory(initialLocator = null, initialPreferences = prefs)
                         }
                         
                         fragmentManager.fragmentFactory = factory
@@ -199,6 +215,18 @@ fun ReaderScreen(
                         
                         post {
                             val fragment = fragmentManager.findFragmentById(id)
+                            
+                            if (fragment is VisualNavigator) {
+                                fragment.addInputListener(object : InputListener {
+                                    override fun onTap(event: TapEvent): Boolean {
+                                        showControls = !showControls
+                                        return true
+                                    }
+                                    override fun onDrag(event: DragEvent): Boolean = false
+                                    override fun onKey(event: KeyEvent): Boolean = false
+                                })
+                            }
+                            
                             if (fragment is DecorableNavigator) {
                                 val decorations = highlights.mapNotNull { hl ->
                                     try {
