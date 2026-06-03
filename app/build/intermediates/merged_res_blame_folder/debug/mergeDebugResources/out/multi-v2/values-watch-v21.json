@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.anonymous.csreader.app-mergeDebugResources-60:/values-watch-v21/values-watch-v21.xml",
+            "outputFile": "com.anonymous.csreader.app-mergeDebugResources-73:/values-watch-v21/values-watch-v21.xml",
             "map": [
                 {
-                    "source": "/home/cemserdar/.gradle/caches/9.3.1/transforms/8fe83786bebb5dfbd3682df5ad7785a3/transformed/appcompat-1.6.1/res/values-watch-v21/values-watch-v21.xml",
+                    "source": "/home/cemserdar/.gradle/caches/9.3.1/transforms/a1c7f4a9e0bbf19a7b28ebb7fd5d106d/transformed/appcompat-1.7.0/res/values-watch-v21/values-watch-v21.xml",
                     "from": {
                         "startLines": "2,6,10",
                         "startColumns": "4,4,4",

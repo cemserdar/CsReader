@@ -36,9 +36,40 @@
     <string msgid="59049573811482460" name="call_notification_screening_text">"Sarrerako dei bat bistaratzen"</string>
     <string msgid="406453423630273620" name="close_drawer">"Itxi nabigazio-menua"</string>
     <string msgid="7573152094250666567" name="close_sheet">"Itxi orria"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"Arbelean kopiatu da esteka"</string>
     <string msgid="8038256446254964252" name="default_error_message">"Sarrerak ez du balio"</string>
+    <string name="default_notification_channel_name">Orain erreproduzitzen</string>
     <string msgid="6312721426453364202" name="default_popup_window_title">"Leiho gainerakorra"</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"Goitibeherako menua"</string>
+    <string name="error_message_authentication_expired">Aplikazioa erabiltzeko, hasi saioa</string>
+    <string name="error_message_bad_value">Emandako informazioa ez da zuzena</string>
+    <string name="error_message_concurrent_stream_limit">Gailu gehiegitatik jasotzen ari da soinua</string>
+    <string name="error_message_content_already_playing">Dagoeneko ari da erreproduzitzen eduki hori</string>
+    <string name="error_message_disconnected">Multimedia-aplikaziotik deskonektatu da</string>
+    <string name="error_message_end_of_playlist">Ez dago beste ezer ilaran</string>
+    <string name="error_message_fallback">Arazoren bat izan da. Saiatu geroago.</string>
+    <string name="error_message_info_cancelled">Ezin izan da amaitu ekintza. Saiatu berriro.</string>
+    <string name="error_message_invalid_state">Ezin da egin halakorik une honetan</string>
+    <string name="error_message_io">Emandako informazioaren edo emaitzaren errorea</string>
+    <string name="error_message_not_available_in_region">Ezin da eskuratu eduki hori lurralde honetan</string>
+    <string name="error_message_not_supported">Aplikazio honek ezin du egin halakorik</string>
+    <string name="error_message_parental_control_restricted">Eduki hori blokeatuta dago</string>
+    <string name="error_message_permission_denied">Sarbidea ukatu da</string>
+    <string name="error_message_premium_account_required">Premium-eko sarbidea behar da</string>
+    <string name="error_message_setup_required">Konfiguratu egin behar da</string>
+    <string name="error_message_skip_limit_reached">Ezin da saltatu pista gehiagorik</string>
+    <string name="exo_download_completed">Osatu da deskarga</string>
+    <string name="exo_download_description">Deskargak</string>
+    <string name="exo_download_downloading">Deskargatzen</string>
+    <string name="exo_download_failed">Ezin izan da deskargatu</string>
+    <string name="exo_download_notification_channel_name">Deskargak</string>
+    <string name="exo_download_paused">Deskargak pausatuta daude</string>
+    <string name="exo_download_paused_for_network">Deskargak sare mugikorrera konektatzeko zain daude</string>
+    <string name="exo_download_paused_for_wifi">Deskargak wifira konektatzeko zain daude</string>
+    <string name="exo_download_removing">Deskargak kentzen</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Kopiatu esteka"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Ireki arakatzailean"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Partekatu esteka"</string>
     <string msgid="6827826412747255547" name="in_progress">"Abian"</string>
     <string msgid="7933458017204019916" name="indeterminate">"Erdi-markatuta"</string>
     <string msgid="2988463736136100848" name="m3c_bottom_sheet_collapse_description">"Tolestu pantailaren behealdean ainguratutako orria"</string>
@@ -97,6 +128,12 @@
     <string msgid="6616362054113087709" name="m3c_time_picker_pm">"PM"</string>
     <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"Erakutsi aholkua"</string>
     <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"Aholkua"</string>
+    <string name="media3_controls_pause_description">Pausatu</string>
+    <string name="media3_controls_play_description">Erreproduzitu</string>
+    <string name="media3_controls_seek_back_description">Atzeratu</string>
+    <string name="media3_controls_seek_forward_description">Aurreratu</string>
+    <string name="media3_controls_seek_to_next_description">Joan hurrengo elementura</string>
+    <string name="media3_controls_seek_to_previous_description">Joan aurreko elementura</string>
     <string msgid="542007171693138492" name="navigation_menu">"Nabigazio-menua"</string>
     <string msgid="6610465462668679431" name="not_selected">"Hautatu gabe"</string>
     <string msgid="875452955155264703" name="off">"Desaktibatuta"</string>

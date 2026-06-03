@@ -36,9 +36,40 @@
     <string msgid="59049573811482460" name="call_notification_screening_text">"உள்வரும் அழைப்பை மதிப்பாய்வு செய்கிறது"</string>
     <string msgid="406453423630273620" name="close_drawer">"வழிசெலுத்தல் மெனுவை மூடும்"</string>
     <string msgid="7573152094250666567" name="close_sheet">"ஷீட்டை மூடும்"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"கிளிப்-போர்டுக்கு இணைப்பு நகலெடுக்கப்பட்டது"</string>
     <string msgid="8038256446254964252" name="default_error_message">"தவறான உள்ளீடு"</string>
+    <string name="default_notification_channel_name">இப்போது பிளே ஆவது</string>
     <string msgid="6312721426453364202" name="default_popup_window_title">"பாப்-அப் சாளரம்"</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"கீழ்த்தோன்றல் மெனு"</string>
+    <string name="error_message_authentication_expired">இந்த ஆப்ஸைப் பயன்படுத்த உள்நுழையவும்</string>
+    <string name="error_message_bad_value">தவறான உள்ளீட்டுத் தரவு</string>
+    <string name="error_message_concurrent_stream_limit">நிறைய சாதனங்களைக் கவனிக்கிறது</string>
+    <string name="error_message_content_already_playing">அந்த உள்ளடக்கம் ஏற்கெனவே பிளே செய்யப்பட்டுக் கொண்டிருக்கிறது</string>
+    <string name="error_message_disconnected">மீடியா ஆப்ஸில் இருந்து இணைப்பு துண்டிக்கப்பட்டது</string>
+    <string name="error_message_end_of_playlist">வேறு எதுவும் வரிசையில் இல்லை</string>
+    <string name="error_message_fallback">ஏதோ தவறாகிவிட்டது. மீண்டும் முயலவும்.</string>
+    <string name="error_message_info_cancelled">நிறைவடையவில்லை. மீண்டும் முயலவும்.</string>
+    <string name="error_message_invalid_state">தற்சமயம் இதைச் செய்ய முடியாது</string>
+    <string name="error_message_io">உள்ளீடு/வெளியீடு பிழை</string>
+    <string name="error_message_not_available_in_region">அந்த உள்ளடக்கத்தை இங்கே பெற முடியவில்லை</string>
+    <string name="error_message_not_supported">இந்த ஆப்ஸால் அதைச் செய்ய முடியாது</string>
+    <string name="error_message_parental_control_restricted">அந்த உள்ளடக்கம் தடுக்கப்பட்டுள்ளது</string>
+    <string name="error_message_permission_denied">அணுகல் மறுக்கப்பட்டது</string>
+    <string name="error_message_premium_account_required">Premium அணுகல் தேவை</string>
+    <string name="error_message_setup_required">அமைக்க வேண்டும்</string>
+    <string name="error_message_skip_limit_reached">இதற்கு மேல் டிராக்குகளைத் தவிர்க்க முடியாது</string>
+    <string name="exo_download_completed">பதிவிறக்கப்பட்டது</string>
+    <string name="exo_download_description">பதிவிறக்கும் பட்டன்</string>
+    <string name="exo_download_downloading">பதிவிறக்குகிறது</string>
+    <string name="exo_download_failed">பதிவிறக்க முடியவில்லை</string>
+    <string name="exo_download_notification_channel_name">பதிவிறக்கங்கள்</string>
+    <string name="exo_download_paused">பதிவிறக்கங்கள் இடைநிறுத்தப்பட்டன</string>
+    <string name="exo_download_paused_for_network">நெட்வொர்க்கிற்காகக் காத்திருக்கின்றன</string>
+    <string name="exo_download_paused_for_wifi">Wi-Fiகாகக் காத்திருக்கின்றன</string>
+    <string name="exo_download_removing">பதிவிறக்கங்கள் அகற்றப்படுகின்றன</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"இணைப்பை நகலெடு"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"உலாவியில் திற"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"இணைப்பைப் பகிர்"</string>
     <string msgid="6827826412747255547" name="in_progress">"செயலிலுள்ளது"</string>
     <string msgid="7933458017204019916" name="indeterminate">"சில மட்டுமே தேர்ந்தெடுக்கப்பட்டுள்ளன"</string>
     <string msgid="2988463736136100848" name="m3c_bottom_sheet_collapse_description">"கீழ்ப்புற ஷீட்டைச் சுருக்கும்"</string>
@@ -97,6 +128,12 @@
     <string msgid="6616362054113087709" name="m3c_time_picker_pm">"PM"</string>
     <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"உதவிக்குறிப்பைக் காட்டு"</string>
     <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"உதவிக்குறிப்பு"</string>
+    <string name="media3_controls_pause_description">இடைநிறுத்தும்</string>
+    <string name="media3_controls_play_description">பிளே செய்யும்</string>
+    <string name="media3_controls_seek_back_description">பின்செல்லும்</string>
+    <string name="media3_controls_seek_forward_description">முன்செல்லும்</string>
+    <string name="media3_controls_seek_to_next_description">அடுத்ததற்குச் செல்லும்</string>
+    <string name="media3_controls_seek_to_previous_description">முந்தையதற்குச் செல்லும்</string>
     <string msgid="542007171693138492" name="navigation_menu">"வழிசெலுத்தல் மெனு"</string>
     <string msgid="6610465462668679431" name="not_selected">"தேர்ந்தெடுக்கப்படவில்லை"</string>
     <string msgid="875452955155264703" name="off">"முடக்கப்பட்டுள்ளது"</string>

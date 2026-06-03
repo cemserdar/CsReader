@@ -1,10 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "com.anonymous.csreader.app-mergeDebugResources-60:/values-land/values-land.xml",
+            "outputFile": "com.anonymous.csreader.app-mergeDebugResources-73:/values-land/values-land.xml",
             "map": [
                 {
-                    "source": "/home/cemserdar/.gradle/caches/9.3.1/transforms/8fe83786bebb5dfbd3682df5ad7785a3/transformed/appcompat-1.6.1/res/values-land/values-land.xml",
+                    "source": "/home/cemserdar/.gradle/caches/9.3.1/transforms/0d916ed5c98feb33ae6d2a8e5e70fb31/transformed/jetified-readium-navigator-3.1.1/res/values-land/values-land.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "70",
+                        "endOffsets": "121"
+                    },
+                    "to": {
+                        "startLines": "5",
+                        "startColumns": "4",
+                        "startOffsets": "264",
+                        "endColumns": "70",
+                        "endOffsets": "330"
+                    }
+                },
+                {
+                    "source": "/home/cemserdar/.gradle/caches/9.3.1/transforms/a1c7f4a9e0bbf19a7b28ebb7fd5d106d/transformed/appcompat-1.7.0/res/values-land/values-land.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",

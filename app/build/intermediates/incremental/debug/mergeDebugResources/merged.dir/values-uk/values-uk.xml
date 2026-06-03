@@ -6,8 +6,8 @@
     <string msgid="4692188335987374352" name="abc_action_mode_done">"Готово"</string>
     <string msgid="1189761859438369441" name="abc_activity_chooser_view_see_all">"Показати всі"</string>
     <string msgid="2165779757652331008" name="abc_activitychooserview_choose_application">"Вибрати програму"</string>
-    <string msgid="4215997306490295099" name="abc_capital_off">"ЗНИЖКА"</string>
-    <string msgid="884982626291842264" name="abc_capital_on">"УВІМК."</string>
+    <string msgid="4215997306490295099" name="abc_capital_off">"ВИМКНЕНО"</string>
+    <string msgid="884982626291842264" name="abc_capital_on">"УВІМКНЕНО"</string>
     <string msgid="8833365367933412986" name="abc_menu_alt_shortcut_label">"Alt+"</string>
     <string msgid="2223301931652355242" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
     <string msgid="838001238306846836" name="abc_menu_delete_shortcut_label">"delete"</string>
@@ -36,9 +36,40 @@
     <string msgid="59049573811482460" name="call_notification_screening_text">"Вхідний виклик (Фільтр)"</string>
     <string msgid="406453423630273620" name="close_drawer">"Закрити меню навігації"</string>
     <string msgid="7573152094250666567" name="close_sheet">"Закрити аркуш"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"Посилання скопійовано в буфер обміну"</string>
     <string msgid="8038256446254964252" name="default_error_message">"Введено недійсні дані"</string>
+    <string name="default_notification_channel_name">Зараз відтворюється</string>
     <string msgid="6312721426453364202" name="default_popup_window_title">"Спливаюче вікно"</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"Спадне меню"</string>
+    <string name="error_message_authentication_expired">Увійдіть, щоб використовувати цей додаток</string>
+    <string name="error_message_bad_value">Неправильні вхідні дані</string>
+    <string name="error_message_concurrent_stream_limit">Контент відтворюється на завеликій кількості пристроїв</string>
+    <string name="error_message_content_already_playing">Цей контент уже відтворюється</string>
+    <string name="error_message_disconnected">Від’єднано від мультимедійного додатка</string>
+    <string name="error_message_end_of_playlist">Черга порожня</string>
+    <string name="error_message_fallback">Сталася помилка. Повторіть спробу пізніше.</string>
+    <string name="error_message_info_cancelled">Не вдалося завершити. Повторіть спробу.</string>
+    <string name="error_message_invalid_state">Зараз ця дія недоступна</string>
+    <string name="error_message_io">Помилка вводу/виводу</string>
+    <string name="error_message_not_available_in_region">Цей контент недоступний у вашому регіоні</string>
+    <string name="error_message_not_supported">Додаток не підтримує цю дію</string>
+    <string name="error_message_parental_control_restricted">Цей контент заблоковано</string>
+    <string name="error_message_permission_denied">Доступ заборонено</string>
+    <string name="error_message_premium_account_required">Потрібен платний обліковий запис</string>
+    <string name="error_message_setup_required">Потрібне налаштування</string>
+    <string name="error_message_skip_limit_reached">Більше не можна пропускати композиції</string>
+    <string name="exo_download_completed">Завантаження завершено</string>
+    <string name="exo_download_description">Завантажити</string>
+    <string name="exo_download_downloading">Завантажується</string>
+    <string name="exo_download_failed">Не вдалося завантажити</string>
+    <string name="exo_download_notification_channel_name">Завантаження</string>
+    <string name="exo_download_paused">Завантаження призупинено</string>
+    <string name="exo_download_paused_for_network">Очікується підключення до мережі</string>
+    <string name="exo_download_paused_for_wifi">Очікується підключення до Wi-Fi</string>
+    <string name="exo_download_removing">Завантаження видаляються</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Копіювати посилання"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Відкрити у веб-переглядачі"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Надіслати посилання"</string>
     <string msgid="6827826412747255547" name="in_progress">"Виконується"</string>
     <string msgid="7933458017204019916" name="indeterminate">"Частково вибрано"</string>
     <string msgid="2988463736136100848" name="m3c_bottom_sheet_collapse_description">"Згорнути нижній екран"</string>
@@ -97,6 +128,12 @@
     <string msgid="6616362054113087709" name="m3c_time_picker_pm">"ПП"</string>
     <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"Показати спливаючу підказку"</string>
     <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"Спливаюча підказка"</string>
+    <string name="media3_controls_pause_description">Призупинити</string>
+    <string name="media3_controls_play_description">Відтворити</string>
+    <string name="media3_controls_seek_back_description">Перемотати назад</string>
+    <string name="media3_controls_seek_forward_description">Перемотати вперед</string>
+    <string name="media3_controls_seek_to_next_description">Перейти до наступного об’єкта</string>
+    <string name="media3_controls_seek_to_previous_description">Перейти до попереднього об’єкта</string>
     <string msgid="542007171693138492" name="navigation_menu">"Меню навігації"</string>
     <string msgid="6610465462668679431" name="not_selected">"Не вибрано"</string>
     <string msgid="875452955155264703" name="off">"Вимкнено"</string>

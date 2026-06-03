@@ -36,9 +36,40 @@
     <string msgid="59049573811482460" name="call_notification_screening_text">"Ирсэн дуудлагыг харуулж байна"</string>
     <string msgid="406453423630273620" name="close_drawer">"Навигацын цэсийг хаах"</string>
     <string msgid="7573152094250666567" name="close_sheet">"Хүснэгтийг хаах"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"Холбоосыг түр санах ойд хуулсан"</string>
     <string msgid="8038256446254964252" name="default_error_message">"Буруу оролт"</string>
+    <string name="default_notification_channel_name">Одоо тоглуулж байна</string>
     <string msgid="6312721426453364202" name="default_popup_window_title">"Попап цонх"</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"Унадаг цэс"</string>
+    <string name="error_message_authentication_expired">Энэ аппыг ашиглахын тулд нэвтэрнэ үү</string>
+    <string name="error_message_bad_value">Оролтын өгөгдөл буруу байна</string>
+    <string name="error_message_concurrent_stream_limit">Хэт олон төхөөрөмж дээр сонсож байна</string>
+    <string name="error_message_content_already_playing">Энэ контентыг аль хэдийн тоглуулж байна</string>
+    <string name="error_message_disconnected">Медиа аппаас салсан</string>
+    <string name="error_message_end_of_playlist">Дараалалд өөр юу ч алга</string>
+    <string name="error_message_fallback">Ямар нэг алдаа гарлаа. Дараа оролдоно уу.</string>
+    <string name="error_message_info_cancelled">Дуусгаж чадсангүй. Дахин оролдоно уу.</string>
+    <string name="error_message_invalid_state">Яг одоо тухайн хүсэлтийг гүйцэтгэх боломжгүй</string>
+    <string name="error_message_io">Оролт/гаралтын алдаа</string>
+    <string name="error_message_not_available_in_region">Энэ контентыг энд авах боломжгүй</string>
+    <string name="error_message_not_supported">Энэ апп тухайн хүсэлтийг гүйцэтгэх боломжгүй</string>
+    <string name="error_message_parental_control_restricted">Энэ контентыг блоклосон байна</string>
+    <string name="error_message_permission_denied">Хандалтыг зөвшөөрөөгүй</string>
+    <string name="error_message_premium_account_required">Premium хандалт шаардлагатай</string>
+    <string name="error_message_setup_required">Тохируулах шаардлагатай</string>
+    <string name="error_message_skip_limit_reached">Өөр ямар ч бичлэгийг алгасах боломжгүй</string>
+    <string name="exo_download_completed">Татаж дууссан</string>
+    <string name="exo_download_description">Татах</string>
+    <string name="exo_download_downloading">Татаж байна</string>
+    <string name="exo_download_failed">Татаж чадсангүй</string>
+    <string name="exo_download_notification_channel_name">Татaлт</string>
+    <string name="exo_download_paused">Таталтуудыг түр зогсоосон</string>
+    <string name="exo_download_paused_for_network">Таталтууд сүлжээг хүлээж байна</string>
+    <string name="exo_download_paused_for_wifi">Таталтууд Wi-Fi-г хүлээж байна</string>
+    <string name="exo_download_removing">Татаж авсан файлыг хасаж байна</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Холбоосыг хуулах"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Хөтчид нээх"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Холбоосыг хуваалцах"</string>
     <string msgid="6827826412747255547" name="in_progress">"Үргэлжилж байна"</string>
     <string msgid="7933458017204019916" name="indeterminate">"Хэсэгчлэн тэмдэглэсэн"</string>
     <string msgid="2988463736136100848" name="m3c_bottom_sheet_collapse_description">"Доод хүснэгтийг хураах"</string>
@@ -97,6 +128,12 @@
     <string msgid="6616362054113087709" name="m3c_time_picker_pm">"ҮХ"</string>
     <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"Зөвлөмж харуулах"</string>
     <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"Зөвлөмж"</string>
+    <string name="media3_controls_pause_description">Түр зогсоох</string>
+    <string name="media3_controls_play_description">Тоглуулах</string>
+    <string name="media3_controls_seek_back_description">Буцаан гүйлгэх</string>
+    <string name="media3_controls_seek_forward_description">Урагшлуулах</string>
+    <string name="media3_controls_seek_to_next_description">Дараагийн зүйл рүү гүйлгэх</string>
+    <string name="media3_controls_seek_to_previous_description">Өмнөх зүйл рүү гүйлгэх</string>
     <string msgid="542007171693138492" name="navigation_menu">"Навигацын цэс"</string>
     <string msgid="6610465462668679431" name="not_selected">"Сонгоогүй"</string>
     <string msgid="875452955155264703" name="off">"Унтраалттай"</string>

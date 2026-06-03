@@ -36,9 +36,40 @@
     <string msgid="59049573811482460" name="call_notification_screening_text">"Проверка на дојдовен повик"</string>
     <string msgid="406453423630273620" name="close_drawer">"Затворете го менито за навигација"</string>
     <string msgid="7573152094250666567" name="close_sheet">"Затворете го листот"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"Линкот е копиран во привремена меморија"</string>
     <string msgid="8038256446254964252" name="default_error_message">"Неважечки запис"</string>
+    <string name="default_notification_channel_name">Сега е пуштено</string>
     <string msgid="6312721426453364202" name="default_popup_window_title">"Скокачки прозорец"</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"Паѓачко мени"</string>
+    <string name="error_message_authentication_expired">Најавете се за да ја користите апликацијава</string>
+    <string name="error_message_bad_value">Неточни влезни податоци</string>
+    <string name="error_message_concurrent_stream_limit">Се слуша на премногу уреди</string>
+    <string name="error_message_content_already_playing">Веќе се пуштени тие содржини</string>
+    <string name="error_message_disconnected">Врската со апликацијата за аудиовизуелни содржини е прекината</string>
+    <string name="error_message_end_of_playlist">Ништо не чека на ред</string>
+    <string name="error_message_fallback">Нешто не е во ред. Обидете се подоцна.</string>
+    <string name="error_message_info_cancelled">Не можеше да се заврши. Обидете се повторно.</string>
+    <string name="error_message_invalid_state">Не може да се направи тоа во моментов</string>
+    <string name="error_message_io">Грешка со влезни/излезни податоци</string>
+    <string name="error_message_not_available_in_region">Не може да се добијат тие содржини тука</string>
+    <string name="error_message_not_supported">Апликацијава не може да го направи тоа</string>
+    <string name="error_message_parental_control_restricted">Тие содржини се блокирани</string>
+    <string name="error_message_permission_denied">Пристапот е одбиен</string>
+    <string name="error_message_premium_account_required">Потребен е премиум пристап</string>
+    <string name="error_message_setup_required">Потребно е поставување</string>
+    <string name="error_message_skip_limit_reached">Веќе не може да се прескокнуваат песни</string>
+    <string name="exo_download_completed">Преземањето заврши</string>
+    <string name="exo_download_description">Преземи</string>
+    <string name="exo_download_downloading">Се презема</string>
+    <string name="exo_download_failed">Неуспешно преземање</string>
+    <string name="exo_download_notification_channel_name">Преземања</string>
+    <string name="exo_download_paused">Преземањата се паузирани</string>
+    <string name="exo_download_paused_for_network">Се чека мрежа за преземањата</string>
+    <string name="exo_download_paused_for_wifi">Се чека WiFi за преземањата</string>
+    <string name="exo_download_removing">Се отстрануваат преземањата</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Копирај го линкот"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Отвори во прелистувач"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Сподели линк"</string>
     <string msgid="6827826412747255547" name="in_progress">"Во тек"</string>
     <string msgid="7933458017204019916" name="indeterminate">"Делумно проверено"</string>
     <string msgid="2988463736136100848" name="m3c_bottom_sheet_collapse_description">"Собери го долниот лист"</string>
@@ -97,13 +128,19 @@
     <string msgid="6616362054113087709" name="m3c_time_picker_pm">"попл."</string>
     <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"Прикажи совет за алатка"</string>
     <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"Совет за алатка"</string>
+    <string name="media3_controls_pause_description">Паузирај</string>
+    <string name="media3_controls_play_description">Пушти</string>
+    <string name="media3_controls_seek_back_description">Премотај наназад</string>
+    <string name="media3_controls_seek_forward_description">Премотај нанапред</string>
+    <string name="media3_controls_seek_to_next_description">Премотај на следната ставка</string>
+    <string name="media3_controls_seek_to_previous_description">Премотај на претходната ставка</string>
     <string msgid="542007171693138492" name="navigation_menu">"Мени за навигација"</string>
     <string msgid="6610465462668679431" name="not_selected">"Не е избрано"</string>
     <string msgid="875452955155264703" name="off">"Исклучено"</string>
     <string msgid="8655164131929253426" name="on">"Вклучено"</string>
     <string msgid="5941395253238309765" name="range_end">"Крај на опсегот"</string>
     <string msgid="7097486360902471446" name="range_start">"Почеток на опсегот"</string>
-    <string msgid="6264217191555673260" name="search_menu_title">"Пребарај"</string>
+    <string msgid="6264217191555673260" name="search_menu_title">"Пребарување"</string>
     <string msgid="6043586758067023" name="selected">"Избрано"</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
     <string msgid="2561197295334830845" name="switch_role">"Прекинувач"</string>

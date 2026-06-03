@@ -36,9 +36,40 @@
     <string msgid="59049573811482460" name="call_notification_screening_text">"סינון שיחה נכנסת"</string>
     <string msgid="406453423630273620" name="close_drawer">"סגירת תפריט הניווט"</string>
     <string msgid="7573152094250666567" name="close_sheet">"סגירת הגיליון"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"הקישור הועתק ללוח"</string>
     <string msgid="8038256446254964252" name="default_error_message">"הקלט לא תקין"</string>
+    <string name="default_notification_channel_name">הפריט שמופעל עכשיו</string>
     <string msgid="6312721426453364202" name="default_popup_window_title">"חלון קופץ"</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"תפריט נפתח"</string>
+    <string name="error_message_authentication_expired">כדי להשתמש באפליקציה הזו, צריך להיכנס לחשבון</string>
+    <string name="error_message_bad_value">נתוני קלט שגויים</string>
+    <string name="error_message_concurrent_stream_limit">מתבצעת האזנה ביותר מדי מכשירים</string>
+    <string name="error_message_content_already_playing">התוכן הזה כבר פועל</string>
+    <string name="error_message_disconnected">נותק מאפליקציית המדיה</string>
+    <string name="error_message_end_of_playlist">אין עוד פריטים ברשימת הבאים בתור</string>
+    <string name="error_message_fallback">משהו השתבש. אפשר לנסות מאוחר יותר.</string>
+    <string name="error_message_info_cancelled">לא ניתן להשלים את הפעולה. רוצה לנסות שוב?</string>
+    <string name="error_message_invalid_state">אי אפשר לבצע את הפעולה הזו כרגע</string>
+    <string name="error_message_io">נתוני קלט או פלט שגויים</string>
+    <string name="error_message_not_available_in_region">התוכן הזה לא זמין כאן</string>
+    <string name="error_message_not_supported">אי אפשר לבצע את הפעולה הזו באפליקציה הזו</string>
+    <string name="error_message_parental_control_restricted">התוכן הזה חסום</string>
+    <string name="error_message_permission_denied">הגישה נדחתה</string>
+    <string name="error_message_premium_account_required">נדרשת גישה ל-Premium</string>
+    <string name="error_message_setup_required">נדרשת הגדרה</string>
+    <string name="error_message_skip_limit_reached">אי אפשר לדלג יותר על טראקים</string>
+    <string name="exo_download_completed">ההורדה הושלמה</string>
+    <string name="exo_download_description">הורדה</string>
+    <string name="exo_download_downloading">ההורדה מתבצעת</string>
+    <string name="exo_download_failed">ההורדה לא הושלמה</string>
+    <string name="exo_download_notification_channel_name">הורדות</string>
+    <string name="exo_download_paused">ההורדות הושהו</string>
+    <string name="exo_download_paused_for_network">ההורדות בהמתנה לרשת</string>
+    <string name="exo_download_paused_for_wifi">ההורדות בהמתנה ל-Wi-Fi</string>
+    <string name="exo_download_removing">מסיר הורדות</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"העתקת הקישור"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"פתיחה בדפדפן"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"לשיתוף הקישור"</string>
     <string msgid="6827826412747255547" name="in_progress">"בתהליך"</string>
     <string msgid="7933458017204019916" name="indeterminate">"מסומנת חלקית"</string>
     <string msgid="2988463736136100848" name="m3c_bottom_sheet_collapse_description">"כיווץ הגיליון התחתון"</string>
@@ -97,6 +128,12 @@
     <string msgid="6616362054113087709" name="m3c_time_picker_pm">"PM"</string>
     <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"הצגת הסבר קצר"</string>
     <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"הסבר קצר"</string>
+    <string name="media3_controls_pause_description">השהיה</string>
+    <string name="media3_controls_play_description">הפעלה</string>
+    <string name="media3_controls_seek_back_description">דילוג אחורה</string>
+    <string name="media3_controls_seek_forward_description">דילוג קדימה</string>
+    <string name="media3_controls_seek_to_next_description">דילוג לפריט הבא</string>
+    <string name="media3_controls_seek_to_previous_description">דילוג לפריט הקודם</string>
     <string msgid="542007171693138492" name="navigation_menu">"תפריט הניווט"</string>
     <string msgid="6610465462668679431" name="not_selected">"לא נבחר"</string>
     <string msgid="875452955155264703" name="off">"כבוי"</string>

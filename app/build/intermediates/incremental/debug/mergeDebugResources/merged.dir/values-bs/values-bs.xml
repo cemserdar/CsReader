@@ -21,7 +21,7 @@
     <string msgid="7208076849092622260" name="abc_search_hint">"Pretražite..."</string>
     <string msgid="3741173234950517107" name="abc_searchview_description_clear">"Obriši upit"</string>
     <string msgid="693312494995508443" name="abc_searchview_description_query">"Pretraži upit"</string>
-    <string msgid="3417662926640357176" name="abc_searchview_description_search">"Pretraži"</string>
+    <string msgid="3417662926640357176" name="abc_searchview_description_search">"Pretraživanje"</string>
     <string msgid="1486535517437947103" name="abc_searchview_description_submit">"Pošalji upit"</string>
     <string msgid="2293578557972875415" name="abc_searchview_description_voice">"Glasovno pretraživanje"</string>
     <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Dijeli sa"</string>
@@ -36,9 +36,40 @@
     <string msgid="59049573811482460" name="call_notification_screening_text">"Filtriranje dolaznog poziva"</string>
     <string msgid="406453423630273620" name="close_drawer">"Zatvaranje navigacionog menija"</string>
     <string msgid="7573152094250666567" name="close_sheet">"Zatvaranje tabele"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"Link je kopiran u međumemoriju"</string>
     <string msgid="8038256446254964252" name="default_error_message">"Pogrešan unos"</string>
+    <string name="default_notification_channel_name">Trenutno se reproducira</string>
     <string msgid="6312721426453364202" name="default_popup_window_title">"Skočni prozor"</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"Padajući meni"</string>
+    <string name="error_message_authentication_expired">Prijavite se da koristite ovu aplikaciju</string>
+    <string name="error_message_bad_value">Netačni ulazni podaci</string>
+    <string name="error_message_concurrent_stream_limit">Previše je uređaja na kojima se sluša</string>
+    <string name="error_message_content_already_playing">Taj sadržaj se već reproducira</string>
+    <string name="error_message_disconnected">Prekinuta je povezanost s medijskom aplikacijom</string>
+    <string name="error_message_end_of_playlist">Ništa više nije postavljeno u red čekanja</string>
+    <string name="error_message_fallback">Nešto nije uredu. Pokušajte kasnije.</string>
+    <string name="error_message_info_cancelled">Završavanje nije uspjelo. Pokušajte ponovo.</string>
+    <string name="error_message_invalid_state">Trenutno nije moguće izvršiti taj zahtjev</string>
+    <string name="error_message_io">Greška s ulaznim/izlaznim podacima</string>
+    <string name="error_message_not_available_in_region">Nije moguće preuzeti taj sadržaj ovdje</string>
+    <string name="error_message_not_supported">Ova aplikacija ne može izvršiti taj zahtjev</string>
+    <string name="error_message_parental_control_restricted">Taj sadržaj je blokiran</string>
+    <string name="error_message_permission_denied">Pristup je odbijen</string>
+    <string name="error_message_premium_account_required">Potreban je premijum pristup</string>
+    <string name="error_message_setup_required">Potrebno je postavljanje</string>
+    <string name="error_message_skip_limit_reached">Nije moguće preskakati još numera</string>
+    <string name="exo_download_completed">Preuzimanje je završeno</string>
+    <string name="exo_download_description">Preuzmi</string>
+    <string name="exo_download_downloading">Preuzimanje</string>
+    <string name="exo_download_failed">Preuzimanje nije uspjelo</string>
+    <string name="exo_download_notification_channel_name">Preuzimanja</string>
+    <string name="exo_download_paused">Preuzimanja su pauzirana</string>
+    <string name="exo_download_paused_for_network">Preuzimanja čekaju povezivanje s mrežom</string>
+    <string name="exo_download_paused_for_wifi">Preuzimanja čekaju WiFi</string>
+    <string name="exo_download_removing">Uklanjanje preuzimanja</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Kopiraj link"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Otvori u pregledniku"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Dijeli link"</string>
     <string msgid="6827826412747255547" name="in_progress">"U toku"</string>
     <string msgid="7933458017204019916" name="indeterminate">"Djelimično označeno"</string>
     <string msgid="2988463736136100848" name="m3c_bottom_sheet_collapse_description">"Sužavanje donje tabele"</string>
@@ -97,6 +128,12 @@
     <string msgid="6616362054113087709" name="m3c_time_picker_pm">"poslijepodne"</string>
     <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"Prikaz skočnog opisa"</string>
     <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"Skočni opis"</string>
+    <string name="media3_controls_pause_description">Pauziranje</string>
+    <string name="media3_controls_play_description">Reproduciranje</string>
+    <string name="media3_controls_seek_back_description">Pomicanje nazad</string>
+    <string name="media3_controls_seek_forward_description">Pomicanje naprijed</string>
+    <string name="media3_controls_seek_to_next_description">Pomicanje na sljedeću stavku</string>
+    <string name="media3_controls_seek_to_previous_description">Pomicanje na prethodnu stavku</string>
     <string msgid="542007171693138492" name="navigation_menu">"Meni za navigaciju"</string>
     <string msgid="6610465462668679431" name="not_selected">"Nije odabrano"</string>
     <string msgid="875452955155264703" name="off">"Isključeno"</string>

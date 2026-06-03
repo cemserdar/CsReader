@@ -36,9 +36,40 @@
     <string msgid="59049573811482460" name="call_notification_screening_text">"Filtriranje dolaznog poziva"</string>
     <string msgid="406453423630273620" name="close_drawer">"Zatvaranje izbornika za navigaciju"</string>
     <string msgid="7573152094250666567" name="close_sheet">"Zatvaranje lista"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"Veza je kopirana u međuspremnik"</string>
     <string msgid="8038256446254964252" name="default_error_message">"Nevažeći unos"</string>
+    <string name="default_notification_channel_name">Upravo svira</string>
     <string msgid="6312721426453364202" name="default_popup_window_title">"Skočni prozor"</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"Padajući izbornik"</string>
+    <string name="error_message_authentication_expired">Prijavite se za upotrebu te aplikacije</string>
+    <string name="error_message_bad_value">Netočni ulazni podaci</string>
+    <string name="error_message_concurrent_stream_limit">Slušate na previše uređaja</string>
+    <string name="error_message_content_already_playing">Taj se sadržaj već reproducira</string>
+    <string name="error_message_disconnected">Prekinuta je veza s aplikacijom za medijske sadržaje</string>
+    <string name="error_message_end_of_playlist">Nema više ničeg u redu čekanja</string>
+    <string name="error_message_fallback">Nešto nije u redu. Pokušajte kasnije.</string>
+    <string name="error_message_info_cancelled">Završavanje nije uspjelo. Pokušajte ponovo.</string>
+    <string name="error_message_invalid_state">Trenutačno to ne možemo učiniti</string>
+    <string name="error_message_io">Pogreška unosa/rezultata obrade</string>
+    <string name="error_message_not_available_in_region">Taj sadržaj nije dostupan ovdje</string>
+    <string name="error_message_not_supported">Ova aplikacija nema tu mogućnost</string>
+    <string name="error_message_parental_control_restricted">Taj je sadržaj blokiran</string>
+    <string name="error_message_permission_denied">Pristup je odbijen</string>
+    <string name="error_message_premium_account_required">Potreban je pristup uz dodatnu naplatu</string>
+    <string name="error_message_setup_required">Potrebno je postavljanje</string>
+    <string name="error_message_skip_limit_reached">Ne možete više preskakati pjesme</string>
+    <string name="exo_download_completed">Preuzimanje je dovršeno</string>
+    <string name="exo_download_description">Preuzmi</string>
+    <string name="exo_download_downloading">Preuzimanje</string>
+    <string name="exo_download_failed">Preuzimanje nije uspjelo</string>
+    <string name="exo_download_notification_channel_name">Preuzimanja</string>
+    <string name="exo_download_paused">Preuzimanja su pauzirana</string>
+    <string name="exo_download_paused_for_network">Preuzimanja čekaju mrežu</string>
+    <string name="exo_download_paused_for_wifi">Preuzimanja čekaju Wi-Fi</string>
+    <string name="exo_download_removing">Uklanjanje preuzimanja</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Kopiraj vezu"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Otvori u pregledniku"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Podijeli vezu"</string>
     <string msgid="6827826412747255547" name="in_progress">"U tijeku"</string>
     <string msgid="7933458017204019916" name="indeterminate">"Djelomično potvrđeno"</string>
     <string msgid="2988463736136100848" name="m3c_bottom_sheet_collapse_description">"Sažimanje donje tablice"</string>
@@ -97,6 +128,12 @@
     <string msgid="6616362054113087709" name="m3c_time_picker_pm">"Poslijepodne"</string>
     <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"Prikaži opis"</string>
     <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"Opis"</string>
+    <string name="media3_controls_pause_description">Pauziraj</string>
+    <string name="media3_controls_play_description">Reproduciraj</string>
+    <string name="media3_controls_seek_back_description">Skok unatrag</string>
+    <string name="media3_controls_seek_forward_description">Skok prema naprijed</string>
+    <string name="media3_controls_seek_to_next_description">Idi na sljedeću stavku</string>
+    <string name="media3_controls_seek_to_previous_description">Idi na prethodnu stavku</string>
     <string msgid="542007171693138492" name="navigation_menu">"Navigacijski izbornik"</string>
     <string msgid="6610465462668679431" name="not_selected">"Nije odabrano"</string>
     <string msgid="875452955155264703" name="off">"Isključeno"</string>

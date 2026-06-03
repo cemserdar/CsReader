@@ -5,75 +5,111 @@ MERGED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:1:
 INJECTED from /home/cemserdar/Project/CsReader/app/src/debug/AndroidManifest.xml:1:1-7:12
 INJECTED from /home/cemserdar/Project/CsReader/app/src/debug/AndroidManifest.xml:1:1-7:12
 INJECTED from /home/cemserdar/Project/CsReader/app/src/debug/AndroidManifest.xml:1:1-7:12
-MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/f11122c645a6fe2d78fda4ed080d7e2c/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.appcompat:appcompat:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/8fe83786bebb5dfbd3682df5ad7785a3/transformed/appcompat-1.6.1/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.webkit:webkit:1.10.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/cb80ef379ee9ce356703461f8d21da49/transformed/webkit-1.10.0/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/65bf2036179aba8a721c99e63e9297a0/transformed/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.fragment:fragment:1.3.6] /home/cemserdar/.gradle/caches/9.3.1/transforms/93a9907e1d17a67f3947fdd48d34bac6/transformed/fragment-1.3.6/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.navigation:navigation-common:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/d21f243b759216e8fc0ba578edb12b01/transformed/navigation-common-2.7.7/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.navigation:navigation-runtime:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/ee5adf93d8301c3a9052e162441ea2e4/transformed/navigation-runtime-2.7.7/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/6295648558979be449aac8dbfeb0281b/transformed/navigation-common-ktx-2.7.7/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/ca38b0aa15f7ff9d6ec73a3e80440e33/transformed/navigation-runtime-ktx-2.7.7/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.navigation:navigation-compose:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/fa68b275563f8227f89081c6966b3a5b/transformed/navigation-compose-2.7.7/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.loader:loader:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/45dbcc3836784e3e5d827f49402a47ee/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.compose.material3:material3-android:1.2.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/f30117f50375ece2b6de6fb16e93095e/transformed/material3-release/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.compose.material:material-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/c3fc6d3d92b307fb10562891948d0753/transformed/material-release/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.material:material-icons-core-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/3daa5296116d4b8f540be98db1a7fe52/transformed/material-icons-core-release/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.material:material-icons-extended-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/6b5d20e831f02cd4aaed26b067a6cb6f/transformed/material-icons-extended-release/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.material:material-ripple-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/0f8e259941b3185cf8140528ba4f0398/transformed/material-ripple-release/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.foundation:foundation-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/8d159d2a598c8d96272720431dc3d097/transformed/foundation-release/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.foundation:foundation-layout-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ef25c56f52cc4ac7f4318396867c5c33/transformed/foundation-layout-release/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.animation:animation-core-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/2eb091307159e9c015d3665adaa58b43/transformed/animation-core-release/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.animation:animation-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/2099deafc9d33eefe4352e7e0004aa13/transformed/animation-release/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-tooling-data-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ca26f10cd27a2bf21645e5dccb1eda59/transformed/ui-tooling-data-release/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-unit-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/358f2293b45419e203d9be1f0eedd809/transformed/ui-unit-release/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-geometry-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/f598c4b4087921e7ced5da4fc6297e8d/transformed/ui-geometry-release/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-util-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e7904216d1bf525a8b193dc3ff722339/transformed/ui-util-release/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/1fad83c9b6c095616ed68f2438c75938/transformed/ui-tooling-preview-release/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/983684116d5ef8e23206ec32a0b4def3/transformed/ui-tooling-release/AndroidManifest.xml:17:1-28:12
-MERGED from [androidx.compose.ui:ui-graphics-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/2db036153a842939d259c259c91ff571/transformed/ui-graphics-release/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/52788e85d2c116f5d61b777a4d3e0f19/transformed/ui-test-manifest-1.6.1/AndroidManifest.xml:17:1-28:12
-MERGED from [androidx.compose.ui:ui-text-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/0a861fd8cf0f598926b9c500f9c56885/transformed/ui-text-release/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/8c41efd4ead06243aa2f31d27ecb59c0/transformed/emoji2-views-helper-1.3.0/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/42e4e748f52e4d58b38e1aa18715baa5/transformed/emoji2-1.3.0/AndroidManifest.xml:17:1-35:12
-MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/946d713648fb58482aa13ff2b5623a1e/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:17:1-35:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/fe256ef8455bd95f6e9a240f15edbe08/transformed/lifecycle-livedata-core-ktx-2.7.0/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/48a81a35a89fb02d7af215cbec1646f0/transformed/lifecycle-livedata-2.7.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/bce344310b7199b3e791081e0eb0f135/transformed/lifecycle-livedata-core-2.7.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/9a16a67674a491a9eebd8606bcf0cc24/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.savedstate:savedstate:1.2.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/becfac7004c042d4959905ee45edc75c/transformed/savedstate-1.2.1/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/1b684b3bb1833b2013dcf7b111a351c4/transformed/lifecycle-viewmodel-savedstate-2.7.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/cde87c09b96c650cefcbd30d3554ade5/transformed/lifecycle-viewmodel-ktx-2.7.0/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/7d8ea7a17f01e46da210d830b6732ded/transformed/lifecycle-viewmodel-2.7.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/324e56ec5c92a0c20fd3c38e9617a2d0/transformed/lifecycle-runtime-2.7.0/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/e5293e3221a48fb3b0239ba6fc3fb3b3/transformed/lifecycle-runtime-ktx-2.7.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/0e48077a6289bd3c158eeec7fb283f17/transformed/lifecycle-viewmodel-compose-2.7.0/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.ui:ui-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/07c72928c183c9f87ec75e08607cf166/transformed/ui-release/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.activity:activity-ktx:1.8.2] /home/cemserdar/.gradle/caches/9.3.1/transforms/d7f854e7d604b16d07d83dd416ddfb6b/transformed/activity-ktx-1.8.2/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.activity:activity-compose:1.8.2] /home/cemserdar/.gradle/caches/9.3.1/transforms/3a63a72d1072504816147e4c4ea46d7a/transformed/activity-compose-1.8.2/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.activity:activity:1.8.2] /home/cemserdar/.gradle/caches/9.3.1/transforms/0282a800d12e75f4dd62f417f382714c/transformed/activity-1.8.2/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/66f31b24d4cd502441f7f82dcff67e13/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9854937095ea1565c9623b967ca5a915/transformed/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.viewpager:viewpager:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/b0ea598c422afcb3f37c66de37528c43/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.customview:customview:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/1d86a7404d44afd669371463f77fa88c/transformed/customview-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.autofill:autofill:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/3e69c729818e4a2b5007d88b8f7dd059/transformed/autofill-1.0.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:17:1-30:12
-MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/b5be13d59ccffa3e168ee6c7b5f5a683/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:17:1-23:12
-MERGED from [androidx.core:core-ktx:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9bd32c93b55bedfc300b68043aa72d63/transformed/core-ktx-1.12.0/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/28f816104d1921ccf0da8e59440ee5ce/transformed/room-runtime-2.6.1/AndroidManifest.xml:17:1-31:12
-MERGED from [androidx.room:room-ktx:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/18c78e4dc438a984aafa0691bfe70a62/transformed/room-ktx-2.6.1/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.sqlite:sqlite-framework:2.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2c068d425db29797710c8048fa678663/transformed/sqlite-framework-2.4.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.sqlite:sqlite:2.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/cec686a51ee670f26688df0e3cbfcb47/transformed/sqlite-2.4.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.compose.runtime:runtime-saveable-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/f059480f11d5c1dc7be517fdcefa55a7/transformed/runtime-saveable-release/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.compose.runtime:runtime-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/6cb056276823031e56b5270a01bdf20c/transformed/runtime-release/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.annotation:annotation-experimental:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/023ab97421c17b75e56ec09b38dc4272/transformed/annotation-experimental-1.4.0/AndroidManifest.xml:2:1-7:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/bf53edc2be4619aa07b8d632a1fd184e/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2e6ac5d4387c1b17cbae539ea9a729d8/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/db15bfc2c94cbc179b64efc5318e89c5/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.interpolator:interpolator:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/260a04594614fba3297abebb3d559623/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:17:1-55:12
-MERGED from [androidx.startup:startup-runtime:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/a7c9830ff10e4e30f1f3f4a5bf2d5d11/transformed/startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
-MERGED from [androidx.tracing:tracing:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9aa54b226df778fc6c2c87e93f074534/transformed/tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.navigation:navigation-common:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/5ce911e791855b982d45e1f7d3bf043d/transformed/navigation-common-2.7.7/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-runtime:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/73ee28a1e16340c35eb896b846cf7e9d/transformed/navigation-runtime-2.7.7/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/ede864602cb8e343f15cfe5856e96543/transformed/navigation-common-ktx-2.7.7/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/d22e3aa7d0bea4b73e2616d5ae562132/transformed/navigation-runtime-ktx-2.7.7/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigation:navigation-compose:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/ef9bb70c5944f7a8286e9562fc225281/transformed/jetified-navigation-compose-2.7.7/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material3:material3-android:1.2.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/ed8b99a07f7ae2f73b31ff9eede54a8a/transformed/jetified-material3-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.material:material-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/b759b4d7eb96efc60bdbb69880f74ab7/transformed/jetified-material-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-core-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/d2fd31050e177bba321b278c1a8bdf70/transformed/jetified-material-icons-core-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-extended-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/80a6d25d8cd769f2306aa014acbec03f/transformed/jetified-material-icons-extended-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-ripple-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/80fa1b88656a9e4f2dfa66f609ca5be8/transformed/jetified-material-ripple-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/f8820381077820364876bd73806709cc/transformed/jetified-foundation-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/dee45f465ab83e6e3cee4846af086e06/transformed/jetified-foundation-layout-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-core-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/fbaa07c08040b7be9b2d83e05fee4935/transformed/jetified-animation-core-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/2943c238f41283a430598361cb1153ff/transformed/jetified-animation-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e3e9684ed13f2d27b39a11ee313dbd2e/transformed/jetified-ui-tooling-data-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-unit-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/9823ede5b1fd05499f4bec132e7151aa/transformed/jetified-ui-unit-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-geometry-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/c2ed51247517b2c8569db70df1d1387c/transformed/jetified-ui-geometry-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-text-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/be52c75f47640faea4925cae94d5c301/transformed/jetified-ui-text-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-util-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/c84b97659524f50caa149a1694e885f0/transformed/jetified-ui-util-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/b3938eb9251490f9088330b02e6cce68/transformed/jetified-ui-tooling-preview-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/132bddb9b96a5b99a17241e259f8b7d7/transformed/jetified-ui-tooling-release/AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.compose.ui:ui-graphics-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/b0889825309bf4fb80e4182635cbab83/transformed/jetified-ui-graphics-release/AndroidManifest.xml:2:1-7:12
+MERGED from [org.readium.kotlin-toolkit:readium-adapter-pdfium:3.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/16547575e2228ebb7a58f1bc9e0a585c/transformed/jetified-readium-adapter-pdfium-3.1.1/AndroidManifest.xml:2:1-7:12
+MERGED from [org.readium.kotlin-toolkit:readium-adapter-pdfium-navigator:3.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/b9dd14098b77fffe5d5edf938436a994/transformed/jetified-readium-adapter-pdfium-navigator-3.1.1/AndroidManifest.xml:2:1-7:12
+MERGED from [org.readium.kotlin-toolkit:readium-navigator:3.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/0d916ed5c98feb33ae6d2a8e5e70fb31/transformed/jetified-readium-navigator-3.1.1/AndroidManifest.xml:7:1-12:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ef358b0093853a2f630bc062ea9f293e/transformed/constraintlayout-2.2.1/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.appcompat:appcompat-resources:1.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/73e8e7864b4d89ffa1aa6c2a7175607b/transformed/jetified-appcompat-resources-1.7.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.appcompat:appcompat:1.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/a1c7f4a9e0bbf19a7b28ebb7fd5d106d/transformed/appcompat-1.7.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.fragment:fragment:1.8.6] /home/cemserdar/.gradle/caches/9.3.1/transforms/138bb67665f2addb5f06a5f0c89f5c01/transformed/fragment-1.8.6/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.fragment:fragment-ktx:1.8.6] /home/cemserdar/.gradle/caches/9.3.1/transforms/f0edfb72e1189ffb090bf3cfc904a88b/transformed/jetified-fragment-ktx-1.8.6/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/571b971db4f461281a47c42be1ea521a/transformed/jetified-savedstate-ktx-1.2.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.2.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/074d5b6924798d9ad4b21c559f7f3e5f/transformed/jetified-savedstate-1.2.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/ae43affd7e2629589eaac130dbabc6c8/transformed/jetified-emoji2-views-helper-1.3.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c87be6c1fe9e58e28d24a8e47ccfb11f/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.recyclerview:recyclerview:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/ed477304c2207ebe1b5eb2002a3b24cd/transformed/recyclerview-1.4.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/39239fe709309505984d6f00bea18267/transformed/jetified-customview-poolingcontainer-1.0.0/AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.core:core-ktx:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6512b9b3ce59f71b599183bb715e548/transformed/jetified-core-ktx-1.15.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.browser:browser:1.8.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/8b578f12f26f177cb68170d574600d51/transformed/browser-1.8.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2e0c872aa9257011850cb5f632e644e9/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media3:media3-common-ktx:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/701e50f9fd0f07cc0e92086ffbf2c9cc/transformed/jetified-media3-common-ktx-1.6.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media3:media3-exoplayer:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/ca3d68aa2680046b436e08a5fb0d413f/transformed/jetified-media3-exoplayer-1.6.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.media3:media3-datasource:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/72e0c4a73f926c30506b104b52b1291c/transformed/jetified-media3-datasource-1.6.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media3:media3-extractor:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/7775986d79779e6d6c8d7730f93f2418/transformed/jetified-media3-extractor-1.6.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media3:media3-container:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/a9d73662928bf91d0cc3ccfac6c64ec5/transformed/jetified-media3-container-1.6.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media3:media3-decoder:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/93687d59e1c72d3e87a3acc09c3e8d78/transformed/jetified-media3-decoder-1.6.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media3:media3-database:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/8048b16f530cf4e803d67ce00020b184/transformed/jetified-media3-database-1.6.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media3:media3-common:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9131581940906a1cab3f6553d9d7dfde/transformed/jetified-media3-common-1.6.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.media3:media3-session:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d9500ec2ef6f6119b86b4faf3846acd0/transformed/jetified-media3-session-1.6.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.webkit:webkit:1.13.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/8b81db85fd30028e3ad2f141223bcb9f/transformed/webkit-1.13.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/cddcb74ae11110ae32078ca18b09ccbb/transformed/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/dc8cc6057a1987972da125e7de7e260d/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/76ef43a70af02222d50c2ce767f15cf3/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/7409fbd3bc319389a96165bba4dc1e2d/transformed/coordinatorlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/b744cf7e18979a72f391c27a8aad3240/transformed/slidingpanelayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/0ce68dfb0886a3f67d3ac3ad94dabf5e/transformed/customview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/ff978b68c063ddcd79d9e34212727ba6/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/fb5d5cfe66946d2edadd33131a0b0e55/transformed/asynclayoutinflater-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media:media:1.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/def7f588ce6f779ce8ad885035b9184a/transformed/media-1.7.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.autofill:autofill:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/6e27d334eac5b6415d275c2154a2940b/transformed/jetified-autofill-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/0c824f98469cca53747c5930257f33da/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2c21d49063ee5f96f5df715f49a1c336/transformed/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.loader:loader:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2a4dd52fa18a0434c3adda803ce88678/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/1d8c362e72ceb8ad8a5c482555729552/transformed/lifecycle-livedata-2.8.7/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/3aa97022f90628da55c0fa1791aeff52/transformed/lifecycle-viewmodel-2.8.7/AndroidManifest.xml:2:1-5:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/88cbcffa2bb6ca793997a4699d573e24/transformed/jetified-lifecycle-viewmodel-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/6d61ef9efd0d6ed61d72513265dedfb5/transformed/jetified-lifecycle-runtime-ktx-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/ab5d27b7277e76d9c665336c76c49e3b/transformed/jetified-lifecycle-runtime-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/c8f68af5790135f2109e9df6c773966b/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/f3b1b4052843da281b2f149badcc34c8/transformed/lifecycle-livedata-core-2.8.7/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/c7304b72405be68173f3ae2fdc099253/transformed/jetified-lifecycle-viewmodel-savedstate-2.8.7/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/9d08f2fd83718bdaccd7fb5d7c4c1d93/transformed/jetified-lifecycle-viewmodel-ktx-2.8.7/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/ed61b7b9c569dc5b4361f7018b8c1bf1/transformed/jetified-lifecycle-livedata-core-ktx-2.8.7/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/d665435b47cea29c97dec842fb7a4712/transformed/jetified-lifecycle-viewmodel-compose-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/96c39f92970dea7708d8447d1b10e42e/transformed/jetified-ui-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-viewbinding:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/60e35d640d9ac046ea08ccc1a1e52dd5/transformed/jetified-ui-viewbinding-1.6.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ce48a0abd408870877fd9d80f325ac88/transformed/jetified-ui-test-manifest-1.6.1/AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.activity:activity:1.8.2] /home/cemserdar/.gradle/caches/9.3.1/transforms/2e60597caf47057097db3ba68ac741d5/transformed/jetified-activity-1.8.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity-ktx:1.8.2] /home/cemserdar/.gradle/caches/9.3.1/transforms/2f867ceda5e801921a13a4fde833a95e/transformed/jetified-activity-ktx-1.8.2/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.activity:activity-compose:1.8.2] /home/cemserdar/.gradle/caches/9.3.1/transforms/674692c931559f62a5be8073d2b4f4ba/transformed/jetified-activity-compose-1.8.2/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e39c9bb8805dce116f4ceab739a5d891/transformed/room-runtime-2.6.1/AndroidManifest.xml:17:1-31:12
+MERGED from [androidx.room:room-ktx:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/d881d8961e7b96edd37472abfdf3deea/transformed/jetified-room-ktx-2.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [org.readium.kotlin-toolkit:readium-streamer:3.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/09f241cd916c9c7799751a66cb26204b/transformed/jetified-readium-streamer-3.1.1/AndroidManifest.xml:7:1-12:12
+MERGED from [org.readium.kotlin-toolkit:readium-adapter-pdfium-document:3.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/eb33099285b2709884c93bbad6aa85fa/transformed/jetified-readium-adapter-pdfium-document-3.1.1/AndroidManifest.xml:2:1-7:12
+MERGED from [org.readium.kotlin-toolkit:readium-shared:3.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/bbfebe4bf90d79b9fda17903db33f070/transformed/jetified-readium-shared-3.1.1/AndroidManifest.xml:7:1-12:12
+MERGED from [androidx.sqlite:sqlite-framework:2.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/f7fce035acb3d494ee03a4fbfa7371ba/transformed/sqlite-framework-2.4.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.sqlite:sqlite:2.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/20c1022f4e40df88f8c13ba8563846a6/transformed/sqlite-2.4.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/aaffb703f976b1ae1d7e4200769b7b8a/transformed/jetified-runtime-saveable-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.runtime:runtime-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/6106908be880c16754aca90cc71260ae/transformed/jetified-runtime-release/AndroidManifest.xml:2:1-7:12
+MERGED from [org.readium.kotlin-toolkit:readium-adapter-pdfium-common:3.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/13d0affddf1ba4f3a54c72f7ec12ff8b/transformed/jetified-readium-adapter-pdfium-common-3.1.1/AndroidManifest.xml:2:1-7:12
+MERGED from [com.jakewharton.timber:timber:5.0.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/a824c14cf2f9a43f9d264d7459fc731d/transformed/jetified-timber-5.0.1/AndroidManifest.xml:2:1-9:12
+MERGED from [com.mcxiaoke.koi:core:0.5.5] /home/cemserdar/.gradle/caches/9.3.1/transforms/6af0e5d2fbc094af82e622d9937b47df/transformed/jetified-core-0.5.5/AndroidManifest.xml:2:1-12:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/608ddaa838f07bf0d5f03d2bea13baa9/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.databinding:viewbinding:8.9.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/7bd311ad7742793ac933c63a5298d87f/transformed/jetified-viewbinding-8.9.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c0d00ba1d88daa31aab9bb60a0c1d5b3/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/b6ecf2a2a3b36247da90307bbfd5f04a/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.6] /home/cemserdar/.gradle/caches/9.3.1/transforms/65a2c64034e2d9f0bdfce648f7444fe3/transformed/exifinterface-1.3.6/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/b8074a7a71e241a800ffdb49a96a8697/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.2.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/a0b42daa49f0a8c971a16f3c75fac78b/transformed/jetified-tracing-1.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e83ed8e80719bc88cf66c588c7889e07/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/76c1c6713a1fe0cd3a6ba6005f6c6538/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2dcfcf123d7e115023314ed114ee680a/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/0cff4dd21a34f7b5cacb7f1a5063a51e/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/2a66d0c1660a0113eb5d8fbe04bfe8c1/transformed/jetified-annotation-experimental-1.4.1/AndroidManifest.xml:2:1-7:12
 	package
 		INJECTED from /home/cemserdar/Project/CsReader/app/src/debug/AndroidManifest.xml
 	android:versionName
@@ -109,28 +145,34 @@ ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:8:5
 MERGED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:8:5-30:19
 MERGED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:8:5-30:19
 INJECTED from /home/cemserdar/Project/CsReader/app/src/debug/AndroidManifest.xml:6:5-162
-MERGED from [androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/983684116d5ef8e23206ec32a0b4def3/transformed/ui-tooling-release/AndroidManifest.xml:22:5-26:19
-MERGED from [androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/983684116d5ef8e23206ec32a0b4def3/transformed/ui-tooling-release/AndroidManifest.xml:22:5-26:19
-MERGED from [androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/52788e85d2c116f5d61b777a4d3e0f19/transformed/ui-test-manifest-1.6.1/AndroidManifest.xml:22:5-26:19
-MERGED from [androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/52788e85d2c116f5d61b777a4d3e0f19/transformed/ui-test-manifest-1.6.1/AndroidManifest.xml:22:5-26:19
-MERGED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/42e4e748f52e4d58b38e1aa18715baa5/transformed/emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
-MERGED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/42e4e748f52e4d58b38e1aa18715baa5/transformed/emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
-MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/946d713648fb58482aa13ff2b5623a1e/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:23:5-33:19
-MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/946d713648fb58482aa13ff2b5623a1e/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:23:5-33:19
-MERGED from [androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:28:5-89
-MERGED from [androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:28:5-89
-MERGED from [androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/28f816104d1921ccf0da8e59440ee5ce/transformed/room-runtime-2.6.1/AndroidManifest.xml:23:5-29:19
-MERGED from [androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/28f816104d1921ccf0da8e59440ee5ce/transformed/room-runtime-2.6.1/AndroidManifest.xml:23:5-29:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/bf53edc2be4619aa07b8d632a1fd184e/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/bf53edc2be4619aa07b8d632a1fd184e/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:23:5-53:19
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:23:5-53:19
-MERGED from [androidx.startup:startup-runtime:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/a7c9830ff10e4e30f1f3f4a5bf2d5d11/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
-MERGED from [androidx.startup:startup-runtime:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/a7c9830ff10e4e30f1f3f4a5bf2d5d11/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/132bddb9b96a5b99a17241e259f8b7d7/transformed/jetified-ui-tooling-release/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/132bddb9b96a5b99a17241e259f8b7d7/transformed/jetified-ui-tooling-release/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ef358b0093853a2f630bc062ea9f293e/transformed/constraintlayout-2.2.1/AndroidManifest.xml:7:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ef358b0093853a2f630bc062ea9f293e/transformed/constraintlayout-2.2.1/AndroidManifest.xml:7:5-20
+MERGED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c87be6c1fe9e58e28d24a8e47ccfb11f/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c87be6c1fe9e58e28d24a8e47ccfb11f/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/c8f68af5790135f2109e9df6c773966b/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/c8f68af5790135f2109e9df6c773966b/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ce48a0abd408870877fd9d80f325ac88/transformed/jetified-ui-test-manifest-1.6.1/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ce48a0abd408870877fd9d80f325ac88/transformed/jetified-ui-test-manifest-1.6.1/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e39c9bb8805dce116f4ceab739a5d891/transformed/room-runtime-2.6.1/AndroidManifest.xml:23:5-29:19
+MERGED from [androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e39c9bb8805dce116f4ceab739a5d891/transformed/room-runtime-2.6.1/AndroidManifest.xml:23:5-29:19
+MERGED from [com.jakewharton.timber:timber:5.0.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/a824c14cf2f9a43f9d264d7459fc731d/transformed/jetified-timber-5.0.1/AndroidManifest.xml:7:5-20
+MERGED from [com.jakewharton.timber:timber:5.0.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/a824c14cf2f9a43f9d264d7459fc731d/transformed/jetified-timber-5.0.1/AndroidManifest.xml:7:5-20
+MERGED from [com.mcxiaoke.koi:core:0.5.5] /home/cemserdar/.gradle/caches/9.3.1/transforms/6af0e5d2fbc094af82e622d9937b47df/transformed/jetified-core-0.5.5/AndroidManifest.xml:10:5-20
+MERGED from [com.mcxiaoke.koi:core:0.5.5] /home/cemserdar/.gradle/caches/9.3.1/transforms/6af0e5d2fbc094af82e622d9937b47df/transformed/jetified-core-0.5.5/AndroidManifest.xml:10:5-20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/b8074a7a71e241a800ffdb49a96a8697/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/b8074a7a71e241a800ffdb49a96a8697/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e83ed8e80719bc88cf66c588c7889e07/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e83ed8e80719bc88cf66c588c7889e07/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
 	android:extractNativeLibs
 		INJECTED from /home/cemserdar/Project/CsReader/app/src/debug/AndroidManifest.xml
 	android:appComponentFactory
-		ADDED from [androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
+		ADDED from [androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:28:18-86
 	android:supportsRtl
 		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:14:9-35
 		ADDED from /home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:14:9-35
@@ -192,257 +234,335 @@ uses-sdk
 INJECTED from /home/cemserdar/Project/CsReader/app/src/debug/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/cemserdar/Project/CsReader/app/src/debug/AndroidManifest.xml
 INJECTED from /home/cemserdar/Project/CsReader/app/src/debug/AndroidManifest.xml
-MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/f11122c645a6fe2d78fda4ed080d7e2c/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/f11122c645a6fe2d78fda4ed080d7e2c/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.appcompat:appcompat:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/8fe83786bebb5dfbd3682df5ad7785a3/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.appcompat:appcompat:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/8fe83786bebb5dfbd3682df5ad7785a3/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.webkit:webkit:1.10.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/cb80ef379ee9ce356703461f8d21da49/transformed/webkit-1.10.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.webkit:webkit:1.10.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/cb80ef379ee9ce356703461f8d21da49/transformed/webkit-1.10.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/65bf2036179aba8a721c99e63e9297a0/transformed/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/65bf2036179aba8a721c99e63e9297a0/transformed/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.fragment:fragment:1.3.6] /home/cemserdar/.gradle/caches/9.3.1/transforms/93a9907e1d17a67f3947fdd48d34bac6/transformed/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.fragment:fragment:1.3.6] /home/cemserdar/.gradle/caches/9.3.1/transforms/93a9907e1d17a67f3947fdd48d34bac6/transformed/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.navigation:navigation-common:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/d21f243b759216e8fc0ba578edb12b01/transformed/navigation-common-2.7.7/AndroidManifest.xml:20:5-44
-MERGED from [androidx.navigation:navigation-common:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/d21f243b759216e8fc0ba578edb12b01/transformed/navigation-common-2.7.7/AndroidManifest.xml:20:5-44
-MERGED from [androidx.navigation:navigation-runtime:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/ee5adf93d8301c3a9052e162441ea2e4/transformed/navigation-runtime-2.7.7/AndroidManifest.xml:20:5-44
-MERGED from [androidx.navigation:navigation-runtime:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/ee5adf93d8301c3a9052e162441ea2e4/transformed/navigation-runtime-2.7.7/AndroidManifest.xml:20:5-44
-MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/6295648558979be449aac8dbfeb0281b/transformed/navigation-common-ktx-2.7.7/AndroidManifest.xml:5:5-44
-MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/6295648558979be449aac8dbfeb0281b/transformed/navigation-common-ktx-2.7.7/AndroidManifest.xml:5:5-44
-MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/ca38b0aa15f7ff9d6ec73a3e80440e33/transformed/navigation-runtime-ktx-2.7.7/AndroidManifest.xml:5:5-44
-MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/ca38b0aa15f7ff9d6ec73a3e80440e33/transformed/navigation-runtime-ktx-2.7.7/AndroidManifest.xml:5:5-44
-MERGED from [androidx.navigation:navigation-compose:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/fa68b275563f8227f89081c6966b3a5b/transformed/navigation-compose-2.7.7/AndroidManifest.xml:5:5-44
-MERGED from [androidx.navigation:navigation-compose:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/fa68b275563f8227f89081c6966b3a5b/transformed/navigation-compose-2.7.7/AndroidManifest.xml:5:5-44
-MERGED from [androidx.loader:loader:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/45dbcc3836784e3e5d827f49402a47ee/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/45dbcc3836784e3e5d827f49402a47ee/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.material3:material3-android:1.2.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/f30117f50375ece2b6de6fb16e93095e/transformed/material3-release/AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.material3:material3-android:1.2.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/f30117f50375ece2b6de6fb16e93095e/transformed/material3-release/AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.material:material-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/c3fc6d3d92b307fb10562891948d0753/transformed/material-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.material:material-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/c3fc6d3d92b307fb10562891948d0753/transformed/material-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.material:material-icons-core-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/3daa5296116d4b8f540be98db1a7fe52/transformed/material-icons-core-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.material:material-icons-core-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/3daa5296116d4b8f540be98db1a7fe52/transformed/material-icons-core-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.material:material-icons-extended-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/6b5d20e831f02cd4aaed26b067a6cb6f/transformed/material-icons-extended-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.material:material-icons-extended-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/6b5d20e831f02cd4aaed26b067a6cb6f/transformed/material-icons-extended-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.material:material-ripple-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/0f8e259941b3185cf8140528ba4f0398/transformed/material-ripple-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.material:material-ripple-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/0f8e259941b3185cf8140528ba4f0398/transformed/material-ripple-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.foundation:foundation-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/8d159d2a598c8d96272720431dc3d097/transformed/foundation-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.foundation:foundation-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/8d159d2a598c8d96272720431dc3d097/transformed/foundation-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.foundation:foundation-layout-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ef25c56f52cc4ac7f4318396867c5c33/transformed/foundation-layout-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.foundation:foundation-layout-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ef25c56f52cc4ac7f4318396867c5c33/transformed/foundation-layout-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.animation:animation-core-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/2eb091307159e9c015d3665adaa58b43/transformed/animation-core-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.animation:animation-core-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/2eb091307159e9c015d3665adaa58b43/transformed/animation-core-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.animation:animation-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/2099deafc9d33eefe4352e7e0004aa13/transformed/animation-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.animation:animation-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/2099deafc9d33eefe4352e7e0004aa13/transformed/animation-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-tooling-data-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ca26f10cd27a2bf21645e5dccb1eda59/transformed/ui-tooling-data-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-tooling-data-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ca26f10cd27a2bf21645e5dccb1eda59/transformed/ui-tooling-data-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-unit-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/358f2293b45419e203d9be1f0eedd809/transformed/ui-unit-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-unit-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/358f2293b45419e203d9be1f0eedd809/transformed/ui-unit-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-geometry-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/f598c4b4087921e7ced5da4fc6297e8d/transformed/ui-geometry-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-geometry-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/f598c4b4087921e7ced5da4fc6297e8d/transformed/ui-geometry-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-util-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e7904216d1bf525a8b193dc3ff722339/transformed/ui-util-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-util-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e7904216d1bf525a8b193dc3ff722339/transformed/ui-util-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/1fad83c9b6c095616ed68f2438c75938/transformed/ui-tooling-preview-release/AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/1fad83c9b6c095616ed68f2438c75938/transformed/ui-tooling-preview-release/AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/983684116d5ef8e23206ec32a0b4def3/transformed/ui-tooling-release/AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/983684116d5ef8e23206ec32a0b4def3/transformed/ui-tooling-release/AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.ui:ui-graphics-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/2db036153a842939d259c259c91ff571/transformed/ui-graphics-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-graphics-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/2db036153a842939d259c259c91ff571/transformed/ui-graphics-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/52788e85d2c116f5d61b777a4d3e0f19/transformed/ui-test-manifest-1.6.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/52788e85d2c116f5d61b777a4d3e0f19/transformed/ui-test-manifest-1.6.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.ui:ui-text-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/0a861fd8cf0f598926b9c500f9c56885/transformed/ui-text-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-text-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/0a861fd8cf0f598926b9c500f9c56885/transformed/ui-text-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/8c41efd4ead06243aa2f31d27ecb59c0/transformed/emoji2-views-helper-1.3.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/8c41efd4ead06243aa2f31d27ecb59c0/transformed/emoji2-views-helper-1.3.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/42e4e748f52e4d58b38e1aa18715baa5/transformed/emoji2-1.3.0/AndroidManifest.xml:21:5-44
-MERGED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/42e4e748f52e4d58b38e1aa18715baa5/transformed/emoji2-1.3.0/AndroidManifest.xml:21:5-44
-MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/946d713648fb58482aa13ff2b5623a1e/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:21:5-44
-MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/946d713648fb58482aa13ff2b5623a1e/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:21:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/fe256ef8455bd95f6e9a240f15edbe08/transformed/lifecycle-livedata-core-ktx-2.7.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/fe256ef8455bd95f6e9a240f15edbe08/transformed/lifecycle-livedata-core-ktx-2.7.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/48a81a35a89fb02d7af215cbec1646f0/transformed/lifecycle-livedata-2.7.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/48a81a35a89fb02d7af215cbec1646f0/transformed/lifecycle-livedata-2.7.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/bce344310b7199b3e791081e0eb0f135/transformed/lifecycle-livedata-core-2.7.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/bce344310b7199b3e791081e0eb0f135/transformed/lifecycle-livedata-core-2.7.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/9a16a67674a491a9eebd8606bcf0cc24/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/9a16a67674a491a9eebd8606bcf0cc24/transformed/savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.savedstate:savedstate:1.2.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/becfac7004c042d4959905ee45edc75c/transformed/savedstate-1.2.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.savedstate:savedstate:1.2.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/becfac7004c042d4959905ee45edc75c/transformed/savedstate-1.2.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/1b684b3bb1833b2013dcf7b111a351c4/transformed/lifecycle-viewmodel-savedstate-2.7.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/1b684b3bb1833b2013dcf7b111a351c4/transformed/lifecycle-viewmodel-savedstate-2.7.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/cde87c09b96c650cefcbd30d3554ade5/transformed/lifecycle-viewmodel-ktx-2.7.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/cde87c09b96c650cefcbd30d3554ade5/transformed/lifecycle-viewmodel-ktx-2.7.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/7d8ea7a17f01e46da210d830b6732ded/transformed/lifecycle-viewmodel-2.7.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/7d8ea7a17f01e46da210d830b6732ded/transformed/lifecycle-viewmodel-2.7.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/324e56ec5c92a0c20fd3c38e9617a2d0/transformed/lifecycle-runtime-2.7.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/324e56ec5c92a0c20fd3c38e9617a2d0/transformed/lifecycle-runtime-2.7.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/e5293e3221a48fb3b0239ba6fc3fb3b3/transformed/lifecycle-runtime-ktx-2.7.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/e5293e3221a48fb3b0239ba6fc3fb3b3/transformed/lifecycle-runtime-ktx-2.7.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/0e48077a6289bd3c158eeec7fb283f17/transformed/lifecycle-viewmodel-compose-2.7.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/0e48077a6289bd3c158eeec7fb283f17/transformed/lifecycle-viewmodel-compose-2.7.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/07c72928c183c9f87ec75e08607cf166/transformed/ui-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.ui:ui-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/07c72928c183c9f87ec75e08607cf166/transformed/ui-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.activity:activity-ktx:1.8.2] /home/cemserdar/.gradle/caches/9.3.1/transforms/d7f854e7d604b16d07d83dd416ddfb6b/transformed/activity-ktx-1.8.2/AndroidManifest.xml:5:5-44
-MERGED from [androidx.activity:activity-ktx:1.8.2] /home/cemserdar/.gradle/caches/9.3.1/transforms/d7f854e7d604b16d07d83dd416ddfb6b/transformed/activity-ktx-1.8.2/AndroidManifest.xml:5:5-44
-MERGED from [androidx.activity:activity-compose:1.8.2] /home/cemserdar/.gradle/caches/9.3.1/transforms/3a63a72d1072504816147e4c4ea46d7a/transformed/activity-compose-1.8.2/AndroidManifest.xml:5:5-44
-MERGED from [androidx.activity:activity-compose:1.8.2] /home/cemserdar/.gradle/caches/9.3.1/transforms/3a63a72d1072504816147e4c4ea46d7a/transformed/activity-compose-1.8.2/AndroidManifest.xml:5:5-44
-MERGED from [androidx.activity:activity:1.8.2] /home/cemserdar/.gradle/caches/9.3.1/transforms/0282a800d12e75f4dd62f417f382714c/transformed/activity-1.8.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.activity:activity:1.8.2] /home/cemserdar/.gradle/caches/9.3.1/transforms/0282a800d12e75f4dd62f417f382714c/transformed/activity-1.8.2/AndroidManifest.xml:20:5-44
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/66f31b24d4cd502441f7f82dcff67e13/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/66f31b24d4cd502441f7f82dcff67e13/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9854937095ea1565c9623b967ca5a915/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9854937095ea1565c9623b967ca5a915/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.viewpager:viewpager:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/b0ea598c422afcb3f37c66de37528c43/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.viewpager:viewpager:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/b0ea598c422afcb3f37c66de37528c43/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/1d86a7404d44afd669371463f77fa88c/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/1d86a7404d44afd669371463f77fa88c/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.autofill:autofill:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/3e69c729818e4a2b5007d88b8f7dd059/transformed/autofill-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.autofill:autofill:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/3e69c729818e4a2b5007d88b8f7dd059/transformed/autofill-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/b5be13d59ccffa3e168ee6c7b5f5a683/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:20:5-21:38
-MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/b5be13d59ccffa3e168ee6c7b5f5a683/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:20:5-21:38
-MERGED from [androidx.core:core-ktx:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9bd32c93b55bedfc300b68043aa72d63/transformed/core-ktx-1.12.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.core:core-ktx:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9bd32c93b55bedfc300b68043aa72d63/transformed/core-ktx-1.12.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/28f816104d1921ccf0da8e59440ee5ce/transformed/room-runtime-2.6.1/AndroidManifest.xml:21:5-44
-MERGED from [androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/28f816104d1921ccf0da8e59440ee5ce/transformed/room-runtime-2.6.1/AndroidManifest.xml:21:5-44
-MERGED from [androidx.room:room-ktx:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/18c78e4dc438a984aafa0691bfe70a62/transformed/room-ktx-2.6.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.room:room-ktx:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/18c78e4dc438a984aafa0691bfe70a62/transformed/room-ktx-2.6.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.sqlite:sqlite-framework:2.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2c068d425db29797710c8048fa678663/transformed/sqlite-framework-2.4.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.sqlite:sqlite-framework:2.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2c068d425db29797710c8048fa678663/transformed/sqlite-framework-2.4.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.sqlite:sqlite:2.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/cec686a51ee670f26688df0e3cbfcb47/transformed/sqlite-2.4.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.sqlite:sqlite:2.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/cec686a51ee670f26688df0e3cbfcb47/transformed/sqlite-2.4.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.compose.runtime:runtime-saveable-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/f059480f11d5c1dc7be517fdcefa55a7/transformed/runtime-saveable-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.runtime:runtime-saveable-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/f059480f11d5c1dc7be517fdcefa55a7/transformed/runtime-saveable-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.runtime:runtime-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/6cb056276823031e56b5270a01bdf20c/transformed/runtime-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.compose.runtime:runtime-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/6cb056276823031e56b5270a01bdf20c/transformed/runtime-release/AndroidManifest.xml:5:5-44
-MERGED from [androidx.annotation:annotation-experimental:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/023ab97421c17b75e56ec09b38dc4272/transformed/annotation-experimental-1.4.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.annotation:annotation-experimental:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/023ab97421c17b75e56ec09b38dc4272/transformed/annotation-experimental-1.4.0/AndroidManifest.xml:5:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/bf53edc2be4619aa07b8d632a1fd184e/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/bf53edc2be4619aa07b8d632a1fd184e/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2e6ac5d4387c1b17cbae539ea9a729d8/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2e6ac5d4387c1b17cbae539ea9a729d8/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/db15bfc2c94cbc179b64efc5318e89c5/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/db15bfc2c94cbc179b64efc5318e89c5/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/260a04594614fba3297abebb3d559623/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/260a04594614fba3297abebb3d559623/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:21:5-44
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:21:5-44
-MERGED from [androidx.startup:startup-runtime:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/a7c9830ff10e4e30f1f3f4a5bf2d5d11/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
-MERGED from [androidx.startup:startup-runtime:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/a7c9830ff10e4e30f1f3f4a5bf2d5d11/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
-MERGED from [androidx.tracing:tracing:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9aa54b226df778fc6c2c87e93f074534/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.tracing:tracing:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9aa54b226df778fc6c2c87e93f074534/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-common:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/5ce911e791855b982d45e1f7d3bf043d/transformed/navigation-common-2.7.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/5ce911e791855b982d45e1f7d3bf043d/transformed/navigation-common-2.7.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/73ee28a1e16340c35eb896b846cf7e9d/transformed/navigation-runtime-2.7.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/73ee28a1e16340c35eb896b846cf7e9d/transformed/navigation-runtime-2.7.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/ede864602cb8e343f15cfe5856e96543/transformed/navigation-common-ktx-2.7.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/ede864602cb8e343f15cfe5856e96543/transformed/navigation-common-ktx-2.7.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/d22e3aa7d0bea4b73e2616d5ae562132/transformed/navigation-runtime-ktx-2.7.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/d22e3aa7d0bea4b73e2616d5ae562132/transformed/navigation-runtime-ktx-2.7.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-compose:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/ef9bb70c5944f7a8286e9562fc225281/transformed/jetified-navigation-compose-2.7.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-compose:2.7.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/ef9bb70c5944f7a8286e9562fc225281/transformed/jetified-navigation-compose-2.7.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material3:material3-android:1.2.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/ed8b99a07f7ae2f73b31ff9eede54a8a/transformed/jetified-material3-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material3:material3-android:1.2.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/ed8b99a07f7ae2f73b31ff9eede54a8a/transformed/jetified-material3-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material:material-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/b759b4d7eb96efc60bdbb69880f74ab7/transformed/jetified-material-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/b759b4d7eb96efc60bdbb69880f74ab7/transformed/jetified-material-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/d2fd31050e177bba321b278c1a8bdf70/transformed/jetified-material-icons-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/d2fd31050e177bba321b278c1a8bdf70/transformed/jetified-material-icons-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/80a6d25d8cd769f2306aa014acbec03f/transformed/jetified-material-icons-extended-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/80a6d25d8cd769f2306aa014acbec03f/transformed/jetified-material-icons-extended-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/80fa1b88656a9e4f2dfa66f609ca5be8/transformed/jetified-material-ripple-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/80fa1b88656a9e4f2dfa66f609ca5be8/transformed/jetified-material-ripple-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/f8820381077820364876bd73806709cc/transformed/jetified-foundation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/f8820381077820364876bd73806709cc/transformed/jetified-foundation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/dee45f465ab83e6e3cee4846af086e06/transformed/jetified-foundation-layout-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/dee45f465ab83e6e3cee4846af086e06/transformed/jetified-foundation-layout-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/fbaa07c08040b7be9b2d83e05fee4935/transformed/jetified-animation-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/fbaa07c08040b7be9b2d83e05fee4935/transformed/jetified-animation-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/2943c238f41283a430598361cb1153ff/transformed/jetified-animation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/2943c238f41283a430598361cb1153ff/transformed/jetified-animation-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e3e9684ed13f2d27b39a11ee313dbd2e/transformed/jetified-ui-tooling-data-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e3e9684ed13f2d27b39a11ee313dbd2e/transformed/jetified-ui-tooling-data-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/9823ede5b1fd05499f4bec132e7151aa/transformed/jetified-ui-unit-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/9823ede5b1fd05499f4bec132e7151aa/transformed/jetified-ui-unit-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/c2ed51247517b2c8569db70df1d1387c/transformed/jetified-ui-geometry-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/c2ed51247517b2c8569db70df1d1387c/transformed/jetified-ui-geometry-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/be52c75f47640faea4925cae94d5c301/transformed/jetified-ui-text-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/be52c75f47640faea4925cae94d5c301/transformed/jetified-ui-text-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/c84b97659524f50caa149a1694e885f0/transformed/jetified-ui-util-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/c84b97659524f50caa149a1694e885f0/transformed/jetified-ui-util-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/b3938eb9251490f9088330b02e6cce68/transformed/jetified-ui-tooling-preview-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/b3938eb9251490f9088330b02e6cce68/transformed/jetified-ui-tooling-preview-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/132bddb9b96a5b99a17241e259f8b7d7/transformed/jetified-ui-tooling-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/132bddb9b96a5b99a17241e259f8b7d7/transformed/jetified-ui-tooling-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/b0889825309bf4fb80e4182635cbab83/transformed/jetified-ui-graphics-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/b0889825309bf4fb80e4182635cbab83/transformed/jetified-ui-graphics-release/AndroidManifest.xml:5:5-44
+MERGED from [org.readium.kotlin-toolkit:readium-adapter-pdfium:3.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/16547575e2228ebb7a58f1bc9e0a585c/transformed/jetified-readium-adapter-pdfium-3.1.1/AndroidManifest.xml:5:5-44
+MERGED from [org.readium.kotlin-toolkit:readium-adapter-pdfium:3.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/16547575e2228ebb7a58f1bc9e0a585c/transformed/jetified-readium-adapter-pdfium-3.1.1/AndroidManifest.xml:5:5-44
+MERGED from [org.readium.kotlin-toolkit:readium-adapter-pdfium-navigator:3.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/b9dd14098b77fffe5d5edf938436a994/transformed/jetified-readium-adapter-pdfium-navigator-3.1.1/AndroidManifest.xml:5:5-44
+MERGED from [org.readium.kotlin-toolkit:readium-adapter-pdfium-navigator:3.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/b9dd14098b77fffe5d5edf938436a994/transformed/jetified-readium-adapter-pdfium-navigator-3.1.1/AndroidManifest.xml:5:5-44
+MERGED from [org.readium.kotlin-toolkit:readium-navigator:3.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/0d916ed5c98feb33ae6d2a8e5e70fb31/transformed/jetified-readium-navigator-3.1.1/AndroidManifest.xml:10:5-44
+MERGED from [org.readium.kotlin-toolkit:readium-navigator:3.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/0d916ed5c98feb33ae6d2a8e5e70fb31/transformed/jetified-readium-navigator-3.1.1/AndroidManifest.xml:10:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ef358b0093853a2f630bc062ea9f293e/transformed/constraintlayout-2.2.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ef358b0093853a2f630bc062ea9f293e/transformed/constraintlayout-2.2.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/73e8e7864b4d89ffa1aa6c2a7175607b/transformed/jetified-appcompat-resources-1.7.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/73e8e7864b4d89ffa1aa6c2a7175607b/transformed/jetified-appcompat-resources-1.7.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat:1.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/a1c7f4a9e0bbf19a7b28ebb7fd5d106d/transformed/appcompat-1.7.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat:1.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/a1c7f4a9e0bbf19a7b28ebb7fd5d106d/transformed/appcompat-1.7.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.fragment:fragment:1.8.6] /home/cemserdar/.gradle/caches/9.3.1/transforms/138bb67665f2addb5f06a5f0c89f5c01/transformed/fragment-1.8.6/AndroidManifest.xml:5:5-44
+MERGED from [androidx.fragment:fragment:1.8.6] /home/cemserdar/.gradle/caches/9.3.1/transforms/138bb67665f2addb5f06a5f0c89f5c01/transformed/fragment-1.8.6/AndroidManifest.xml:5:5-44
+MERGED from [androidx.fragment:fragment-ktx:1.8.6] /home/cemserdar/.gradle/caches/9.3.1/transforms/f0edfb72e1189ffb090bf3cfc904a88b/transformed/jetified-fragment-ktx-1.8.6/AndroidManifest.xml:5:5-44
+MERGED from [androidx.fragment:fragment-ktx:1.8.6] /home/cemserdar/.gradle/caches/9.3.1/transforms/f0edfb72e1189ffb090bf3cfc904a88b/transformed/jetified-fragment-ktx-1.8.6/AndroidManifest.xml:5:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/571b971db4f461281a47c42be1ea521a/transformed/jetified-savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.2.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/571b971db4f461281a47c42be1ea521a/transformed/jetified-savedstate-ktx-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/074d5b6924798d9ad4b21c559f7f3e5f/transformed/jetified-savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/074d5b6924798d9ad4b21c559f7f3e5f/transformed/jetified-savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/ae43affd7e2629589eaac130dbabc6c8/transformed/jetified-emoji2-views-helper-1.3.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/ae43affd7e2629589eaac130dbabc6c8/transformed/jetified-emoji2-views-helper-1.3.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c87be6c1fe9e58e28d24a8e47ccfb11f/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c87be6c1fe9e58e28d24a8e47ccfb11f/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/ed477304c2207ebe1b5eb2002a3b24cd/transformed/recyclerview-1.4.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/ed477304c2207ebe1b5eb2002a3b24cd/transformed/recyclerview-1.4.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/39239fe709309505984d6f00bea18267/transformed/jetified-customview-poolingcontainer-1.0.0/AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/39239fe709309505984d6f00bea18267/transformed/jetified-customview-poolingcontainer-1.0.0/AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.core:core-ktx:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6512b9b3ce59f71b599183bb715e548/transformed/jetified-core-ktx-1.15.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6512b9b3ce59f71b599183bb715e548/transformed/jetified-core-ktx-1.15.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.browser:browser:1.8.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/8b578f12f26f177cb68170d574600d51/transformed/browser-1.8.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.browser:browser:1.8.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/8b578f12f26f177cb68170d574600d51/transformed/browser-1.8.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2e0c872aa9257011850cb5f632e644e9/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2e0c872aa9257011850cb5f632e644e9/transformed/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-common-ktx:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/701e50f9fd0f07cc0e92086ffbf2c9cc/transformed/jetified-media3-common-ktx-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-common-ktx:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/701e50f9fd0f07cc0e92086ffbf2c9cc/transformed/jetified-media3-common-ktx-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-exoplayer:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/ca3d68aa2680046b436e08a5fb0d413f/transformed/jetified-media3-exoplayer-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-exoplayer:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/ca3d68aa2680046b436e08a5fb0d413f/transformed/jetified-media3-exoplayer-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-datasource:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/72e0c4a73f926c30506b104b52b1291c/transformed/jetified-media3-datasource-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-datasource:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/72e0c4a73f926c30506b104b52b1291c/transformed/jetified-media3-datasource-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-extractor:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/7775986d79779e6d6c8d7730f93f2418/transformed/jetified-media3-extractor-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-extractor:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/7775986d79779e6d6c8d7730f93f2418/transformed/jetified-media3-extractor-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-container:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/a9d73662928bf91d0cc3ccfac6c64ec5/transformed/jetified-media3-container-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-container:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/a9d73662928bf91d0cc3ccfac6c64ec5/transformed/jetified-media3-container-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-decoder:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/93687d59e1c72d3e87a3acc09c3e8d78/transformed/jetified-media3-decoder-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-decoder:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/93687d59e1c72d3e87a3acc09c3e8d78/transformed/jetified-media3-decoder-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-database:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/8048b16f530cf4e803d67ce00020b184/transformed/jetified-media3-database-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-database:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/8048b16f530cf4e803d67ce00020b184/transformed/jetified-media3-database-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-common:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9131581940906a1cab3f6553d9d7dfde/transformed/jetified-media3-common-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-common:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9131581940906a1cab3f6553d9d7dfde/transformed/jetified-media3-common-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-session:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d9500ec2ef6f6119b86b4faf3846acd0/transformed/jetified-media3-session-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media3:media3-session:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d9500ec2ef6f6119b86b4faf3846acd0/transformed/jetified-media3-session-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.webkit:webkit:1.13.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/8b81db85fd30028e3ad2f141223bcb9f/transformed/webkit-1.13.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.webkit:webkit:1.13.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/8b81db85fd30028e3ad2f141223bcb9f/transformed/webkit-1.13.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/cddcb74ae11110ae32078ca18b09ccbb/transformed/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/cddcb74ae11110ae32078ca18b09ccbb/transformed/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/dc8cc6057a1987972da125e7de7e260d/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/dc8cc6057a1987972da125e7de7e260d/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/76ef43a70af02222d50c2ce767f15cf3/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/76ef43a70af02222d50c2ce767f15cf3/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/7409fbd3bc319389a96165bba4dc1e2d/transformed/coordinatorlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/7409fbd3bc319389a96165bba4dc1e2d/transformed/coordinatorlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/b744cf7e18979a72f391c27a8aad3240/transformed/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/b744cf7e18979a72f391c27a8aad3240/transformed/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/0ce68dfb0886a3f67d3ac3ad94dabf5e/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/0ce68dfb0886a3f67d3ac3ad94dabf5e/transformed/customview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/ff978b68c063ddcd79d9e34212727ba6/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/ff978b68c063ddcd79d9e34212727ba6/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/fb5d5cfe66946d2edadd33131a0b0e55/transformed/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/fb5d5cfe66946d2edadd33131a0b0e55/transformed/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/def7f588ce6f779ce8ad885035b9184a/transformed/media-1.7.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.media:media:1.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/def7f588ce6f779ce8ad885035b9184a/transformed/media-1.7.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.autofill:autofill:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/6e27d334eac5b6415d275c2154a2940b/transformed/jetified-autofill-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.autofill:autofill:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/6e27d334eac5b6415d275c2154a2940b/transformed/jetified-autofill-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/0c824f98469cca53747c5930257f33da/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/0c824f98469cca53747c5930257f33da/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2c21d49063ee5f96f5df715f49a1c336/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2c21d49063ee5f96f5df715f49a1c336/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.loader:loader:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2a4dd52fa18a0434c3adda803ce88678/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2a4dd52fa18a0434c3adda803ce88678/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/1d8c362e72ceb8ad8a5c482555729552/transformed/lifecycle-livedata-2.8.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/1d8c362e72ceb8ad8a5c482555729552/transformed/lifecycle-livedata-2.8.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/3aa97022f90628da55c0fa1791aeff52/transformed/lifecycle-viewmodel-2.8.7/AndroidManifest.xml:4:5-43
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/3aa97022f90628da55c0fa1791aeff52/transformed/lifecycle-viewmodel-2.8.7/AndroidManifest.xml:4:5-43
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/88cbcffa2bb6ca793997a4699d573e24/transformed/jetified-lifecycle-viewmodel-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/88cbcffa2bb6ca793997a4699d573e24/transformed/jetified-lifecycle-viewmodel-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/6d61ef9efd0d6ed61d72513265dedfb5/transformed/jetified-lifecycle-runtime-ktx-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/6d61ef9efd0d6ed61d72513265dedfb5/transformed/jetified-lifecycle-runtime-ktx-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/ab5d27b7277e76d9c665336c76c49e3b/transformed/jetified-lifecycle-runtime-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/ab5d27b7277e76d9c665336c76c49e3b/transformed/jetified-lifecycle-runtime-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/c8f68af5790135f2109e9df6c773966b/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/c8f68af5790135f2109e9df6c773966b/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/f3b1b4052843da281b2f149badcc34c8/transformed/lifecycle-livedata-core-2.8.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/f3b1b4052843da281b2f149badcc34c8/transformed/lifecycle-livedata-core-2.8.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/c7304b72405be68173f3ae2fdc099253/transformed/jetified-lifecycle-viewmodel-savedstate-2.8.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/c7304b72405be68173f3ae2fdc099253/transformed/jetified-lifecycle-viewmodel-savedstate-2.8.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/9d08f2fd83718bdaccd7fb5d7c4c1d93/transformed/jetified-lifecycle-viewmodel-ktx-2.8.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/9d08f2fd83718bdaccd7fb5d7c4c1d93/transformed/jetified-lifecycle-viewmodel-ktx-2.8.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/ed61b7b9c569dc5b4361f7018b8c1bf1/transformed/jetified-lifecycle-livedata-core-ktx-2.8.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/ed61b7b9c569dc5b4361f7018b8c1bf1/transformed/jetified-lifecycle-livedata-core-ktx-2.8.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/d665435b47cea29c97dec842fb7a4712/transformed/jetified-lifecycle-viewmodel-compose-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/d665435b47cea29c97dec842fb7a4712/transformed/jetified-lifecycle-viewmodel-compose-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/96c39f92970dea7708d8447d1b10e42e/transformed/jetified-ui-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/96c39f92970dea7708d8447d1b10e42e/transformed/jetified-ui-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-viewbinding:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/60e35d640d9ac046ea08ccc1a1e52dd5/transformed/jetified-ui-viewbinding-1.6.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-viewbinding:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/60e35d640d9ac046ea08ccc1a1e52dd5/transformed/jetified-ui-viewbinding-1.6.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ce48a0abd408870877fd9d80f325ac88/transformed/jetified-ui-test-manifest-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ce48a0abd408870877fd9d80f325ac88/transformed/jetified-ui-test-manifest-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.8.2] /home/cemserdar/.gradle/caches/9.3.1/transforms/2e60597caf47057097db3ba68ac741d5/transformed/jetified-activity-1.8.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.8.2] /home/cemserdar/.gradle/caches/9.3.1/transforms/2e60597caf47057097db3ba68ac741d5/transformed/jetified-activity-1.8.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity-ktx:1.8.2] /home/cemserdar/.gradle/caches/9.3.1/transforms/2f867ceda5e801921a13a4fde833a95e/transformed/jetified-activity-ktx-1.8.2/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.8.2] /home/cemserdar/.gradle/caches/9.3.1/transforms/2f867ceda5e801921a13a4fde833a95e/transformed/jetified-activity-ktx-1.8.2/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-compose:1.8.2] /home/cemserdar/.gradle/caches/9.3.1/transforms/674692c931559f62a5be8073d2b4f4ba/transformed/jetified-activity-compose-1.8.2/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-compose:1.8.2] /home/cemserdar/.gradle/caches/9.3.1/transforms/674692c931559f62a5be8073d2b4f4ba/transformed/jetified-activity-compose-1.8.2/AndroidManifest.xml:5:5-44
+MERGED from [androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e39c9bb8805dce116f4ceab739a5d891/transformed/room-runtime-2.6.1/AndroidManifest.xml:21:5-44
+MERGED from [androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e39c9bb8805dce116f4ceab739a5d891/transformed/room-runtime-2.6.1/AndroidManifest.xml:21:5-44
+MERGED from [androidx.room:room-ktx:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/d881d8961e7b96edd37472abfdf3deea/transformed/jetified-room-ktx-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.room:room-ktx:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/d881d8961e7b96edd37472abfdf3deea/transformed/jetified-room-ktx-2.6.1/AndroidManifest.xml:20:5-44
+MERGED from [org.readium.kotlin-toolkit:readium-streamer:3.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/09f241cd916c9c7799751a66cb26204b/transformed/jetified-readium-streamer-3.1.1/AndroidManifest.xml:10:5-44
+MERGED from [org.readium.kotlin-toolkit:readium-streamer:3.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/09f241cd916c9c7799751a66cb26204b/transformed/jetified-readium-streamer-3.1.1/AndroidManifest.xml:10:5-44
+MERGED from [org.readium.kotlin-toolkit:readium-adapter-pdfium-document:3.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/eb33099285b2709884c93bbad6aa85fa/transformed/jetified-readium-adapter-pdfium-document-3.1.1/AndroidManifest.xml:5:5-44
+MERGED from [org.readium.kotlin-toolkit:readium-adapter-pdfium-document:3.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/eb33099285b2709884c93bbad6aa85fa/transformed/jetified-readium-adapter-pdfium-document-3.1.1/AndroidManifest.xml:5:5-44
+MERGED from [org.readium.kotlin-toolkit:readium-shared:3.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/bbfebe4bf90d79b9fda17903db33f070/transformed/jetified-readium-shared-3.1.1/AndroidManifest.xml:10:5-44
+MERGED from [org.readium.kotlin-toolkit:readium-shared:3.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/bbfebe4bf90d79b9fda17903db33f070/transformed/jetified-readium-shared-3.1.1/AndroidManifest.xml:10:5-44
+MERGED from [androidx.sqlite:sqlite-framework:2.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/f7fce035acb3d494ee03a4fbfa7371ba/transformed/sqlite-framework-2.4.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite-framework:2.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/f7fce035acb3d494ee03a4fbfa7371ba/transformed/sqlite-framework-2.4.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/20c1022f4e40df88f8c13ba8563846a6/transformed/sqlite-2.4.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/20c1022f4e40df88f8c13ba8563846a6/transformed/sqlite-2.4.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/aaffb703f976b1ae1d7e4200769b7b8a/transformed/jetified-runtime-saveable-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/aaffb703f976b1ae1d7e4200769b7b8a/transformed/jetified-runtime-saveable-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/6106908be880c16754aca90cc71260ae/transformed/jetified-runtime-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/6106908be880c16754aca90cc71260ae/transformed/jetified-runtime-release/AndroidManifest.xml:5:5-44
+MERGED from [org.readium.kotlin-toolkit:readium-adapter-pdfium-common:3.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/13d0affddf1ba4f3a54c72f7ec12ff8b/transformed/jetified-readium-adapter-pdfium-common-3.1.1/AndroidManifest.xml:5:5-44
+MERGED from [org.readium.kotlin-toolkit:readium-adapter-pdfium-common:3.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/13d0affddf1ba4f3a54c72f7ec12ff8b/transformed/jetified-readium-adapter-pdfium-common-3.1.1/AndroidManifest.xml:5:5-44
+MERGED from [com.jakewharton.timber:timber:5.0.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/a824c14cf2f9a43f9d264d7459fc731d/transformed/jetified-timber-5.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.jakewharton.timber:timber:5.0.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/a824c14cf2f9a43f9d264d7459fc731d/transformed/jetified-timber-5.0.1/AndroidManifest.xml:5:5-44
+MERGED from [com.mcxiaoke.koi:core:0.5.5] /home/cemserdar/.gradle/caches/9.3.1/transforms/6af0e5d2fbc094af82e622d9937b47df/transformed/jetified-core-0.5.5/AndroidManifest.xml:6:5-8:41
+MERGED from [com.mcxiaoke.koi:core:0.5.5] /home/cemserdar/.gradle/caches/9.3.1/transforms/6af0e5d2fbc094af82e622d9937b47df/transformed/jetified-core-0.5.5/AndroidManifest.xml:6:5-8:41
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/608ddaa838f07bf0d5f03d2bea13baa9/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/608ddaa838f07bf0d5f03d2bea13baa9/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.databinding:viewbinding:8.9.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/7bd311ad7742793ac933c63a5298d87f/transformed/jetified-viewbinding-8.9.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.databinding:viewbinding:8.9.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/7bd311ad7742793ac933c63a5298d87f/transformed/jetified-viewbinding-8.9.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c0d00ba1d88daa31aab9bb60a0c1d5b3/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c0d00ba1d88daa31aab9bb60a0c1d5b3/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/b6ecf2a2a3b36247da90307bbfd5f04a/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/b6ecf2a2a3b36247da90307bbfd5f04a/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.3.6] /home/cemserdar/.gradle/caches/9.3.1/transforms/65a2c64034e2d9f0bdfce648f7444fe3/transformed/exifinterface-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.6] /home/cemserdar/.gradle/caches/9.3.1/transforms/65a2c64034e2d9f0bdfce648f7444fe3/transformed/exifinterface-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/b8074a7a71e241a800ffdb49a96a8697/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/b8074a7a71e241a800ffdb49a96a8697/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.2.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/a0b42daa49f0a8c971a16f3c75fac78b/transformed/jetified-tracing-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing:1.2.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/a0b42daa49f0a8c971a16f3c75fac78b/transformed/jetified-tracing-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e83ed8e80719bc88cf66c588c7889e07/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e83ed8e80719bc88cf66c588c7889e07/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/76c1c6713a1fe0cd3a6ba6005f6c6538/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/76c1c6713a1fe0cd3a6ba6005f6c6538/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2dcfcf123d7e115023314ed114ee680a/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2dcfcf123d7e115023314ed114ee680a/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/0cff4dd21a34f7b5cacb7f1a5063a51e/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/0cff4dd21a34f7b5cacb7f1a5063a51e/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/2a66d0c1660a0113eb5d8fbe04bfe8c1/transformed/jetified-annotation-experimental-1.4.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/2a66d0c1660a0113eb5d8fbe04bfe8c1/transformed/jetified-annotation-experimental-1.4.1/AndroidManifest.xml:5:5-44
 	android:targetSdkVersion
 		INJECTED from /home/cemserdar/Project/CsReader/app/src/debug/AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from /home/cemserdar/Project/CsReader/app/src/debug/AndroidManifest.xml
 activity#androidx.compose.ui.tooling.PreviewActivity
-ADDED from [androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/983684116d5ef8e23206ec32a0b4def3/transformed/ui-tooling-release/AndroidManifest.xml:23:9-25:39
+ADDED from [androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/132bddb9b96a5b99a17241e259f8b7d7/transformed/jetified-ui-tooling-release/AndroidManifest.xml:23:9-25:39
 	android:exported
-		ADDED from [androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/983684116d5ef8e23206ec32a0b4def3/transformed/ui-tooling-release/AndroidManifest.xml:25:13-36
+		ADDED from [androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/132bddb9b96a5b99a17241e259f8b7d7/transformed/jetified-ui-tooling-release/AndroidManifest.xml:25:13-36
 	android:name
-		ADDED from [androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/983684116d5ef8e23206ec32a0b4def3/transformed/ui-tooling-release/AndroidManifest.xml:24:13-71
-activity#androidx.activity.ComponentActivity
-ADDED from [androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/52788e85d2c116f5d61b777a4d3e0f19/transformed/ui-test-manifest-1.6.1/AndroidManifest.xml:23:9-25:39
-	android:exported
-		ADDED from [androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/52788e85d2c116f5d61b777a4d3e0f19/transformed/ui-test-manifest-1.6.1/AndroidManifest.xml:25:13-36
-	android:name
-		ADDED from [androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/52788e85d2c116f5d61b777a4d3e0f19/transformed/ui-test-manifest-1.6.1/AndroidManifest.xml:24:13-63
+		ADDED from [androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/132bddb9b96a5b99a17241e259f8b7d7/transformed/jetified-ui-tooling-release/AndroidManifest.xml:24:13-71
 provider#androidx.startup.InitializationProvider
-ADDED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/42e4e748f52e4d58b38e1aa18715baa5/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/946d713648fb58482aa13ff2b5623a1e/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/946d713648fb58482aa13ff2b5623a1e/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.startup:startup-runtime:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/a7c9830ff10e4e30f1f3f4a5bf2d5d11/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
-MERGED from [androidx.startup:startup-runtime:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/a7c9830ff10e4e30f1f3f4a5bf2d5d11/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+ADDED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c87be6c1fe9e58e28d24a8e47ccfb11f/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/c8f68af5790135f2109e9df6c773966b/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/c8f68af5790135f2109e9df6c773966b/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/b8074a7a71e241a800ffdb49a96a8697/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/b8074a7a71e241a800ffdb49a96a8697/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
 	tools:node
-		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/42e4e748f52e4d58b38e1aa18715baa5/transformed/emoji2-1.3.0/AndroidManifest.xml:28:13-31
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c87be6c1fe9e58e28d24a8e47ccfb11f/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:28:13-31
 	android:authorities
-		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/42e4e748f52e4d58b38e1aa18715baa5/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c87be6c1fe9e58e28d24a8e47ccfb11f/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:26:13-68
 	android:exported
-		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/42e4e748f52e4d58b38e1aa18715baa5/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c87be6c1fe9e58e28d24a8e47ccfb11f/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:27:13-37
 	android:name
-		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/42e4e748f52e4d58b38e1aa18715baa5/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c87be6c1fe9e58e28d24a8e47ccfb11f/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:25:13-67
 meta-data#androidx.emoji2.text.EmojiCompatInitializer
-ADDED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/42e4e748f52e4d58b38e1aa18715baa5/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+ADDED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c87be6c1fe9e58e28d24a8e47ccfb11f/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
 	android:value
-		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/42e4e748f52e4d58b38e1aa18715baa5/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c87be6c1fe9e58e28d24a8e47ccfb11f/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:31:17-49
 	android:name
-		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/42e4e748f52e4d58b38e1aa18715baa5/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
-meta-data#androidx.lifecycle.ProcessLifecycleInitializer
-ADDED from [androidx.lifecycle:lifecycle-process:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/946d713648fb58482aa13ff2b5623a1e/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:29:13-31:52
-	android:value
-		ADDED from [androidx.lifecycle:lifecycle-process:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/946d713648fb58482aa13ff2b5623a1e/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:31:17-49
+		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c87be6c1fe9e58e28d24a8e47ccfb11f/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:30:17-75
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [androidx.media3:media3-exoplayer:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/ca3d68aa2680046b436e08a5fb0d413f/transformed/jetified-media3-exoplayer-1.6.0/AndroidManifest.xml:22:5-79
+MERGED from [androidx.media3:media3-common:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9131581940906a1cab3f6553d9d7dfde/transformed/jetified-media3-common-1.6.0/AndroidManifest.xml:22:5-79
+MERGED from [androidx.media3:media3-common:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9131581940906a1cab3f6553d9d7dfde/transformed/jetified-media3-common-1.6.0/AndroidManifest.xml:22:5-79
 	android:name
-		ADDED from [androidx.lifecycle:lifecycle-process:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/946d713648fb58482aa13ff2b5623a1e/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:30:17-78
+		ADDED from [androidx.media3:media3-exoplayer:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/ca3d68aa2680046b436e08a5fb0d413f/transformed/jetified-media3-exoplayer-1.6.0/AndroidManifest.xml:22:22-76
 permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+ADDED from [androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:22:5-24:47
 	android:protectionLevel
-		ADDED from [androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+		ADDED from [androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:24:9-44
 	android:name
-		ADDED from [androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+		ADDED from [androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:23:9-81
 permission#com.anonymous.csreader.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+ADDED from [androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:22:5-24:47
 	android:protectionLevel
-		ADDED from [androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+		ADDED from [androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:24:9-44
 	android:name
-		ADDED from [androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+		ADDED from [androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:23:9-81
 uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+ADDED from [androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:26:5-97
 	android:name
-		ADDED from [androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
+		ADDED from [androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:26:22-94
 uses-permission#com.anonymous.csreader.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+ADDED from [androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:26:5-97
 	android:name
-		ADDED from [androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
-service#androidx.room.MultiInstanceInvalidationService
-ADDED from [androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/28f816104d1921ccf0da8e59440ee5ce/transformed/room-runtime-2.6.1/AndroidManifest.xml:24:9-28:63
-	android:exported
-		ADDED from [androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/28f816104d1921ccf0da8e59440ee5ce/transformed/room-runtime-2.6.1/AndroidManifest.xml:27:13-37
-	tools:ignore
-		ADDED from [androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/28f816104d1921ccf0da8e59440ee5ce/transformed/room-runtime-2.6.1/AndroidManifest.xml:28:13-60
-	android:directBootAware
-		ADDED from [androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/28f816104d1921ccf0da8e59440ee5ce/transformed/room-runtime-2.6.1/AndroidManifest.xml:26:13-43
-	android:name
-		ADDED from [androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/28f816104d1921ccf0da8e59440ee5ce/transformed/room-runtime-2.6.1/AndroidManifest.xml:25:13-74
-meta-data#androidx.profileinstaller.ProfileInstallerInitializer
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+		ADDED from [androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:26:22-94
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/c8f68af5790135f2109e9df6c773966b/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:29:13-31:52
 	android:value
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+		ADDED from [androidx.lifecycle:lifecycle-process:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/c8f68af5790135f2109e9df6c773966b/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:31:17-49
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
-receiver#androidx.profileinstaller.ProfileInstallReceiver
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
-	android:enabled
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+		ADDED from [androidx.lifecycle:lifecycle-process:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/c8f68af5790135f2109e9df6c773966b/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:30:17-78
+activity#androidx.activity.ComponentActivity
+ADDED from [androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ce48a0abd408870877fd9d80f325ac88/transformed/jetified-ui-test-manifest-1.6.1/AndroidManifest.xml:23:9-25:39
 	android:exported
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
-	android:permission
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+		ADDED from [androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ce48a0abd408870877fd9d80f325ac88/transformed/jetified-ui-test-manifest-1.6.1/AndroidManifest.xml:25:13-36
+	android:name
+		ADDED from [androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ce48a0abd408870877fd9d80f325ac88/transformed/jetified-ui-test-manifest-1.6.1/AndroidManifest.xml:24:13-63
+service#androidx.room.MultiInstanceInvalidationService
+ADDED from [androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e39c9bb8805dce116f4ceab739a5d891/transformed/room-runtime-2.6.1/AndroidManifest.xml:24:9-28:63
+	android:exported
+		ADDED from [androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e39c9bb8805dce116f4ceab739a5d891/transformed/room-runtime-2.6.1/AndroidManifest.xml:27:13-37
+	tools:ignore
+		ADDED from [androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e39c9bb8805dce116f4ceab739a5d891/transformed/room-runtime-2.6.1/AndroidManifest.xml:28:13-60
 	android:directBootAware
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+		ADDED from [androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e39c9bb8805dce116f4ceab739a5d891/transformed/room-runtime-2.6.1/AndroidManifest.xml:26:13-43
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+		ADDED from [androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e39c9bb8805dce116f4ceab739a5d891/transformed/room-runtime-2.6.1/AndroidManifest.xml:25:13-74
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:35:13-76
 intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:40:13-42:29
 action#androidx.profileinstaller.action.INSTALL_PROFILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:41:17-91
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:41:25-88
 intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:43:13-45:29
 action#androidx.profileinstaller.action.SKIP_FILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:44:17-85
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:44:25-82
 intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:46:13-48:29
 action#androidx.profileinstaller.action.SAVE_PROFILE
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:47:17-88
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:47:25-85
 intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:49:13-51:29
 action#androidx.profileinstaller.action.BENCHMARK_OPERATION
-ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:50:17-95
 	android:name
-		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:50:25-92

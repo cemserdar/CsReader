@@ -36,9 +36,40 @@
     <string msgid="59049573811482460" name="call_notification_screening_text">"Filtrer un appel entrant"</string>
     <string msgid="406453423630273620" name="close_drawer">"Fermer le menu de navigation"</string>
     <string msgid="7573152094250666567" name="close_sheet">"Fermer la feuille"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"Lien copié dans le presse-papiers"</string>
     <string msgid="8038256446254964252" name="default_error_message">"Entrée incorrecte"</string>
+    <string name="default_notification_channel_name">En cours de lecture</string>
     <string msgid="6312721426453364202" name="default_popup_window_title">"Fenêtre contextuelle"</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"Menu déroulant"</string>
+    <string name="error_message_authentication_expired">Connectez-vous pour utiliser cette appli</string>
+    <string name="error_message_bad_value">Données d\'entrée incorrectes</string>
+    <string name="error_message_concurrent_stream_limit">Écoute en cours sur trop d\'appareils</string>
+    <string name="error_message_content_already_playing">Ce contenu est déjà en cours de lecture</string>
+    <string name="error_message_disconnected">Déconnecté de l\'appli multimédia</string>
+    <string name="error_message_end_of_playlist">Rien d\'autre n\'est dans la file d\'attente</string>
+    <string name="error_message_fallback">Une erreur s\'est produite. Réessayez plus tard.</string>
+    <string name="error_message_info_cancelled">Impossible de terminer l\'action. Réessayez.</string>
+    <string name="error_message_invalid_state">Impossible d\'effectuer cette action pour le moment</string>
+    <string name="error_message_io">Erreur d\'entrée/de sortie</string>
+    <string name="error_message_not_available_in_region">Impossible d\'obtenir ce contenu ici</string>
+    <string name="error_message_not_supported">Cette appli ne peut pas effectuer cette action</string>
+    <string name="error_message_parental_control_restricted">Ce contenu est bloqué</string>
+    <string name="error_message_permission_denied">Accès refusé</string>
+    <string name="error_message_premium_account_required">Accès Premium requis</string>
+    <string name="error_message_setup_required">Configuration requise</string>
+    <string name="error_message_skip_limit_reached">Impossible de passer à d\'autres chansons</string>
+    <string name="exo_download_completed">Téléchargement terminé</string>
+    <string name="exo_download_description">Télécharger</string>
+    <string name="exo_download_downloading">Téléchargement en cours…</string>
+    <string name="exo_download_failed">Échec du téléchargement</string>
+    <string name="exo_download_notification_channel_name">Téléchargements</string>
+    <string name="exo_download_paused">Téléchargements interrompus</string>
+    <string name="exo_download_paused_for_network">Téléchargements en attente du réseau</string>
+    <string name="exo_download_paused_for_wifi">Téléchargements en attente du Wi-Fi</string>
+    <string name="exo_download_removing">Suppression des téléchargements en cours…</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Copier le lien"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Ouvrir dans le navigateur"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Partager le lien"</string>
     <string msgid="6827826412747255547" name="in_progress">"En cours…"</string>
     <string msgid="7933458017204019916" name="indeterminate">"Partiellement vérifié"</string>
     <string msgid="2988463736136100848" name="m3c_bottom_sheet_collapse_description">"Réduire la zone de contenu dans le bas de l\'écran"</string>
@@ -97,6 +128,12 @@
     <string msgid="6616362054113087709" name="m3c_time_picker_pm">"PM"</string>
     <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"Afficher une infobulle"</string>
     <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"Infobulle"</string>
+    <string name="media3_controls_pause_description">Pause</string>
+    <string name="media3_controls_play_description">Lire</string>
+    <string name="media3_controls_seek_back_description">Rechercher vers l\'arrière</string>
+    <string name="media3_controls_seek_forward_description">Rechercher vers l\'avant</string>
+    <string name="media3_controls_seek_to_next_description">Rechercher vers l\'élément suivant</string>
+    <string name="media3_controls_seek_to_previous_description">Rechercher vers l\'élément précédent</string>
     <string msgid="542007171693138492" name="navigation_menu">"Menu de navigation"</string>
     <string msgid="6610465462668679431" name="not_selected">"Non sélectionné"</string>
     <string msgid="875452955155264703" name="off">"Désactivé"</string>

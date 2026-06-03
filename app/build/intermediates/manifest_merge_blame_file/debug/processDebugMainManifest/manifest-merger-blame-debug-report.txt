@@ -26,152 +26,156 @@
 17-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:6:22-78
 18        android:maxSdkVersion="32" />
 18-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:6:79-105
-19
-20    <permission
-20-->[androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
-21        android:name="com.anonymous.csreader.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-21-->[androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
-22        android:protectionLevel="signature" />
-22-->[androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
-23
-24    <uses-permission android:name="com.anonymous.csreader.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-24-->[androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
-24-->[androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
-25
-26    <application
-26-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:8:5-30:19
-27        android:allowBackup="true"
-27-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:12:9-35
-28        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-28-->[androidx.core:core:1.12.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/9c2e4c039da03c9755f8db5f7a7441f7/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
-29        android:debuggable="true"
-30        android:extractNativeLibs="false"
-31        android:icon="@mipmap/ic_launcher"
-31-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:10:9-43
-32        android:label="@string/app_name"
-32-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:9:9-41
-33        android:roundIcon="@mipmap/ic_launcher_round"
-33-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:11:9-54
-34        android:supportsRtl="true"
-34-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:14:9-35
-35        android:theme="@style/AppTheme"
-35-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:13:9-40
-36        android:usesCleartextTraffic="true" >
-36-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:15:9-44
-37        <activity
-37-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:17:9-29:20
-38            android:name="com.anonymous.csreader.MainActivity"
-38-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:18:13-41
-39            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode|smallestScreenSize"
-39-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:19:13-122
-40            android:exported="true"
-40-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:23:13-36
-41            android:launchMode="singleTask"
-41-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:20:13-44
-42            android:screenOrientation="portrait"
-42-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:24:13-49
-43            android:theme="@style/Theme.App.SplashScreen"
-43-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:22:13-58
-44            android:windowSoftInputMode="adjustResize" >
-44-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:21:13-55
-45            <intent-filter>
-45-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:25:13-28:29
-46                <action android:name="android.intent.action.MAIN" />
-46-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:26:17-68
-46-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:26:25-66
-47
-48                <category android:name="android.intent.category.LAUNCHER" />
-48-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:27:17-76
-48-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:27:27-74
-49            </intent-filter>
-50        </activity>
-51        <activity
-51-->[androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/983684116d5ef8e23206ec32a0b4def3/transformed/ui-tooling-release/AndroidManifest.xml:23:9-25:39
-52            android:name="androidx.compose.ui.tooling.PreviewActivity"
-52-->[androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/983684116d5ef8e23206ec32a0b4def3/transformed/ui-tooling-release/AndroidManifest.xml:24:13-71
-53            android:exported="true" />
-53-->[androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/983684116d5ef8e23206ec32a0b4def3/transformed/ui-tooling-release/AndroidManifest.xml:25:13-36
-54        <activity
-54-->[androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/52788e85d2c116f5d61b777a4d3e0f19/transformed/ui-test-manifest-1.6.1/AndroidManifest.xml:23:9-25:39
-55            android:name="androidx.activity.ComponentActivity"
-55-->[androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/52788e85d2c116f5d61b777a4d3e0f19/transformed/ui-test-manifest-1.6.1/AndroidManifest.xml:24:13-63
-56            android:exported="true" />
-56-->[androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/52788e85d2c116f5d61b777a4d3e0f19/transformed/ui-test-manifest-1.6.1/AndroidManifest.xml:25:13-36
-57
-58        <provider
-58-->[androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/42e4e748f52e4d58b38e1aa18715baa5/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
-59            android:name="androidx.startup.InitializationProvider"
-59-->[androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/42e4e748f52e4d58b38e1aa18715baa5/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
-60            android:authorities="com.anonymous.csreader.androidx-startup"
-60-->[androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/42e4e748f52e4d58b38e1aa18715baa5/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
-61            android:exported="false" >
-61-->[androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/42e4e748f52e4d58b38e1aa18715baa5/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
-62            <meta-data
-62-->[androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/42e4e748f52e4d58b38e1aa18715baa5/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
-63                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-63-->[androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/42e4e748f52e4d58b38e1aa18715baa5/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
-64                android:value="androidx.startup" />
-64-->[androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/42e4e748f52e4d58b38e1aa18715baa5/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
-65            <meta-data
-65-->[androidx.lifecycle:lifecycle-process:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/946d713648fb58482aa13ff2b5623a1e/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:29:13-31:52
-66                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-66-->[androidx.lifecycle:lifecycle-process:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/946d713648fb58482aa13ff2b5623a1e/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:30:17-78
-67                android:value="androidx.startup" />
-67-->[androidx.lifecycle:lifecycle-process:2.7.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/946d713648fb58482aa13ff2b5623a1e/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:31:17-49
-68            <meta-data
-68-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
-69                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-69-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
-70                android:value="androidx.startup" />
-70-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
-71        </provider>
-72
-73        <service
-73-->[androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/28f816104d1921ccf0da8e59440ee5ce/transformed/room-runtime-2.6.1/AndroidManifest.xml:24:9-28:63
-74            android:name="androidx.room.MultiInstanceInvalidationService"
-74-->[androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/28f816104d1921ccf0da8e59440ee5ce/transformed/room-runtime-2.6.1/AndroidManifest.xml:25:13-74
-75            android:directBootAware="true"
-75-->[androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/28f816104d1921ccf0da8e59440ee5ce/transformed/room-runtime-2.6.1/AndroidManifest.xml:26:13-43
-76            android:exported="false" />
-76-->[androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/28f816104d1921ccf0da8e59440ee5ce/transformed/room-runtime-2.6.1/AndroidManifest.xml:27:13-37
-77
-78        <receiver
-78-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
-79            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-79-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
-80            android:directBootAware="false"
-80-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
-81            android:enabled="true"
-81-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
-82            android:exported="true"
-82-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
-83            android:permission="android.permission.DUMP" >
-83-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
-84            <intent-filter>
-84-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
-85                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-85-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
-85-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
-86            </intent-filter>
-87            <intent-filter>
-87-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
-88                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-88-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
-88-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
-89            </intent-filter>
-90            <intent-filter>
-90-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
-91                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-91-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
-91-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
-92            </intent-filter>
-93            <intent-filter>
-93-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
-94                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-94-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
-94-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/4ca1c68877307fb0bf0f72bfbe7f0fe5/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
-95            </intent-filter>
-96        </receiver>
-97    </application>
-98
-99</manifest>
+19    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+19-->[androidx.media3:media3-exoplayer:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/ca3d68aa2680046b436e08a5fb0d413f/transformed/jetified-media3-exoplayer-1.6.0/AndroidManifest.xml:22:5-79
+19-->[androidx.media3:media3-exoplayer:1.6.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/ca3d68aa2680046b436e08a5fb0d413f/transformed/jetified-media3-exoplayer-1.6.0/AndroidManifest.xml:22:22-76
+20
+21    <permission
+21-->[androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:22:5-24:47
+22        android:name="com.anonymous.csreader.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+22-->[androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:23:9-81
+23        android:protectionLevel="signature" />
+23-->[androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:24:9-44
+24
+25    <uses-permission android:name="com.anonymous.csreader.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+25-->[androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:26:5-97
+25-->[androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:26:22-94
+26
+27    <application
+27-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:8:5-30:19
+28        android:allowBackup="true"
+28-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:12:9-35
+29        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+29-->[androidx.core:core:1.15.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/AndroidManifest.xml:28:18-86
+30        android:debuggable="true"
+31        android:extractNativeLibs="false"
+32        android:icon="@mipmap/ic_launcher"
+32-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:10:9-43
+33        android:label="@string/app_name"
+33-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:9:9-41
+34        android:roundIcon="@mipmap/ic_launcher_round"
+34-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:11:9-54
+35        android:supportsRtl="true"
+35-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:14:9-35
+36        android:theme="@style/AppTheme"
+36-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:13:9-40
+37        android:usesCleartextTraffic="true" >
+37-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:15:9-44
+38        <activity
+38-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:17:9-29:20
+39            android:name="com.anonymous.csreader.MainActivity"
+39-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:18:13-41
+40            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode|smallestScreenSize"
+40-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:19:13-122
+41            android:exported="true"
+41-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:23:13-36
+42            android:launchMode="singleTask"
+42-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:20:13-44
+43            android:screenOrientation="portrait"
+43-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:24:13-49
+44            android:theme="@style/Theme.App.SplashScreen"
+44-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:22:13-58
+45            android:windowSoftInputMode="adjustResize" >
+45-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:21:13-55
+46            <intent-filter>
+46-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:25:13-28:29
+47                <action android:name="android.intent.action.MAIN" />
+47-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:26:17-68
+47-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:26:25-66
+48
+49                <category android:name="android.intent.category.LAUNCHER" />
+49-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:27:17-76
+49-->/home/cemserdar/Project/CsReader/app/src/main/AndroidManifest.xml:27:27-74
+50            </intent-filter>
+51        </activity>
+52        <activity
+52-->[androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/132bddb9b96a5b99a17241e259f8b7d7/transformed/jetified-ui-tooling-release/AndroidManifest.xml:23:9-25:39
+53            android:name="androidx.compose.ui.tooling.PreviewActivity"
+53-->[androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/132bddb9b96a5b99a17241e259f8b7d7/transformed/jetified-ui-tooling-release/AndroidManifest.xml:24:13-71
+54            android:exported="true" />
+54-->[androidx.compose.ui:ui-tooling-android:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/132bddb9b96a5b99a17241e259f8b7d7/transformed/jetified-ui-tooling-release/AndroidManifest.xml:25:13-36
+55
+56        <provider
+56-->[androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c87be6c1fe9e58e28d24a8e47ccfb11f/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+57            android:name="androidx.startup.InitializationProvider"
+57-->[androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c87be6c1fe9e58e28d24a8e47ccfb11f/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:25:13-67
+58            android:authorities="com.anonymous.csreader.androidx-startup"
+58-->[androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c87be6c1fe9e58e28d24a8e47ccfb11f/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:26:13-68
+59            android:exported="false" >
+59-->[androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c87be6c1fe9e58e28d24a8e47ccfb11f/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:27:13-37
+60            <meta-data
+60-->[androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c87be6c1fe9e58e28d24a8e47ccfb11f/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+61                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+61-->[androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c87be6c1fe9e58e28d24a8e47ccfb11f/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:30:17-75
+62                android:value="androidx.startup" />
+62-->[androidx.emoji2:emoji2:1.3.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/c87be6c1fe9e58e28d24a8e47ccfb11f/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:31:17-49
+63            <meta-data
+63-->[androidx.lifecycle:lifecycle-process:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/c8f68af5790135f2109e9df6c773966b/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:29:13-31:52
+64                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+64-->[androidx.lifecycle:lifecycle-process:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/c8f68af5790135f2109e9df6c773966b/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:30:17-78
+65                android:value="androidx.startup" />
+65-->[androidx.lifecycle:lifecycle-process:2.8.7] /home/cemserdar/.gradle/caches/9.3.1/transforms/c8f68af5790135f2109e9df6c773966b/transformed/jetified-lifecycle-process-2.8.7/AndroidManifest.xml:31:17-49
+66            <meta-data
+66-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:29:13-31:52
+67                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+67-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:30:17-85
+68                android:value="androidx.startup" />
+68-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:31:17-49
+69        </provider>
+70
+71        <activity
+71-->[androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ce48a0abd408870877fd9d80f325ac88/transformed/jetified-ui-test-manifest-1.6.1/AndroidManifest.xml:23:9-25:39
+72            android:name="androidx.activity.ComponentActivity"
+72-->[androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ce48a0abd408870877fd9d80f325ac88/transformed/jetified-ui-test-manifest-1.6.1/AndroidManifest.xml:24:13-63
+73            android:exported="true" />
+73-->[androidx.compose.ui:ui-test-manifest:1.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/ce48a0abd408870877fd9d80f325ac88/transformed/jetified-ui-test-manifest-1.6.1/AndroidManifest.xml:25:13-36
+74
+75        <service
+75-->[androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e39c9bb8805dce116f4ceab739a5d891/transformed/room-runtime-2.6.1/AndroidManifest.xml:24:9-28:63
+76            android:name="androidx.room.MultiInstanceInvalidationService"
+76-->[androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e39c9bb8805dce116f4ceab739a5d891/transformed/room-runtime-2.6.1/AndroidManifest.xml:25:13-74
+77            android:directBootAware="true"
+77-->[androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e39c9bb8805dce116f4ceab739a5d891/transformed/room-runtime-2.6.1/AndroidManifest.xml:26:13-43
+78            android:exported="false" />
+78-->[androidx.room:room-runtime:2.6.1] /home/cemserdar/.gradle/caches/9.3.1/transforms/e39c9bb8805dce116f4ceab739a5d891/transformed/room-runtime-2.6.1/AndroidManifest.xml:27:13-37
+79
+80        <receiver
+80-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:34:9-52:20
+81            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+81-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:35:13-76
+82            android:directBootAware="false"
+82-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:36:13-44
+83            android:enabled="true"
+83-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:37:13-35
+84            android:exported="true"
+84-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:38:13-36
+85            android:permission="android.permission.DUMP" >
+85-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:39:13-57
+86            <intent-filter>
+86-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:40:13-42:29
+87                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+87-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:41:17-91
+87-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:41:25-88
+88            </intent-filter>
+89            <intent-filter>
+89-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:43:13-45:29
+90                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+90-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:44:17-85
+90-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:44:25-82
+91            </intent-filter>
+92            <intent-filter>
+92-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:46:13-48:29
+93                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+93-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:47:17-88
+93-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:47:25-85
+94            </intent-filter>
+95            <intent-filter>
+95-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:49:13-51:29
+96                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+96-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:50:17-95
+96-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/AndroidManifest.xml:50:25-92
+97            </intent-filter>
+98        </receiver>
+99    </application>
+100
+101</manifest>

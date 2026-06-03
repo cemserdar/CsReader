@@ -2,7 +2,7 @@
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
     <string msgid="5976598919945601918" name="abc_action_bar_home_description">"Tunjukkan jalan ke rumah"</string>
     <string msgid="8388173803310557296" name="abc_action_bar_up_description">"Kembali ke atas"</string>
-    <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"Opsi lain"</string>
+    <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"Opsi lainnya"</string>
     <string msgid="4692188335987374352" name="abc_action_mode_done">"Selesai"</string>
     <string msgid="1189761859438369441" name="abc_activity_chooser_view_see_all">"Lihat semua"</string>
     <string msgid="2165779757652331008" name="abc_activitychooserview_choose_application">"Pilih aplikasi"</string>
@@ -36,9 +36,40 @@
     <string msgid="59049573811482460" name="call_notification_screening_text">"Menyaring panggilan masuk"</string>
     <string msgid="406453423630273620" name="close_drawer">"Tutup menu navigasi"</string>
     <string msgid="7573152094250666567" name="close_sheet">"Tutup sheet"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"Link disalin ke papan klip"</string>
     <string msgid="8038256446254964252" name="default_error_message">"Input tidak valid"</string>
+    <string name="default_notification_channel_name">Sedang diputar</string>
     <string msgid="6312721426453364202" name="default_popup_window_title">"Jendela Pop-Up"</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"Menu dropdown"</string>
+    <string name="error_message_authentication_expired">Login untuk menggunakan aplikasi ini</string>
+    <string name="error_message_bad_value">Data input salah</string>
+    <string name="error_message_concurrent_stream_limit">Terlalu banyak perangkat digunakan untuk mendengarkan</string>
+    <string name="error_message_content_already_playing">Sedang memutar konten tersebut</string>
+    <string name="error_message_disconnected">Terputus dari aplikasi media</string>
+    <string name="error_message_end_of_playlist">Tidak ada antrean lagi</string>
+    <string name="error_message_fallback">Terjadi error. Coba nanti.</string>
+    <string name="error_message_info_cancelled">Tidak dapat diselesaikan. Coba lagi.</string>
+    <string name="error_message_invalid_state">Tidak dapat melakukannya saat ini</string>
+    <string name="error_message_io">Input/output error</string>
+    <string name="error_message_not_available_in_region">Tidak dapat memuat konten tersebut di sini</string>
+    <string name="error_message_not_supported">Aplikasi ini tidak dapat melakukannya</string>
+    <string name="error_message_parental_control_restricted">Konten tersebut diblokir</string>
+    <string name="error_message_permission_denied">Akses ditolak</string>
+    <string name="error_message_premium_account_required">Memerlukan akses premium</string>
+    <string name="error_message_setup_required">Memerlukan penyiapan</string>
+    <string name="error_message_skip_limit_reached">Tidak dapat melewati lagu lagi</string>
+    <string name="exo_download_completed">Download selesai</string>
+    <string name="exo_download_description">Download</string>
+    <string name="exo_download_downloading">Mendownload</string>
+    <string name="exo_download_failed">Download gagal</string>
+    <string name="exo_download_notification_channel_name">Download</string>
+    <string name="exo_download_paused">Download dijeda</string>
+    <string name="exo_download_paused_for_network">Download menunggu konektivitas jaringan</string>
+    <string name="exo_download_paused_for_wifi">Download menunggu konektivitas Wi-Fi</string>
+    <string name="exo_download_removing">Menghapus download</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Salin link"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Buka di browser"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Bagikan link"</string>
     <string msgid="6827826412747255547" name="in_progress">"Dalam proses"</string>
     <string msgid="7933458017204019916" name="indeterminate">"Diperiksa sebagian"</string>
     <string msgid="2988463736136100848" name="m3c_bottom_sheet_collapse_description">"Menciutkan sheet bawah"</string>
@@ -97,6 +128,12 @@
     <string msgid="6616362054113087709" name="m3c_time_picker_pm">"PM"</string>
     <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"Tampilkan tooltip"</string>
     <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"Tooltip"</string>
+    <string name="media3_controls_pause_description">Jeda</string>
+    <string name="media3_controls_play_description">Putar</string>
+    <string name="media3_controls_seek_back_description">Mundur</string>
+    <string name="media3_controls_seek_forward_description">Maju</string>
+    <string name="media3_controls_seek_to_next_description">Cari item berikutnya</string>
+    <string name="media3_controls_seek_to_previous_description">Cari item sebelumnya</string>
     <string msgid="542007171693138492" name="navigation_menu">"Menu navigasi"</string>
     <string msgid="6610465462668679431" name="not_selected">"Tidak dipilih"</string>
     <string msgid="875452955155264703" name="off">"Nonaktif"</string>

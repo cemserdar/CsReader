@@ -36,9 +36,40 @@
     <string msgid="59049573811482460" name="call_notification_screening_text">"Մուտքային զանգի զտում"</string>
     <string msgid="406453423630273620" name="close_drawer">"Փակել նավիգացիայի ընտրացանկը"</string>
     <string msgid="7573152094250666567" name="close_sheet">"Փակել թերթը"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"Հղումը պատճենվեց սեղմատախտակին"</string>
     <string msgid="8038256446254964252" name="default_error_message">"Սխալ ներածում"</string>
+    <string name="default_notification_channel_name">Այժմ նվագարկվում է</string>
     <string msgid="6312721426453364202" name="default_popup_window_title">"Ելնող պատուհան"</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"Իջնող ցանկ"</string>
+    <string name="error_message_authentication_expired">Մուտք գործեք՝ հավելվածն օգտագործելու համար</string>
+    <string name="error_message_bad_value">Սխալ մուտքային տվյալներ</string>
+    <string name="error_message_concurrent_stream_limit">Չափից շատ սարքերում է բովանդակություն նվագարկվում</string>
+    <string name="error_message_content_already_playing">Բովանդակությունն արդեն նվագարկվում է</string>
+    <string name="error_message_disconnected">Անջատված է մուլտիմեդիա հավելվածից</string>
+    <string name="error_message_end_of_playlist">Հերթացանկը դատարկ է</string>
+    <string name="error_message_fallback">Սխալ առաջացավ։ Փորձեք ավելի ուշ։</string>
+    <string name="error_message_info_cancelled">Չհաջողվեց ավարտել։ Նորից փորձեք։</string>
+    <string name="error_message_invalid_state">Այս գործողությունը ներկայումս հասանելի չէ</string>
+    <string name="error_message_io">Ներածման/արտածման սխալ</string>
+    <string name="error_message_not_available_in_region">Բովանդակությունն անհասանելի է այս տարածաշրջանում</string>
+    <string name="error_message_not_supported">Գործողությունը հասանելի չէ այս հավելվածում</string>
+    <string name="error_message_parental_control_restricted">Բովանդակությունն արգելափակված է</string>
+    <string name="error_message_permission_denied">Մուտքը մերժված է</string>
+    <string name="error_message_premium_account_required">Անհրաժեշտ է պրեմիում հաշիվ</string>
+    <string name="error_message_setup_required">Պահանջվում է կարգավորում</string>
+    <string name="error_message_skip_limit_reached">Այլևս հնարավոր չէ կատարումներ բաց թողնել</string>
+    <string name="exo_download_completed">Ներբեռնումն ավարտվեց</string>
+    <string name="exo_download_description">Ներբեռնել</string>
+    <string name="exo_download_downloading">Ներբեռնում</string>
+    <string name="exo_download_failed">Չհաջողվեց ներբեռնել</string>
+    <string name="exo_download_notification_channel_name">Ներբեռնումներ</string>
+    <string name="exo_download_paused">Ներբեռնումները դադարեցված են</string>
+    <string name="exo_download_paused_for_network">Ցանցի որոնում</string>
+    <string name="exo_download_paused_for_wifi">Wi-Fi ցանցի որոնում</string>
+    <string name="exo_download_removing">Ներբեռնումները հեռացվում են</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Պատճենել հղումը"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Բացել դիտարկիչում"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Կիսվել հղումով"</string>
     <string msgid="6827826412747255547" name="in_progress">"Ընթացքում է"</string>
     <string msgid="7933458017204019916" name="indeterminate">"Մասնակի նշված"</string>
     <string msgid="2988463736136100848" name="m3c_bottom_sheet_collapse_description">"Ծալել ներքևի էկրանը"</string>
@@ -97,6 +128,12 @@
     <string msgid="6616362054113087709" name="m3c_time_picker_pm">"PM"</string>
     <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"Ցուցադրել հուշում"</string>
     <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"Հուշակ"</string>
+    <string name="media3_controls_pause_description">Դադարեցնել</string>
+    <string name="media3_controls_play_description">Նվագարկել</string>
+    <string name="media3_controls_seek_back_description">Հետ գնալ</string>
+    <string name="media3_controls_seek_forward_description">Առաջ գնալ</string>
+    <string name="media3_controls_seek_to_next_description">Անցնել հաջորդ տարրին</string>
+    <string name="media3_controls_seek_to_previous_description">Անցնել նախորդ տարրին</string>
     <string msgid="542007171693138492" name="navigation_menu">"Նավիգացիայի ընտրացանկ"</string>
     <string msgid="6610465462668679431" name="not_selected">"Ընտրված չէ"</string>
     <string msgid="875452955155264703" name="off">"Անջատված է"</string>

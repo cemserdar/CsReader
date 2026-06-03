@@ -31,14 +31,18 @@
     <string msgid="8793775615905189152" name="call_notification_answer_video_action">"Vídeo"</string>
     <string msgid="3229508546291798546" name="call_notification_decline_action">"Recusar"</string>
     <string msgid="2659457946726154263" name="call_notification_hang_up_action">"Desligar"</string>
-    <string msgid="6107532579223922871" name="call_notification_incoming_text">"Chamada recebida"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"Alguém está ligando"</string>
     <string msgid="8623827134497363134" name="call_notification_ongoing_text">"Chamada em andamento"</string>
     <string msgid="59049573811482460" name="call_notification_screening_text">"Filtrando uma ligação recebida"</string>
     <string msgid="406453423630273620" name="close_drawer">"Fechar menu de navegação"</string>
     <string msgid="7573152094250666567" name="close_sheet">"Fechar planilha"</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"Link copiado para a área de transferência"</string>
     <string msgid="8038256446254964252" name="default_error_message">"Entrada inválida"</string>
     <string msgid="6312721426453364202" name="default_popup_window_title">"Janela pop-up"</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"Menu suspenso"</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Copiar link"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Abrir no navegador"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Compartilhar link"</string>
     <string msgid="6827826412747255547" name="in_progress">"Em andamento"</string>
     <string msgid="7933458017204019916" name="indeterminate">"Parcialmente selecionada"</string>
     <string msgid="2988463736136100848" name="m3c_bottom_sheet_collapse_description">"Fechar página inferior"</string>
