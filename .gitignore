@@ -7,8 +7,11 @@
 # Files for the ART/Dalvik VM
 *.dex
 
-# Java class files
+# Java class & archive files
 *.class
+*.jar
+/res/
+/assets/
 
 # Generated files
 bin/
