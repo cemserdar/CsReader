@@ -409,18 +409,28 @@ fun LibraryScreen(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Column {
-                    Text(
-                        text = "CsReader",
-                        fontSize = 28.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = CsReaderTheme.colors.text
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    androidx.compose.foundation.Image(
+                        painter = androidx.compose.ui.res.painterResource(id = com.anonymous.csreader.R.drawable.splashscreen_logo),
+                        contentDescription = "CsReader Logo",
+                        modifier = Modifier
+                            .size(42.dp)
+                            .clip(RoundedCornerShape(12.dp))
                     )
-                    Text(
-                        text = "E-Kitap ve PDF Kütüphanesi",
-                        fontSize = 12.sp,
-                        color = CsReaderTheme.colors.textMuted
-                    )
+                    Spacer(modifier = Modifier.width(12.dp))
+                    Column {
+                        Text(
+                            text = "CsReader",
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = CsReaderTheme.colors.text
+                        )
+                        Text(
+                            text = "E-Kitap ve PDF Kütüphanesi",
+                            fontSize = 12.sp,
+                            color = CsReaderTheme.colors.textMuted
+                        )
+                    }
                 }
 
                 Row {

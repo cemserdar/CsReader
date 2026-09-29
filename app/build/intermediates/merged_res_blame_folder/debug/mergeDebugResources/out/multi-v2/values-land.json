@@ -4,7 +4,17 @@
             "outputFile": "com.anonymous.csreader.app-mergeDebugResources-73:/values-land/values-land.xml",
             "map": [
                 {
-                    "source": "/home/cemserdar/.gradle/caches/9.3.1/transforms/0d916ed5c98feb33ae6d2a8e5e70fb31/transformed/jetified-readium-navigator-3.1.1/res/values-land/values-land.xml",
+                    "source": "C:\\Users\\Cem Serdar\\.gradle\\caches\\9.3.1\\transforms\\a1c7f4a9e0bbf19a7b28ebb7fd5d106d\\workspace\\transformed\\appcompat-1.7.0\\res\\values-land\\values-land.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,125,196",
+                        "endColumns": "69,70,67",
+                        "endOffsets": "120,191,259"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Cem Serdar\\.gradle\\caches\\9.3.1\\transforms\\0b7c2a5d487112b0a814b6b6d56f7a8a\\workspace\\transformed\\readium-navigator-3.1.1\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -18,16 +28,6 @@
                         "startOffsets": "264",
                         "endColumns": "70",
                         "endOffsets": "330"
-                    }
-                },
-                {
-                    "source": "/home/cemserdar/.gradle/caches/9.3.1/transforms/a1c7f4a9e0bbf19a7b28ebb7fd5d106d/transformed/appcompat-1.7.0/res/values-land/values-land.xml",
-                    "from": {
-                        "startLines": "2,3,4",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,125,196",
-                        "endColumns": "69,70,67",
-                        "endOffsets": "120,191,259"
                     }
                 }
             ]

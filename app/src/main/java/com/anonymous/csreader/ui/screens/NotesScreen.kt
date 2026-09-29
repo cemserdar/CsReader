@@ -69,7 +69,16 @@ class NotesViewModel(
                     bookTitle.contains(query, ignoreCase = true) ||
                     bookAuthor.contains(query, ignoreCase = true)
 
-            val matchesColor = filter == "all" || hl.color == filter
+            val matchesColor = when (filter) {
+                "all" -> true
+                "yellow" -> hl.color.equals("yellow", true) || hl.color.contains("E082", true) || hl.color.contains("FF00", true) || hl.color.contains("D54F", true) || hl.color.contains("FEF08A", true)
+                "green" -> hl.color.equals("green", true) || hl.color.contains("D6A7", true) || hl.color.contains("BBF7D0", true)
+                "pink" -> hl.color.equals("pink", true) || hl.color.contains("8FB1", true) || hl.color.contains("FBCFE8", true)
+                "blue" -> hl.color.equals("blue", true) || hl.color.contains("CAF9", true) || hl.color.contains("BFDBFE", true)
+                "purple" -> hl.color.equals("purple", true) || hl.color.contains("93D8", true) || hl.color.contains("E9D5FF", true)
+                "underline" -> hl.color.equals("underline", true)
+                else -> hl.color.equals(filter, true)
+            }
 
             matchesSearch && matchesColor
         }
@@ -145,7 +154,45 @@ fun NotesScreen(
                     color = CsReaderTheme.colors.text
                 )
 
-                Spacer(modifier = Modifier.width(48.dp)) // Equalizer spacer
+                IconButton(
+                    onClick = {
+                        if (filteredNotes.isNotEmpty()) {
+                            val sb = StringBuilder()
+                            sb.append("# CsReader - Notlarım ve Alıntılarım\n\n")
+                            val grouped = filteredNotes.groupBy { it.bookId }
+                            grouped.forEach { (bId, hls) ->
+                                val b = books.find { it.id == bId }
+                                val title = b?.title ?: "Bilinmeyen Kitap"
+                                val author = b?.author ?: "Bilinmeyen Yazar"
+                                sb.append("## $title ($author)\n\n")
+                                hls.forEach { hl ->
+                                    val pageStr = if (hl.page != null) " (Sayfa ${hl.page + 1})" else ""
+                                    sb.append("> ${hl.text}$pageStr\n\n")
+                                    if (!hl.note.isNullOrBlank()) {
+                                        sb.append("**Not:** ${hl.note}\n\n")
+                                    }
+                                    sb.append("---\n\n")
+                                }
+                            }
+                            val intent = Intent().apply {
+                                action = Intent.ACTION_SEND
+                                type = "text/plain"
+                                putExtra(Intent.EXTRA_SUBJECT, "CsReader Notlarım")
+                                putExtra(Intent.EXTRA_TEXT, sb.toString())
+                            }
+                            context.startActivity(Intent.createChooser(intent, "Notları Markdown Olarak Dışa Aktar"))
+                        } else {
+                            Toast.makeText(context, "Dışa aktarılacak not bulunamadı.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Share,
+                        contentDescription = "Dışa Aktar",
+                        tint = CsReaderTheme.colors.primary,
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
             }
 
             // Search input
@@ -199,13 +246,14 @@ fun NotesScreen(
                     }
                 }
 
-                items(listOf("yellow", "green", "pink", "blue", "underline")) { colorName ->
+                items(listOf("yellow", "green", "pink", "blue", "purple", "underline")) { colorName ->
                     val active = activeColorFilter == colorName
                     val bgVal = when (colorName) {
                         "yellow" -> Color(0xFFFEF08A)
                         "green" -> Color(0xFFBBF7D0)
                         "pink" -> Color(0xFFFBCFE8)
                         "blue" -> Color(0xFFBFDBFE)
+                        "purple" -> Color(0xFFE9D5FF)
                         else -> Color.Transparent
                     }
                     val label = when (colorName) {
@@ -213,6 +261,7 @@ fun NotesScreen(
                         "green" -> "Yeşil"
                         "pink" -> "Pembe"
                         "blue" -> "Mavi"
+                        "purple" -> "Mor"
                         else -> "Altı Çizili"
                     }
 
@@ -373,12 +422,17 @@ fun NoteCard(
 ) {
     val bookTitle = book?.title ?: "Bilinmeyen Kitap"
     val bookAuthor = book?.author ?: ""
-    val hlColor = when (highlight.color) {
-        "yellow" -> Color(0xFFFEF08A)
-        "green" -> Color(0xFFBBF7D0)
-        "pink" -> Color(0xFFFBCFE8)
-        "blue" -> Color(0xFFBFDBFE)
-        else -> Color.Transparent
+    val hlColor = try {
+        Color(android.graphics.Color.parseColor(highlight.color))
+    } catch (e: Exception) {
+        when (highlight.color) {
+            "yellow" -> Color(0xFFFEF08A)
+            "green" -> Color(0xFFBBF7D0)
+            "pink" -> Color(0xFFFBCFE8)
+            "blue" -> Color(0xFFBFDBFE)
+            "purple" -> Color(0xFFE9D5FF)
+            else -> Color(0xFFFFD54F)
+        }
     }
     val dateStr = java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT).format(java.util.Date(highlight.date))
 
@@ -437,7 +491,7 @@ fun NoteCard(
                 Spacer(modifier = Modifier.width(8.dp))
 
                 Text(
-                    text = "$dateStr ${if (highlight.page != null) "(Sayfa ${highlight.page})" else ""}",
+                    text = "$dateStr ${if (highlight.page != null) "(Sayfa ${highlight.page + 1})" else ""}",
                     fontSize = 11.sp,
                     color = CsReaderTheme.colors.textMuted
                 )

@@ -48,7 +48,7 @@ class MainActivity : FragmentActivity() {
                     val activityWindow = (context as? Activity)?.window
                     if (activityWindow != null) {
                         val controller = WindowCompat.getInsetsController(activityWindow, view)
-                        controller.isAppearanceLightStatusBars = themeName != "dark"
+                        controller.isAppearanceLightStatusBars = themeName != "dark" && themeName != "amoled"
                     }
                 }
 

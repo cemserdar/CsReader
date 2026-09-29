@@ -16,44 +16,59 @@ data class CsReaderColors(
     val accent: Color
 )
 
+// 1. Minimalist Aydınlık (Nordic Paper / Minimalist Studio)
 val LightColors = CsReaderColors(
-    bg = Color(0xFFF3F4F6),
+    bg = Color(0xFFF8F9FA),
     cardBg = Color(0xFFFFFFFF),
-    text = Color(0xFF1F2937),
+    text = Color(0xFF111827),
     textMuted = Color(0xFF6B7280),
     border = Color(0xFFE5E7EB),
-    primary = Color(0xFF3B82F6),
-    accent = Color(0xFFEFF6FF)
+    primary = Color(0xFF4F46E5), // Modern Electric Indigo
+    accent = Color(0xFFEEF2FF)
 )
 
+// 2. Modern Karanlık (Obsidian Midnight / Linear Dark)
 val DarkColors = CsReaderColors(
-    bg = Color(0xFF0F172A),
-    cardBg = Color(0xFF1E293B),
-    text = Color(0xFFF8FAFC),
+    bg = Color(0xFF0B0F17),
+    cardBg = Color(0xFF131B2B),
+    text = Color(0xFFF1F5F9),
     textMuted = Color(0xFF94A3B8),
-    border = Color(0xFF334155),
-    primary = Color(0xFF60A5FA),
+    border = Color(0xFF1E293B),
+    primary = Color(0xFF818CF8),
     accent = Color(0xFF1E293B)
 )
 
-val SepiaColors = CsReaderColors(
-    bg = Color(0xFFF4ECD8),
-    cardBg = Color(0xFFFAF6EB),
-    text = Color(0xFF5C4033),
-    textMuted = Color(0xFF8C7768),
-    border = Color(0xFFE3D7C1),
-    primary = Color(0xFFB45309),
-    accent = Color(0xFFFAF4E3)
+// 3. Saf AMOLED (OLED Pure Black - Sıfır Işık & Pil Tasarrufu)
+val AmoledColors = CsReaderColors(
+    bg = Color(0xFF000000),
+    cardBg = Color(0xFF0E0E10),
+    text = Color(0xFFFFFFFF),
+    textMuted = Color(0xFFA1A1AA),
+    border = Color(0xFF222226),
+    primary = Color(0xFF818CF8),
+    accent = Color(0xFF18181B)
 )
 
+// 4. Sıcak Sepya (Warm Bookshelf / Italian Cream)
+val SepiaColors = CsReaderColors(
+    bg = Color(0xFFF7F2E7),
+    cardBg = Color(0xFFFCF9F2),
+    text = Color(0xFF3F2E1E),
+    textMuted = Color(0xFF82705E),
+    border = Color(0xFFEADBCE),
+    primary = Color(0xFFC2410C),
+    accent = Color(0xFFFBF4E8)
+)
+
+// 5. Doğa Yeşili (Nordic Sage / Zen Forest)
 val ForestColors = CsReaderColors(
-    bg = Color(0xFFE8EFE9),
-    cardBg = Color(0xFFF3F7F2),
-    text = Color(0xFF223821),
-    textMuted = Color(0xFF5D735C),
-    border = Color(0xFFD2DEC5),
-    primary = Color(0xFF15803D),
-    accent = Color(0xFFEEF4EC)
+    bg = Color(0xFFEFF4F0),
+    cardBg = Color(0xFFF8FAF8),
+    text = Color(0xFF172D1E),
+    textMuted = Color(0xFF566E5C),
+    border = Color(0xFFD6E3D8),
+    primary = Color(0xFF059669),
+    accent = Color(0xFFE8F3EB)
 )
 
 val LocalCsReaderColors = staticCompositionLocalOf { LightColors }
@@ -70,7 +85,8 @@ fun CsReaderTheme(
     themeName: String,
     content: @Composable () -> Unit
 ) {
-    val colors = when (themeName) {
+    val colors = when (themeName.lowercase()) {
+        "amoled" -> AmoledColors
         "dark" -> DarkColors
         "sepia" -> SepiaColors
         "forest" -> ForestColors

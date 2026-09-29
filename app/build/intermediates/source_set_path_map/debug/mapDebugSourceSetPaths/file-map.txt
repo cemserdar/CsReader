@@ -1,78 +1,78 @@
-com.anonymous.csreader.app-jetified-savedstate-1.2.1-0 /home/cemserdar/.gradle/caches/9.3.1/transforms/074d5b6924798d9ad4b21c559f7f3e5f/transformed/jetified-savedstate-1.2.1/res
-com.anonymous.csreader.app-jetified-readium-navigator-3.1.1-1 /home/cemserdar/.gradle/caches/9.3.1/transforms/0d916ed5c98feb33ae6d2a8e5e70fb31/transformed/jetified-readium-navigator-3.1.1/res
-com.anonymous.csreader.app-jetified-ui-tooling-release-2 /home/cemserdar/.gradle/caches/9.3.1/transforms/132bddb9b96a5b99a17241e259f8b7d7/transformed/jetified-ui-tooling-release/res
-com.anonymous.csreader.app-fragment-1.8.6-3 /home/cemserdar/.gradle/caches/9.3.1/transforms/138bb67665f2addb5f06a5f0c89f5c01/transformed/fragment-1.8.6/res
-com.anonymous.csreader.app-lifecycle-livedata-2.8.7-4 /home/cemserdar/.gradle/caches/9.3.1/transforms/1d8c362e72ceb8ad8a5c482555729552/transformed/lifecycle-livedata-2.8.7/res
-com.anonymous.csreader.app-sqlite-2.4.0-5 /home/cemserdar/.gradle/caches/9.3.1/transforms/20c1022f4e40df88f8c13ba8563846a6/transformed/sqlite-2.4.0/res
-com.anonymous.csreader.app-jetified-animation-release-6 /home/cemserdar/.gradle/caches/9.3.1/transforms/2943c238f41283a430598361cb1153ff/transformed/jetified-animation-release/res
-com.anonymous.csreader.app-jetified-annotation-experimental-1.4.1-7 /home/cemserdar/.gradle/caches/9.3.1/transforms/2a66d0c1660a0113eb5d8fbe04bfe8c1/transformed/jetified-annotation-experimental-1.4.1/res
-com.anonymous.csreader.app-jetified-activity-1.8.2-8 /home/cemserdar/.gradle/caches/9.3.1/transforms/2e60597caf47057097db3ba68ac741d5/transformed/jetified-activity-1.8.2/res
-com.anonymous.csreader.app-jetified-activity-ktx-1.8.2-9 /home/cemserdar/.gradle/caches/9.3.1/transforms/2f867ceda5e801921a13a4fde833a95e/transformed/jetified-activity-ktx-1.8.2/res
-com.anonymous.csreader.app-jetified-profileinstaller-1.4.0-10 /home/cemserdar/.gradle/caches/9.3.1/transforms/2fcd390caad134c43f0115820082d104/transformed/jetified-profileinstaller-1.4.0/res
-com.anonymous.csreader.app-jetified-customview-poolingcontainer-1.0.0-11 /home/cemserdar/.gradle/caches/9.3.1/transforms/39239fe709309505984d6f00bea18267/transformed/jetified-customview-poolingcontainer-1.0.0/res
-com.anonymous.csreader.app-jetified-savedstate-ktx-1.2.1-12 /home/cemserdar/.gradle/caches/9.3.1/transforms/571b971db4f461281a47c42be1ea521a/transformed/jetified-savedstate-ktx-1.2.1/res
-com.anonymous.csreader.app-navigation-common-2.7.7-13 /home/cemserdar/.gradle/caches/9.3.1/transforms/5ce911e791855b982d45e1f7d3bf043d/transformed/navigation-common-2.7.7/res
-com.anonymous.csreader.app-core-runtime-2.2.0-14 /home/cemserdar/.gradle/caches/9.3.1/transforms/608ddaa838f07bf0d5f03d2bea13baa9/transformed/core-runtime-2.2.0/res
-com.anonymous.csreader.app-jetified-ui-viewbinding-1.6.1-15 /home/cemserdar/.gradle/caches/9.3.1/transforms/60e35d640d9ac046ea08ccc1a1e52dd5/transformed/jetified-ui-viewbinding-1.6.1/res
-com.anonymous.csreader.app-jetified-runtime-release-16 /home/cemserdar/.gradle/caches/9.3.1/transforms/6106908be880c16754aca90cc71260ae/transformed/jetified-runtime-release/res
-com.anonymous.csreader.app-jetified-activity-compose-1.8.2-17 /home/cemserdar/.gradle/caches/9.3.1/transforms/674692c931559f62a5be8073d2b4f4ba/transformed/jetified-activity-compose-1.8.2/res
-com.anonymous.csreader.app-jetified-lifecycle-runtime-ktx-release-18 /home/cemserdar/.gradle/caches/9.3.1/transforms/6d61ef9efd0d6ed61d72513265dedfb5/transformed/jetified-lifecycle-runtime-ktx-release/res
-com.anonymous.csreader.app-jetified-appcompat-resources-1.7.0-19 /home/cemserdar/.gradle/caches/9.3.1/transforms/73e8e7864b4d89ffa1aa6c2a7175607b/transformed/jetified-appcompat-resources-1.7.0/res
-com.anonymous.csreader.app-navigation-runtime-2.7.7-20 /home/cemserdar/.gradle/caches/9.3.1/transforms/73ee28a1e16340c35eb896b846cf7e9d/transformed/navigation-runtime-2.7.7/res
-com.anonymous.csreader.app-coordinatorlayout-1.0.0-21 /home/cemserdar/.gradle/caches/9.3.1/transforms/7409fbd3bc319389a96165bba4dc1e2d/transformed/coordinatorlayout-1.0.0/res
-com.anonymous.csreader.app-jetified-material-icons-extended-release-22 /home/cemserdar/.gradle/caches/9.3.1/transforms/80a6d25d8cd769f2306aa014acbec03f/transformed/jetified-material-icons-extended-release/res
-com.anonymous.csreader.app-jetified-material-ripple-release-23 /home/cemserdar/.gradle/caches/9.3.1/transforms/80fa1b88656a9e4f2dfa66f609ca5be8/transformed/jetified-material-ripple-release/res
-com.anonymous.csreader.app-jetified-lifecycle-viewmodel-release-24 /home/cemserdar/.gradle/caches/9.3.1/transforms/88cbcffa2bb6ca793997a4699d573e24/transformed/jetified-lifecycle-viewmodel-release/res
-com.anonymous.csreader.app-browser-1.8.0-25 /home/cemserdar/.gradle/caches/9.3.1/transforms/8b578f12f26f177cb68170d574600d51/transformed/browser-1.8.0/res
-com.anonymous.csreader.app-webkit-1.13.0-26 /home/cemserdar/.gradle/caches/9.3.1/transforms/8b81db85fd30028e3ad2f141223bcb9f/transformed/webkit-1.13.0/res
-com.anonymous.csreader.app-jetified-ui-release-27 /home/cemserdar/.gradle/caches/9.3.1/transforms/96c39f92970dea7708d8447d1b10e42e/transformed/jetified-ui-release/res
-com.anonymous.csreader.app-jetified-ui-unit-release-28 /home/cemserdar/.gradle/caches/9.3.1/transforms/9823ede5b1fd05499f4bec132e7151aa/transformed/jetified-ui-unit-release/res
-com.anonymous.csreader.app-jetified-lifecycle-viewmodel-ktx-2.8.7-29 /home/cemserdar/.gradle/caches/9.3.1/transforms/9d08f2fd83718bdaccd7fb5d7c4c1d93/transformed/jetified-lifecycle-viewmodel-ktx-2.8.7/res
-com.anonymous.csreader.app-jetified-tracing-1.2.0-30 /home/cemserdar/.gradle/caches/9.3.1/transforms/a0b42daa49f0a8c971a16f3c75fac78b/transformed/jetified-tracing-1.2.0/res
-com.anonymous.csreader.app-appcompat-1.7.0-31 /home/cemserdar/.gradle/caches/9.3.1/transforms/a1c7f4a9e0bbf19a7b28ebb7fd5d106d/transformed/appcompat-1.7.0/res
-com.anonymous.csreader.app-jetified-runtime-saveable-release-32 /home/cemserdar/.gradle/caches/9.3.1/transforms/aaffb703f976b1ae1d7e4200769b7b8a/transformed/jetified-runtime-saveable-release/res
-com.anonymous.csreader.app-jetified-lifecycle-runtime-release-33 /home/cemserdar/.gradle/caches/9.3.1/transforms/ab5d27b7277e76d9c665336c76c49e3b/transformed/jetified-lifecycle-runtime-release/res
-com.anonymous.csreader.app-jetified-emoji2-views-helper-1.3.0-34 /home/cemserdar/.gradle/caches/9.3.1/transforms/ae43affd7e2629589eaac130dbabc6c8/transformed/jetified-emoji2-views-helper-1.3.0/res
-com.anonymous.csreader.app-jetified-ui-graphics-release-35 /home/cemserdar/.gradle/caches/9.3.1/transforms/b0889825309bf4fb80e4182635cbab83/transformed/jetified-ui-graphics-release/res
-com.anonymous.csreader.app-jetified-ui-tooling-preview-release-36 /home/cemserdar/.gradle/caches/9.3.1/transforms/b3938eb9251490f9088330b02e6cce68/transformed/jetified-ui-tooling-preview-release/res
-com.anonymous.csreader.app-jetified-material-release-37 /home/cemserdar/.gradle/caches/9.3.1/transforms/b759b4d7eb96efc60bdbb69880f74ab7/transformed/jetified-material-release/res
-com.anonymous.csreader.app-jetified-startup-runtime-1.1.1-38 /home/cemserdar/.gradle/caches/9.3.1/transforms/b8074a7a71e241a800ffdb49a96a8697/transformed/jetified-startup-runtime-1.1.1/res
-com.anonymous.csreader.app-jetified-readium-adapter-pdfium-navigator-3.1.1-39 /home/cemserdar/.gradle/caches/9.3.1/transforms/b9dd14098b77fffe5d5edf938436a994/transformed/jetified-readium-adapter-pdfium-navigator-3.1.1/res
-com.anonymous.csreader.app-jetified-readium-shared-3.1.1-40 /home/cemserdar/.gradle/caches/9.3.1/transforms/bbfebe4bf90d79b9fda17903db33f070/transformed/jetified-readium-shared-3.1.1/res
-com.anonymous.csreader.app-jetified-ui-text-release-41 /home/cemserdar/.gradle/caches/9.3.1/transforms/be52c75f47640faea4925cae94d5c301/transformed/jetified-ui-text-release/res
-com.anonymous.csreader.app-jetified-ui-geometry-release-42 /home/cemserdar/.gradle/caches/9.3.1/transforms/c2ed51247517b2c8569db70df1d1387c/transformed/jetified-ui-geometry-release/res
-com.anonymous.csreader.app-jetified-lifecycle-viewmodel-savedstate-2.8.7-43 /home/cemserdar/.gradle/caches/9.3.1/transforms/c7304b72405be68173f3ae2fdc099253/transformed/jetified-lifecycle-viewmodel-savedstate-2.8.7/res
-com.anonymous.csreader.app-jetified-ui-util-release-44 /home/cemserdar/.gradle/caches/9.3.1/transforms/c84b97659524f50caa149a1694e885f0/transformed/jetified-ui-util-release/res
-com.anonymous.csreader.app-jetified-emoji2-1.3.0-45 /home/cemserdar/.gradle/caches/9.3.1/transforms/c87be6c1fe9e58e28d24a8e47ccfb11f/transformed/jetified-emoji2-1.3.0/res
-com.anonymous.csreader.app-jetified-lifecycle-process-2.8.7-46 /home/cemserdar/.gradle/caches/9.3.1/transforms/c8f68af5790135f2109e9df6c773966b/transformed/jetified-lifecycle-process-2.8.7/res
-com.anonymous.csreader.app-jetified-media3-exoplayer-1.6.0-47 /home/cemserdar/.gradle/caches/9.3.1/transforms/ca3d68aa2680046b436e08a5fb0d413f/transformed/jetified-media3-exoplayer-1.6.0/res
-com.anonymous.csreader.app-jetified-ui-test-manifest-1.6.1-48 /home/cemserdar/.gradle/caches/9.3.1/transforms/ce48a0abd408870877fd9d80f325ac88/transformed/jetified-ui-test-manifest-1.6.1/res
-com.anonymous.csreader.app-navigation-runtime-ktx-2.7.7-49 /home/cemserdar/.gradle/caches/9.3.1/transforms/d22e3aa7d0bea4b73e2616d5ae562132/transformed/navigation-runtime-ktx-2.7.7/res
-com.anonymous.csreader.app-jetified-material-icons-core-release-50 /home/cemserdar/.gradle/caches/9.3.1/transforms/d2fd31050e177bba321b278c1a8bdf70/transformed/jetified-material-icons-core-release/res
-com.anonymous.csreader.app-jetified-core-ktx-1.15.0-51 /home/cemserdar/.gradle/caches/9.3.1/transforms/d6512b9b3ce59f71b599183bb715e548/transformed/jetified-core-ktx-1.15.0/res
-com.anonymous.csreader.app-jetified-lifecycle-viewmodel-compose-release-52 /home/cemserdar/.gradle/caches/9.3.1/transforms/d665435b47cea29c97dec842fb7a4712/transformed/jetified-lifecycle-viewmodel-compose-release/res
-com.anonymous.csreader.app-core-1.15.0-53 /home/cemserdar/.gradle/caches/9.3.1/transforms/d6ff450409038105d9aaa86b42050f2b/transformed/core-1.15.0/res
-com.anonymous.csreader.app-jetified-room-ktx-2.6.1-54 /home/cemserdar/.gradle/caches/9.3.1/transforms/d881d8961e7b96edd37472abfdf3deea/transformed/jetified-room-ktx-2.6.1/res
-com.anonymous.csreader.app-jetified-media3-session-1.6.0-55 /home/cemserdar/.gradle/caches/9.3.1/transforms/d9500ec2ef6f6119b86b4faf3846acd0/transformed/jetified-media3-session-1.6.0/res
-com.anonymous.csreader.app-jetified-foundation-layout-release-56 /home/cemserdar/.gradle/caches/9.3.1/transforms/dee45f465ab83e6e3cee4846af086e06/transformed/jetified-foundation-layout-release/res
-com.anonymous.csreader.app-media-1.7.0-57 /home/cemserdar/.gradle/caches/9.3.1/transforms/def7f588ce6f779ce8ad885035b9184a/transformed/media-1.7.0/res
-com.anonymous.csreader.app-room-runtime-2.6.1-58 /home/cemserdar/.gradle/caches/9.3.1/transforms/e39c9bb8805dce116f4ceab739a5d891/transformed/room-runtime-2.6.1/res
-com.anonymous.csreader.app-jetified-ui-tooling-data-release-59 /home/cemserdar/.gradle/caches/9.3.1/transforms/e3e9684ed13f2d27b39a11ee313dbd2e/transformed/jetified-ui-tooling-data-release/res
-com.anonymous.csreader.app-recyclerview-1.4.0-60 /home/cemserdar/.gradle/caches/9.3.1/transforms/ed477304c2207ebe1b5eb2002a3b24cd/transformed/recyclerview-1.4.0/res
-com.anonymous.csreader.app-jetified-lifecycle-livedata-core-ktx-2.8.7-61 /home/cemserdar/.gradle/caches/9.3.1/transforms/ed61b7b9c569dc5b4361f7018b8c1bf1/transformed/jetified-lifecycle-livedata-core-ktx-2.8.7/res
-com.anonymous.csreader.app-jetified-material3-release-62 /home/cemserdar/.gradle/caches/9.3.1/transforms/ed8b99a07f7ae2f73b31ff9eede54a8a/transformed/jetified-material3-release/res
-com.anonymous.csreader.app-navigation-common-ktx-2.7.7-63 /home/cemserdar/.gradle/caches/9.3.1/transforms/ede864602cb8e343f15cfe5856e96543/transformed/navigation-common-ktx-2.7.7/res
-com.anonymous.csreader.app-constraintlayout-2.2.1-64 /home/cemserdar/.gradle/caches/9.3.1/transforms/ef358b0093853a2f630bc062ea9f293e/transformed/constraintlayout-2.2.1/res
-com.anonymous.csreader.app-jetified-navigation-compose-2.7.7-65 /home/cemserdar/.gradle/caches/9.3.1/transforms/ef9bb70c5944f7a8286e9562fc225281/transformed/jetified-navigation-compose-2.7.7/res
-com.anonymous.csreader.app-jetified-fragment-ktx-1.8.6-66 /home/cemserdar/.gradle/caches/9.3.1/transforms/f0edfb72e1189ffb090bf3cfc904a88b/transformed/jetified-fragment-ktx-1.8.6/res
-com.anonymous.csreader.app-lifecycle-livedata-core-2.8.7-67 /home/cemserdar/.gradle/caches/9.3.1/transforms/f3b1b4052843da281b2f149badcc34c8/transformed/lifecycle-livedata-core-2.8.7/res
-com.anonymous.csreader.app-sqlite-framework-2.4.0-68 /home/cemserdar/.gradle/caches/9.3.1/transforms/f7fce035acb3d494ee03a4fbfa7371ba/transformed/sqlite-framework-2.4.0/res
-com.anonymous.csreader.app-jetified-foundation-release-69 /home/cemserdar/.gradle/caches/9.3.1/transforms/f8820381077820364876bd73806709cc/transformed/jetified-foundation-release/res
-com.anonymous.csreader.app-jetified-animation-core-release-70 /home/cemserdar/.gradle/caches/9.3.1/transforms/fbaa07c08040b7be9b2d83e05fee4935/transformed/jetified-animation-core-release/res
-com.anonymous.csreader.app-resValues-71 /home/cemserdar/Project/CsReader/app/build/generated/res/resValues/debug
-com.anonymous.csreader.app-updated_navigation_xml-72 /home/cemserdar/Project/CsReader/app/build/generated/updated_navigation_xml/debug
-com.anonymous.csreader.app-packageDebugResources-73 /home/cemserdar/Project/CsReader/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
-com.anonymous.csreader.app-packageDebugResources-74 /home/cemserdar/Project/CsReader/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
-com.anonymous.csreader.app-debug-75 /home/cemserdar/Project/CsReader/app/build/intermediates/merged_res/debug/mergeDebugResources
-com.anonymous.csreader.app-debug-76 /home/cemserdar/Project/CsReader/app/src/debug/res
-com.anonymous.csreader.app-main-77 /home/cemserdar/Project/CsReader/app/src/main/res
+com.anonymous.csreader.app-ui-viewbinding-1.6.1-0 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\06b84421fcd077d78fdddfcfd37ac0e4\workspace\transformed\ui-viewbinding-1.6.1\res
+com.anonymous.csreader.app-readium-navigator-3.1.1-1 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\0b7c2a5d487112b0a814b6b6d56f7a8a\workspace\transformed\readium-navigator-3.1.1\res
+com.anonymous.csreader.app-ui-release-2 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\0fc835208ebfb7ed473bf3ac6fe1c762\workspace\transformed\ui-release\res
+com.anonymous.csreader.app-fragment-1.8.6-3 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\138bb67665f2addb5f06a5f0c89f5c01\workspace\transformed\fragment-1.8.6\res
+com.anonymous.csreader.app-tracing-1.2.0-4 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\14bff222691650337738d28a5fd9c18e\workspace\transformed\tracing-1.2.0\res
+com.anonymous.csreader.app-lifecycle-livedata-2.8.7-5 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\1d8c362e72ceb8ad8a5c482555729552\workspace\transformed\lifecycle-livedata-2.8.7\res
+com.anonymous.csreader.app-animation-release-6 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\1ddd52bd9ab83826e293618773826378\workspace\transformed\animation-release\res
+com.anonymous.csreader.app-activity-ktx-1.8.2-7 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\1f81434dcfa487d096859ac4d806242f\workspace\transformed\activity-ktx-1.8.2\res
+com.anonymous.csreader.app-sqlite-2.4.0-8 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\20c1022f4e40df88f8c13ba8563846a6\workspace\transformed\sqlite-2.4.0\res
+com.anonymous.csreader.app-lifecycle-viewmodel-ktx-2.8.7-9 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\2a2b29161673dcd2900f39d1da4c228d\workspace\transformed\lifecycle-viewmodel-ktx-2.8.7\res
+com.anonymous.csreader.app-savedstate-ktx-1.2.1-10 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\3c10f0dc505f675b945fdc742e21aa64\workspace\transformed\savedstate-ktx-1.2.1\res
+com.anonymous.csreader.app-navigation-compose-2.7.7-11 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\3dbb80ae57ab23d4927fc8ffe02f9a44\workspace\transformed\navigation-compose-2.7.7\res
+com.anonymous.csreader.app-fragment-ktx-1.8.6-12 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\465b92315d0d862ed956ddbba04ab26c\workspace\transformed\fragment-ktx-1.8.6\res
+com.anonymous.csreader.app-customview-poolingcontainer-1.0.0-13 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\552d944f78dc0ac799ebe57e18eee517\workspace\transformed\customview-poolingcontainer-1.0.0\res
+com.anonymous.csreader.app-foundation-release-14 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\5952e7b6ce7052ab95caa43696e334c1\workspace\transformed\foundation-release\res
+com.anonymous.csreader.app-navigation-common-2.7.7-15 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\5ce911e791855b982d45e1f7d3bf043d\workspace\transformed\navigation-common-2.7.7\res
+com.anonymous.csreader.app-core-runtime-2.2.0-16 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\608ddaa838f07bf0d5f03d2bea13baa9\workspace\transformed\core-runtime-2.2.0\res
+com.anonymous.csreader.app-annotation-experimental-1.4.1-17 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\614fd4633386ee879b92c2c0479b268f\workspace\transformed\annotation-experimental-1.4.1\res
+com.anonymous.csreader.app-lifecycle-viewmodel-compose-release-18 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\63ca56149ce121ea03ddf442fd559634\workspace\transformed\lifecycle-viewmodel-compose-release\res
+com.anonymous.csreader.app-emoji2-views-helper-1.3.0-19 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\65d9ec6020c06064ae69031cdddc07e2\workspace\transformed\emoji2-views-helper-1.3.0\res
+com.anonymous.csreader.app-navigation-runtime-2.7.7-20 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\73ee28a1e16340c35eb896b846cf7e9d\workspace\transformed\navigation-runtime-2.7.7\res
+com.anonymous.csreader.app-coordinatorlayout-1.0.0-21 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\7409fbd3bc319389a96165bba4dc1e2d\workspace\transformed\coordinatorlayout-1.0.0\res
+com.anonymous.csreader.app-lifecycle-viewmodel-savedstate-2.8.7-22 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\7504dd4c21a30eba4a366ef73fff448d\workspace\transformed\lifecycle-viewmodel-savedstate-2.8.7\res
+com.anonymous.csreader.app-media3-exoplayer-1.6.0-23 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\76dd317d48e372291419b330a63c52c7\workspace\transformed\media3-exoplayer-1.6.0\res
+com.anonymous.csreader.app-savedstate-1.2.1-24 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\7bc017ce26165951454531ec35ee3344\workspace\transformed\savedstate-1.2.1\res
+com.anonymous.csreader.app-emoji2-1.3.0-25 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\850de6bd8742bdf588ac136ad88e332d\workspace\transformed\emoji2-1.3.0\res
+com.anonymous.csreader.app-runtime-release-26 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\884287341259e31ef0bb1cf634d03f8c\workspace\transformed\runtime-release\res
+com.anonymous.csreader.app-browser-1.8.0-27 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\8b578f12f26f177cb68170d574600d51\workspace\transformed\browser-1.8.0\res
+com.anonymous.csreader.app-webkit-1.13.0-28 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\8b81db85fd30028e3ad2f141223bcb9f\workspace\transformed\webkit-1.13.0\res
+com.anonymous.csreader.app-ui-test-manifest-1.6.1-29 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\948190e66caefafc9564704f5b6aa2e1\workspace\transformed\ui-test-manifest-1.6.1\res
+com.anonymous.csreader.app-ui-text-release-30 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\9b72135a52b0688211a59b8516fe4cec\workspace\transformed\ui-text-release\res
+com.anonymous.csreader.app-ui-tooling-preview-release-31 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\9dca77caeac86c6e555d9dba03196de2\workspace\transformed\ui-tooling-preview-release\res
+com.anonymous.csreader.app-material-ripple-release-32 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\9ffe6a0ceae5382bea36bfb6984ad942\workspace\transformed\material-ripple-release\res
+com.anonymous.csreader.app-appcompat-1.7.0-33 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\a1c7f4a9e0bbf19a7b28ebb7fd5d106d\workspace\transformed\appcompat-1.7.0\res
+com.anonymous.csreader.app-media3-session-1.6.0-34 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\a2de6cc83425f257ddae8cc7e54c80d1\workspace\transformed\media3-session-1.6.0\res
+com.anonymous.csreader.app-lifecycle-runtime-release-35 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\a9beaba271be8905c390906f9ae97e57\workspace\transformed\lifecycle-runtime-release\res
+com.anonymous.csreader.app-lifecycle-viewmodel-release-36 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\af6fc214c90c0a570d8b6736c63988f7\workspace\transformed\lifecycle-viewmodel-release\res
+com.anonymous.csreader.app-ui-util-release-37 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\b31803d7c6a8f474b12d927b8a6a0913\workspace\transformed\ui-util-release\res
+com.anonymous.csreader.app-startup-runtime-1.1.1-38 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\b5efe06433d672e4b0988cfeed104c07\workspace\transformed\startup-runtime-1.1.1\res
+com.anonymous.csreader.app-ui-unit-release-39 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\b93440248cbdfb5692f3dfd01460f25c\workspace\transformed\ui-unit-release\res
+com.anonymous.csreader.app-ui-tooling-release-40 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\bb7b870edd1250ca2057157499b7ac03\workspace\transformed\ui-tooling-release\res
+com.anonymous.csreader.app-profileinstaller-1.4.0-41 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\bcddb9a8ad0d8b37e0ba74d4be5a2ee8\workspace\transformed\profileinstaller-1.4.0\res
+com.anonymous.csreader.app-core-ktx-1.15.0-42 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\c1348a3dff74dd560719b204384e36a5\workspace\transformed\core-ktx-1.15.0\res
+com.anonymous.csreader.app-ui-tooling-data-release-43 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\c14400e14b5af4c59ad642eef4c7933a\workspace\transformed\ui-tooling-data-release\res
+com.anonymous.csreader.app-material-icons-extended-release-44 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\c14df1d6d316aecc76764b762222b1e2\workspace\transformed\material-icons-extended-release\res
+com.anonymous.csreader.app-activity-compose-1.8.2-45 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\c23861392d595cc26a593b8e625ce5f0\workspace\transformed\activity-compose-1.8.2\res
+com.anonymous.csreader.app-animation-core-release-46 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\c3ad1bbf18c2cb47ab722667f9370e54\workspace\transformed\animation-core-release\res
+com.anonymous.csreader.app-appcompat-resources-1.7.0-47 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\c4b1b41353286ef77ce656273e58b562\workspace\transformed\appcompat-resources-1.7.0\res
+com.anonymous.csreader.app-material-release-48 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\cce049307d8f60df32f28a3587612fed\workspace\transformed\material-release\res
+com.anonymous.csreader.app-readium-shared-3.1.1-49 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\cf3cb466d1ea716250c820d9b93bb301\workspace\transformed\readium-shared-3.1.1\res
+com.anonymous.csreader.app-navigation-runtime-ktx-2.7.7-50 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\d22e3aa7d0bea4b73e2616d5ae562132\workspace\transformed\navigation-runtime-ktx-2.7.7\res
+com.anonymous.csreader.app-core-1.15.0-51 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\d6ff450409038105d9aaa86b42050f2b\workspace\transformed\core-1.15.0\res
+com.anonymous.csreader.app-readium-adapter-pdfium-navigator-3.1.1-52 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\dbc034df17848561f2ab8d1965323c80\workspace\transformed\readium-adapter-pdfium-navigator-3.1.1\res
+com.anonymous.csreader.app-lifecycle-runtime-ktx-release-53 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\dd853400adb4fa8780ecc0d9d3e61b03\workspace\transformed\lifecycle-runtime-ktx-release\res
+com.anonymous.csreader.app-media-1.7.0-54 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\def7f588ce6f779ce8ad885035b9184a\workspace\transformed\media-1.7.0\res
+com.anonymous.csreader.app-foundation-layout-release-55 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\df4493ff4afffa7f2dee87155b41204a\workspace\transformed\foundation-layout-release\res
+com.anonymous.csreader.app-room-runtime-2.6.1-56 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\e39c9bb8805dce116f4ceab739a5d891\workspace\transformed\room-runtime-2.6.1\res
+com.anonymous.csreader.app-material-icons-core-release-57 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\e6076eccd272dc249f608dc59733c90d\workspace\transformed\material-icons-core-release\res
+com.anonymous.csreader.app-lifecycle-process-2.8.7-58 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\ea677bf2a09a2cf2ecf3c72f4624999b\workspace\transformed\lifecycle-process-2.8.7\res
+com.anonymous.csreader.app-room-ktx-2.6.1-59 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\ebf5be658ed3d473055d1e73d3c9742e\workspace\transformed\room-ktx-2.6.1\res
+com.anonymous.csreader.app-runtime-saveable-release-60 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\eceb2786e604e57559916f3e4a8d0c50\workspace\transformed\runtime-saveable-release\res
+com.anonymous.csreader.app-recyclerview-1.4.0-61 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\ed477304c2207ebe1b5eb2002a3b24cd\workspace\transformed\recyclerview-1.4.0\res
+com.anonymous.csreader.app-navigation-common-ktx-2.7.7-62 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\ede864602cb8e343f15cfe5856e96543\workspace\transformed\navigation-common-ktx-2.7.7\res
+com.anonymous.csreader.app-constraintlayout-2.2.1-63 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\ef358b0093853a2f630bc062ea9f293e\workspace\transformed\constraintlayout-2.2.1\res
+com.anonymous.csreader.app-ui-geometry-release-64 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\ef6614ac444829de7bf40c2404dd3f3e\workspace\transformed\ui-geometry-release\res
+com.anonymous.csreader.app-activity-1.8.2-65 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\f1cfb24a0d006c7040d9a4e56781123b\workspace\transformed\activity-1.8.2\res
+com.anonymous.csreader.app-lifecycle-livedata-core-2.8.7-66 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\f3b1b4052843da281b2f149badcc34c8\workspace\transformed\lifecycle-livedata-core-2.8.7\res
+com.anonymous.csreader.app-sqlite-framework-2.4.0-67 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\f7fce035acb3d494ee03a4fbfa7371ba\workspace\transformed\sqlite-framework-2.4.0\res
+com.anonymous.csreader.app-material3-release-68 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\f8ac6663939f64e96ca27211e5802a4e\workspace\transformed\material3-release\res
+com.anonymous.csreader.app-ui-graphics-release-69 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\faf96e21deec585d17c93cde8a368776\workspace\transformed\ui-graphics-release\res
+com.anonymous.csreader.app-lifecycle-livedata-core-ktx-2.8.7-70 C:\Users\Cem Serdar\.gradle\caches\9.3.1\transforms\fd11c7a769c07d7709da3191770bf484\workspace\transformed\lifecycle-livedata-core-ktx-2.8.7\res
+com.anonymous.csreader.app-resValues-71 C:\Users\Cem Serdar\Desktop\Proje\CsReader\app\build\generated\res\resValues\debug
+com.anonymous.csreader.app-updated_navigation_xml-72 C:\Users\Cem Serdar\Desktop\Proje\CsReader\app\build\generated\updated_navigation_xml\debug
+com.anonymous.csreader.app-packageDebugResources-73 C:\Users\Cem Serdar\Desktop\Proje\CsReader\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.anonymous.csreader.app-packageDebugResources-74 C:\Users\Cem Serdar\Desktop\Proje\CsReader\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.anonymous.csreader.app-debug-75 C:\Users\Cem Serdar\Desktop\Proje\CsReader\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.anonymous.csreader.app-debug-76 C:\Users\Cem Serdar\Desktop\Proje\CsReader\app\src\debug\res
+com.anonymous.csreader.app-main-77 C:\Users\Cem Serdar\Desktop\Proje\CsReader\app\src\main\res

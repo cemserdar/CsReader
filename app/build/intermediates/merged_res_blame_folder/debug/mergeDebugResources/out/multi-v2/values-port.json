@@ -4,7 +4,7 @@
             "outputFile": "com.anonymous.csreader.app-mergeDebugResources-73:/values-port/values-port.xml",
             "map": [
                 {
-                    "source": "/home/cemserdar/.gradle/caches/9.3.1/transforms/a1c7f4a9e0bbf19a7b28ebb7fd5d106d/transformed/appcompat-1.7.0/res/values-port/values-port.xml",
+                    "source": "C:\\Users\\Cem Serdar\\.gradle\\caches\\9.3.1\\transforms\\a1c7f4a9e0bbf19a7b28ebb7fd5d106d\\workspace\\transformed\\appcompat-1.7.0\\res\\values-port\\values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

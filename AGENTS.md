@@ -1,3 +1,4 @@
-# Expo HAS CHANGED
+# CsReader - Native Android Project
 
-Read the exact versioned docs at https://docs.expo.dev/versions/v56.0.0/ before writing any code.
+This project is a native Android application built with Kotlin, Jetpack Compose, Material 3, and Readium Kotlin Toolkit.
+All development is in pure Kotlin and Jetpack Compose.

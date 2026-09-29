@@ -183,6 +183,7 @@ fun SettingsScreen(
                         listOf(
                             "light" to "Aydınlık",
                             "dark" to "Karanlık",
+                            "amoled" to "AMOLED Siyah",
                             "sepia" to "Sepya",
                             "forest" to "Yeşil"
                         ).chunked(2).forEach { chunk ->
@@ -193,16 +194,18 @@ fun SettingsScreen(
                                 chunk.forEach { (tName, tLabel) ->
                                     val active = themeName == tName
                                     val bgCol = when (tName) {
-                                        "light" -> Color.White
-                                        "dark" -> Color(0xFF0F172A)
-                                        "sepia" -> Color(0xFFFAF6EB)
-                                        else -> Color(0xFFF3F7F2)
+                                        "light" -> Color(0xFFFFFFFF)
+                                        "dark" -> Color(0xFF131B2B)
+                                        "amoled" -> Color(0xFF000000)
+                                        "sepia" -> Color(0xFFFCF9F2)
+                                        else -> Color(0xFFF8FAF8)
                                     }
                                     val indicatorCol = when (tName) {
-                                        "light" -> Color(0xFFF3F4F6)
-                                        "dark" -> Color(0xFF0F172A)
-                                        "sepia" -> Color(0xFFF4ECD8)
-                                        else -> Color(0xFFE8EFE9)
+                                        "light" -> Color(0xFFF8F9FA)
+                                        "dark" -> Color(0xFF0B0F17)
+                                        "amoled" -> Color(0xFF000000)
+                                        "sepia" -> Color(0xFFF7F2E7)
+                                        else -> Color(0xFFEFF4F0)
                                     }
 
                                     Column(
@@ -228,16 +231,19 @@ fun SettingsScreen(
                                                 .size(32.dp)
                                                 .clip(CircleShape)
                                                 .background(indicatorCol)
-                                                .border(1.dp, Color("rgba(0,0,0,0.1)".toIntOrNull() ?: 0x1A000000), CircleShape)
+                                                .border(1.dp, if (tName == "amoled") Color(0xFF444444) else Color(0x1A000000), CircleShape)
                                         )
                                         Spacer(modifier = Modifier.height(8.dp))
                                         Text(
                                             text = tLabel,
                                             fontSize = 13.sp,
                                             fontWeight = if (active) FontWeight.Bold else FontWeight.Normal,
-                                            color = if (tName == "dark") Color.White else Color(0xFF1F2937)
+                                            color = if (tName == "dark" || tName == "amoled") Color.White else Color(0xFF1F2937)
                                         )
                                     }
+                                }
+                                if (chunk.size == 1) {
+                                    Spacer(modifier = Modifier.weight(1f))
                                 }
                             }
                         }
@@ -330,37 +336,73 @@ fun SettingsScreen(
                         )
                         Spacer(modifier = Modifier.height(16.dp))
 
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.spacedBy(8.dp)
-                        ) {
-                            listOf(
-                                "scroll" to "Aşağı Kaydır (Dikey)",
-                                "slide" to "Yatay Sayfalama"
-                            ).forEach { (pType, pLabel) ->
-                                val active = pageTransition == pType
-                                Box(
-                                    modifier = Modifier
-                                        .weight(1f)
-                                        .clip(RoundedCornerShape(16.dp))
-                                        .background(if (active) CsReaderTheme.colors.primary else CsReaderTheme.colors.bg)
-                                        .border(
-                                            1.dp,
-                                            if (active) CsReaderTheme.colors.primary else CsReaderTheme.colors.border,
-                                            RoundedCornerShape(16.dp)
+                        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            ) {
+                                listOf(
+                                    "curl" to "3D Kıvrılma (Curl)",
+                                    "slide" to "Yatay Sayfalama"
+                                ).forEach { (pType, pLabel) ->
+                                    val active = pageTransition == pType
+                                    Box(
+                                        modifier = Modifier
+                                            .weight(1f)
+                                            .clip(RoundedCornerShape(14.dp))
+                                            .background(if (active) CsReaderTheme.colors.primary else CsReaderTheme.colors.bg)
+                                            .border(
+                                                1.dp,
+                                                if (active) CsReaderTheme.colors.primary else CsReaderTheme.colors.border,
+                                                RoundedCornerShape(14.dp)
+                                            )
+                                            .clickable { viewModel.setPageTransition(pType) }
+                                            .padding(vertical = 12.dp),
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        Text(
+                                            text = pLabel,
+                                            fontSize = 11.sp,
+                                            fontWeight = if (active) FontWeight.Bold else FontWeight.Medium,
+                                            maxLines = 1,
+                                            overflow = TextOverflow.Ellipsis,
+                                            color = if (active) Color.White else CsReaderTheme.colors.text
                                         )
-                                        .clickable { viewModel.setPageTransition(pType) }
-                                        .padding(vertical = 14.dp),
-                                    contentAlignment = Alignment.Center
-                                ) {
-                                    Text(
-                                        text = pLabel,
-                                        fontSize = 11.sp,
-                                        fontWeight = FontWeight.SemiBold,
-                                        maxLines = 1,
-                                        overflow = TextOverflow.Ellipsis,
-                                        color = if (active) Color.White else CsReaderTheme.colors.text
-                                    )
+                                    }
+                                }
+                            }
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            ) {
+                                listOf(
+                                    "scroll" to "Dikey Kesintisiz",
+                                    "fade" to "Yumuşak Geçiş (Fade)"
+                                ).forEach { (pType, pLabel) ->
+                                    val active = pageTransition == pType
+                                    Box(
+                                        modifier = Modifier
+                                            .weight(1f)
+                                            .clip(RoundedCornerShape(14.dp))
+                                            .background(if (active) CsReaderTheme.colors.primary else CsReaderTheme.colors.bg)
+                                            .border(
+                                                1.dp,
+                                                if (active) CsReaderTheme.colors.primary else CsReaderTheme.colors.border,
+                                                RoundedCornerShape(14.dp)
+                                            )
+                                            .clickable { viewModel.setPageTransition(pType) }
+                                            .padding(vertical = 12.dp),
+                                        contentAlignment = Alignment.Center
+                                    ) {
+                                        Text(
+                                            text = pLabel,
+                                            fontSize = 11.sp,
+                                            fontWeight = if (active) FontWeight.Bold else FontWeight.Medium,
+                                            maxLines = 1,
+                                            overflow = TextOverflow.Ellipsis,
+                                            color = if (active) Color.White else CsReaderTheme.colors.text
+                                        )
+                                    }
                                 }
                             }
                         }
