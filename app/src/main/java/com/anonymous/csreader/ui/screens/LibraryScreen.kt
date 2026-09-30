@@ -7,15 +7,25 @@ import android.provider.OpenableColumns
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -24,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -35,27 +46,31 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.anonymous.csreader.data.BookDao
 import com.anonymous.csreader.data.BookEntity
+import com.anonymous.csreader.data.HighlightDao
+import com.anonymous.csreader.ui.components.*
 import com.anonymous.csreader.ui.theme.CsReaderTheme
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
+import java.util.Calendar
 
-class LibraryViewModel(private val bookDao: BookDao) : ViewModel() {
+class LibraryViewModel(
+    private val bookDao: BookDao,
+    private val highlightDao: HighlightDao? = null
+) : ViewModel() {
     private val _searchQuery = MutableStateFlow("")
     val searchQuery: StateFlow<String> = _searchQuery
 
-    private val _activeTab = MutableStateFlow("all") // "all", "epub", "pdf", "favorite"
+    private val _activeTab = MutableStateFlow("all") // "all", "reading", "favorite", "epub", "pdf"
     val activeTab: StateFlow<String> = _activeTab
 
     val booksState: StateFlow<List<BookEntity>> = bookDao.getAllBooks()
         .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
+
+    val notesCountState: StateFlow<Int> = (highlightDao?.getAllHighlights()?.map { it.size } ?: flowOf(0))
+        .stateIn(viewModelScope, SharingStarted.Lazily, 0)
 
     val filteredBooks: StateFlow<List<BookEntity>> = combine(
         booksState, _searchQuery, _activeTab
@@ -64,9 +79,10 @@ class LibraryViewModel(private val bookDao: BookDao) : ViewModel() {
             val matchesSearch = book.title.contains(query, ignoreCase = true) ||
                     book.author.contains(query, ignoreCase = true)
             val matchesTab = when (tab) {
-                "epub" -> book.type == "epub"
-                "pdf" -> book.type == "pdf"
+                "reading" -> book.progress > 0f && book.progress < 1f
                 "favorite" -> book.favorite
+                "epub" -> book.type.equals("epub", ignoreCase = true)
+                "pdf" -> book.type.equals("pdf", ignoreCase = true)
                 else -> true
             }
             matchesSearch && matchesTab
@@ -87,9 +103,20 @@ class LibraryViewModel(private val bookDao: BookDao) : ViewModel() {
         }
     }
 
+    fun resetProgress(book: BookEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            bookDao.updateBook(
+                book.copy(
+                    progress = 0f,
+                    lastCfi = null,
+                    lastPage = null
+                )
+            )
+        }
+    }
+
     fun deleteBook(context: Context, book: BookEntity) {
         viewModelScope.launch(Dispatchers.IO) {
-            // Delete file from internal storage
             try {
                 val file = File(book.uri)
                 if (file.exists()) {
@@ -321,6 +348,7 @@ class LibraryViewModel(private val bookDao: BookDao) : ViewModel() {
 @Composable
 fun LibraryScreen(
     bookDao: BookDao,
+    highlightDao: HighlightDao? = null,
     onSelectBook: (BookEntity) -> Unit,
     onNavigateToNotes: () -> Unit,
     onNavigateToSettings: () -> Unit
@@ -329,7 +357,7 @@ fun LibraryScreen(
     val viewModel: LibraryViewModel = viewModel(factory = object : androidx.lifecycle.ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             @Suppress("UNCHECKED_CAST")
-            return LibraryViewModel(bookDao) as T
+            return LibraryViewModel(bookDao, highlightDao) as T
         }
     })
 
@@ -337,11 +365,32 @@ fun LibraryScreen(
     val activeTab by viewModel.activeTab.collectAsState()
     val books by viewModel.booksState.collectAsState()
     val filteredBooks by viewModel.filteredBooks.collectAsState()
+    val notesCount by viewModel.notesCountState.collectAsState()
 
+    var isGridView by remember { mutableStateOf(true) }
+    var selectedBookForOptions by remember { mutableStateOf<BookEntity?>(null) }
     var showDeleteDialogForBook by remember { mutableStateOf<BookEntity?>(null) }
     var scanning by remember { mutableStateOf(false) }
     var importing by remember { mutableStateOf(false) }
     var scanProgressText by remember { mutableStateOf("") }
+
+    // En son okunan öne çıkan eser (Hero Showcase)
+    val heroBook = remember(books) {
+        books.filter { it.progress > 0f }.maxByOrNull { it.lastRead }
+            ?: books.maxByOrNull { it.lastRead }
+            ?: books.firstOrNull()
+    }
+
+    // Zamana göre dinamik selamlama
+    val currentHour = remember { Calendar.getInstance().get(Calendar.HOUR_OF_DAY) }
+    val greeting = remember(currentHour) {
+        when (currentHour) {
+            in 5..11 -> "Günaydın"
+            in 12..17 -> "İyi günler"
+            in 18..22 -> "İyi akşamlar"
+            else -> "Huzurlu geceler"
+        }
+    }
 
     val filePickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
@@ -351,7 +400,7 @@ fun LibraryScreen(
             viewModel.importBook(context, uri) { importedBook ->
                 importing = false
                 if (importedBook != null) {
-                    Toast.makeText(context, "Kitap başarıyla eklendi", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Kitap kütüphaneye eklendi", Toast.LENGTH_SHORT).show()
                     onSelectBook(importedBook)
                 } else {
                     Toast.makeText(context, "Kitap eklenirken hata oluştu", Toast.LENGTH_LONG).show()
@@ -371,123 +420,117 @@ fun LibraryScreen(
             }) { count ->
                 scanning = false
                 scanProgressText = ""
-                Toast.makeText(context, "Tarama tamamlandı. $count yeni kitap eklendi.", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Tarama tamamlandı. $count yeni eser kütüphaneye dahil edildi.", Toast.LENGTH_LONG).show()
             }
         }
     }
 
-    Scaffold(
-        floatingActionButton = {
-            if (books.isNotEmpty()) {
-                FloatingActionButton(
-                    onClick = { filePickerLauncher.launch("*/*") },
-                    containerColor = CsReaderTheme.colors.primary,
-                    contentColor = Color.White,
-                    shape = CircleShape,
-                    modifier = Modifier.padding(bottom = 16.dp, end = 16.dp)
-                ) {
-                    if (importing) {
-                        CircularProgressIndicator(color = Color.White, modifier = Modifier.size(24.dp))
-                    } else {
-                        Icon(Icons.Default.Add, contentDescription = "Kitap Ekle")
-                    }
-                }
-            }
-        },
-        containerColor = CsReaderTheme.colors.bg
-    ) { paddingValues ->
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(CsReaderTheme.colors.bg)
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
+                .statusBarsPadding()
         ) {
-            // Header Bar
+            // 1. Editoryal Üst Başlık & Selamlama Barı
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 20.dp, vertical = 16.dp),
+                    .padding(horizontal = 20.dp, vertical = 14.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    androidx.compose.foundation.Image(
-                        painter = androidx.compose.ui.res.painterResource(id = com.anonymous.csreader.R.drawable.splashscreen_logo),
-                        contentDescription = "CsReader Logo",
-                        modifier = Modifier
-                            .size(42.dp)
-                            .clip(RoundedCornerShape(12.dp))
-                    )
-                    Spacer(modifier = Modifier.width(12.dp))
-                    Column {
+                Column {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
                         Text(
                             text = "CsReader",
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold,
+                            fontFamily = FontFamily.Serif,
                             color = CsReaderTheme.colors.text
                         )
-                        Text(
-                            text = "E-Kitap ve PDF Kütüphanesi",
-                            fontSize = 12.sp,
-                            color = CsReaderTheme.colors.textMuted
-                        )
-                    }
-                }
-
-                Row {
-                    IconButton(
-                        onClick = {
-                            folderPickerLauncher.launch(null)
-                        },
-                        enabled = !scanning,
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(12.dp))
-                            .background(CsReaderTheme.colors.cardBg)
-                            .border(1.dp, CsReaderTheme.colors.border, RoundedCornerShape(12.dp))
-                            .size(44.dp)
-                    ) {
-                        if (scanning) {
-                            CircularProgressIndicator(modifier = Modifier.size(20.dp), color = CsReaderTheme.colors.text)
-                        } else {
-                            Icon(Icons.Default.FolderOpen, contentDescription = "Klasör Tara", tint = CsReaderTheme.colors.text)
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(6.dp))
+                                .background(CsReaderTheme.colors.primary.copy(alpha = 0.12f))
+                                .padding(horizontal = 6.dp, vertical = 2.dp)
+                        ) {
+                            Text(
+                                text = "KİTAPLIK",
+                                fontSize = 9.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = CsReaderTheme.colors.primary,
+                                letterSpacing = 0.5.sp
+                            )
                         }
                     }
 
-                    Spacer(modifier = Modifier.width(8.dp))
+                    Spacer(modifier = Modifier.height(2.dp))
 
+                    Text(
+                        text = "$greeting • ${books.size} Eser",
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = CsReaderTheme.colors.textMuted
+                    )
+                }
+
+                // Sağ Üst Kontroller: Görünüm Değiştirici (3D Raf Grid vs. Liste)
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
                     IconButton(
-                        onClick = onNavigateToNotes,
+                        onClick = { isGridView = !isGridView },
                         modifier = Modifier
                             .clip(RoundedCornerShape(12.dp))
                             .background(CsReaderTheme.colors.cardBg)
                             .border(1.dp, CsReaderTheme.colors.border, RoundedCornerShape(12.dp))
-                            .size(44.dp)
+                            .size(42.dp)
                     ) {
-                        Icon(Icons.Default.Assignment, contentDescription = "Tüm Notlarım", tint = CsReaderTheme.colors.text)
-                    }
-
-                    Spacer(modifier = Modifier.width(8.dp))
-
-                    IconButton(
-                        onClick = onNavigateToSettings,
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(12.dp))
-                            .background(CsReaderTheme.colors.cardBg)
-                            .border(1.dp, CsReaderTheme.colors.border, RoundedCornerShape(12.dp))
-                            .size(44.dp)
-                    ) {
-                        Icon(Icons.Default.Settings, contentDescription = "Ayarlar", tint = CsReaderTheme.colors.text)
+                        Icon(
+                            imageVector = if (isGridView) Icons.Default.ViewAgenda else Icons.Default.GridView,
+                            contentDescription = if (isGridView) "Liste Görünümü" else "3D Raf Görünümü",
+                            tint = CsReaderTheme.colors.text,
+                            modifier = Modifier.size(20.dp)
+                        )
                     }
                 }
             }
 
-            // Search Bar
+            // 2. Arama Girişi
             OutlinedTextField(
                 value = searchQuery,
                 onValueChange = { viewModel.setSearchQuery(it) },
-                placeholder = { Text("Kitap veya yazar ara...", color = CsReaderTheme.colors.textMuted) },
-                leadingIcon = { Icon(Icons.Default.Search, contentDescription = null, tint = CsReaderTheme.colors.textMuted) },
+                placeholder = { Text("Kitap, yazar veya konu ara...", color = CsReaderTheme.colors.textMuted, fontSize = 14.sp) },
+                leadingIcon = {
+                    Icon(
+                        Icons.Default.Search,
+                        contentDescription = null,
+                        tint = CsReaderTheme.colors.textMuted,
+                        modifier = Modifier.size(20.dp)
+                    )
+                },
+                trailingIcon = {
+                    if (searchQuery.isNotEmpty()) {
+                        IconButton(onClick = { viewModel.setSearchQuery("") }) {
+                            Icon(
+                                Icons.Default.Clear,
+                                contentDescription = "Temizle",
+                                tint = CsReaderTheme.colors.textMuted,
+                                modifier = Modifier.size(18.dp)
+                            )
+                        }
+                    }
+                },
                 singleLine = true,
-                shape = RoundedCornerShape(14.dp),
+                shape = RoundedCornerShape(16.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedContainerColor = CsReaderTheme.colors.cardBg,
                     unfocusedContainerColor = CsReaderTheme.colors.cardBg,
@@ -501,311 +544,490 @@ fun LibraryScreen(
                     .padding(horizontal = 20.dp)
             )
 
-            // Tabs Selector
-            Row(
+            // 3. Editoryal Filtre Kapsülleri (Filter Pills)
+            val readingCount = remember(books) { books.count { it.progress > 0f && it.progress < 1f } }
+            val favCount = remember(books) { books.count { it.favorite } }
+            val epubCount = remember(books) { books.count { it.type.equals("epub", ignoreCase = true) } }
+            val pdfCount = remember(books) { books.count { it.type.equals("pdf", ignoreCase = true) } }
+
+            val filterList = listOf(
+                "all" to "Tümü (${books.size})",
+                "reading" to "Okunanlar ($readingCount)",
+                "favorite" to "Favoriler ($favCount)",
+                "epub" to "EPUB ($epubCount)",
+                "pdf" to "PDF ($pdfCount)"
+            )
+
+            LazyRow(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 20.dp, vertical = 12.dp),
-                horizontalArrangement = Arrangement.Start
+                    .padding(vertical = 10.dp),
+                contentPadding = PaddingValues(horizontal = 20.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                listOf(
-                    "all" to "Tümü",
-                    "epub" to "EPUB",
-                    "pdf" to "PDF",
-                    "favorite" to "Favoriler"
-                ).forEach { (tabId, label) ->
+                items(filterList) { (tabId, label) ->
                     val selected = activeTab == tabId
                     val isPdf = tabId == "pdf"
-                    val activeBg = if (isPdf) Color(0x1AEF4444) else CsReaderTheme.colors.accent
-                    val activeText = if (isPdf) Color(0xFFEF4444) else CsReaderTheme.colors.primary
-                    val activeBorder = if (isPdf) Color(0xFFEF4444) else CsReaderTheme.colors.primary
+                    val activeBg = if (isPdf) Color(0x1AEF4444) else CsReaderTheme.colors.primary.copy(alpha = 0.12f)
+                    val activeColor = if (isPdf) Color(0xFFEF4444) else CsReaderTheme.colors.primary
 
                     Box(
                         modifier = Modifier
-                            .padding(end = 8.dp)
                             .clip(RoundedCornerShape(20.dp))
-                            .background(if (selected) activeBg else Color.Transparent)
+                            .background(if (selected) activeBg else CsReaderTheme.colors.cardBg)
                             .border(
-                                1.5.dp,
-                                if (selected) activeBorder else Color.Transparent,
-                                RoundedCornerShape(20.dp)
+                                width = 1.dp,
+                                color = if (selected) activeColor else CsReaderTheme.colors.border,
+                                shape = RoundedCornerShape(20.dp)
                             )
                             .clickable { viewModel.setActiveTab(tabId) }
-                            .padding(vertical = 8.dp, horizontal = 16.dp)
+                            .padding(vertical = 7.dp, horizontal = 14.dp)
                     ) {
                         Text(
                             text = label,
-                            fontSize = 13.sp,
+                            fontSize = 12.sp,
                             fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium,
-                            color = if (selected) activeText else CsReaderTheme.colors.textMuted
+                            color = if (selected) activeColor else CsReaderTheme.colors.textMuted
                         )
                     }
                 }
             }
 
-            // Books List
+            // 4. Kitap Listesi / Raflar
             if (filteredBooks.isEmpty()) {
+                // Boş Durum (Empty State)
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(horizontal = 40.dp),
+                        .padding(horizontal = 32.dp),
                     contentAlignment = Alignment.Center
                 ) {
                     Column(
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
                     ) {
-                        Icon(
-                            imageVector = Icons.Default.Book,
-                            contentDescription = null,
-                            tint = CsReaderTheme.colors.border,
-                            modifier = Modifier.size(64.dp)
-                        )
-                        Spacer(modifier = Modifier.height(16.dp))
+                        Box(
+                            modifier = Modifier
+                                .size(88.dp)
+                                .clip(CircleShape)
+                                .background(CsReaderTheme.colors.cardBg)
+                                .border(1.dp, CsReaderTheme.colors.border, CircleShape),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.MenuBook,
+                                contentDescription = null,
+                                tint = CsReaderTheme.colors.primary.copy(alpha = 0.7f),
+                                modifier = Modifier.size(42.dp)
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.height(20.dp))
+
                         Text(
-                            text = "Kitap Bulunamadı",
-                            fontSize = 20.sp,
+                            text = if (searchQuery.isNotEmpty()) "Eser Bulunamadı" else "Kütüphaneniz Boş",
+                            fontSize = 19.sp,
                             fontWeight = FontWeight.Bold,
+                            fontFamily = FontFamily.Serif,
                             color = CsReaderTheme.colors.text
                         )
-                        Spacer(modifier = Modifier.height(8.dp))
+
+                        Spacer(modifier = Modifier.height(6.dp))
+
                         Text(
-                            text = if (searchQuery.isNotEmpty()) "Aramanızla eşleşen kitap bulunmamaktadır." else "Kütüphanenizde henüz kitap bulunmamaktadır.",
-                            fontSize = 14.sp,
+                            text = if (searchQuery.isNotEmpty())
+                                "\"$searchQuery\" kriterine uyan hiçbir eser bulunamadı."
+                            else
+                                "Cihazınızdaki EPUB ve PDF kitapları ekleyerek okumaya hemen başlayabilirsiniz.",
+                            fontSize = 13.sp,
                             color = CsReaderTheme.colors.textMuted,
-                            modifier = Modifier.padding(horizontal = 16.dp),
-                            lineHeight = 20.sp
+                            textAlign = TextAlign.Center,
+                            lineHeight = 19.sp
                         )
+
                         if (searchQuery.isEmpty()) {
                             Spacer(modifier = Modifier.height(24.dp))
+
                             Button(
                                 onClick = { filePickerLauncher.launch("*/*") },
                                 colors = ButtonDefaults.buttonColors(containerColor = CsReaderTheme.colors.primary),
-                                shape = RoundedCornerShape(24.dp),
-                                contentPadding = PaddingValues(horizontal = 28.dp, vertical = 12.dp)
+                                shape = RoundedCornerShape(22.dp),
+                                contentPadding = PaddingValues(horizontal = 24.dp, vertical = 12.dp)
                             ) {
-                                Text("Kitap Ekle", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 15.sp)
+                                Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(18.dp))
+                                Spacer(modifier = Modifier.width(6.dp))
+                                Text("Kitap Seç ve Ekle", fontWeight = FontWeight.Bold, fontSize = 14.sp)
                             }
-                            Spacer(modifier = Modifier.height(12.dp))
-                            Button(
-                                onClick = {
-                                    folderPickerLauncher.launch(null)
-                                },
-                                colors = ButtonDefaults.buttonColors(containerColor = CsReaderTheme.colors.border),
-                                shape = RoundedCornerShape(24.dp),
-                                contentPadding = PaddingValues(horizontal = 28.dp, vertical = 12.dp)
+
+                            Spacer(modifier = Modifier.height(10.dp))
+
+                            OutlinedButton(
+                                onClick = { folderPickerLauncher.launch(null) },
+                                shape = RoundedCornerShape(22.dp),
+                                colors = ButtonDefaults.outlinedButtonColors(contentColor = CsReaderTheme.colors.text),
+                                border = androidx.compose.foundation.BorderStroke(1.dp, CsReaderTheme.colors.border),
+                                contentPadding = PaddingValues(horizontal = 24.dp, vertical = 12.dp)
                             ) {
-                                Text(
-                                    text = if (scanning) "Taranıyor..." else "Klasör Seç ve Tara",
-                                    color = CsReaderTheme.colors.text,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 15.sp
-                                )
+                                Icon(Icons.Default.FolderOpen, contentDescription = null, modifier = Modifier.size(18.dp))
+                                Spacer(modifier = Modifier.width(6.dp))
+                                Text("Klasör Tara (Toplu)", fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
                             }
                         }
                     }
                 }
             } else {
-                LazyColumn(
-                    contentPadding = PaddingValues(start = 20.dp, end = 20.dp, bottom = 100.dp, top = 5.dp),
-                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                // Kitaplar Dolu
+                val showHero = heroBook != null && searchQuery.isEmpty() && activeTab == "all"
+
+                if (isGridView) {
+                    // 3D Raf Grid Görünümü (2 Kolon)
+                    LazyVerticalGrid(
+                        columns = GridCells.Fixed(2),
+                        contentPadding = PaddingValues(start = 18.dp, end = 18.dp, top = 6.dp, bottom = 125.dp),
+                        horizontalArrangement = Arrangement.spacedBy(14.dp),
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        if (showHero) {
+                            item(span = { GridItemSpan(2) }, key = "hero_spotlight") {
+                                heroBook?.let { hero ->
+                                    HeroContinueReadingCard(
+                                        book = hero,
+                                        onContinueReading = { onSelectBook(hero) },
+                                        modifier = Modifier.padding(bottom = 6.dp)
+                                    )
+                                }
+                            }
+                        }
+
+                        items(filteredBooks, key = { it.id }) { book ->
+                            BookShelfCard(
+                                book = book,
+                                onSelectBook = onSelectBook,
+                                onToggleFavorite = { viewModel.toggleFavorite(book) },
+                                onShowOptions = { selectedBookForOptions = book }
+                            )
+                        }
+                    }
+                } else {
+                    // Editoryal Liste Görünümü
+                    LazyColumn(
+                        contentPadding = PaddingValues(start = 18.dp, end = 18.dp, top = 6.dp, bottom = 125.dp),
+                        verticalArrangement = Arrangement.spacedBy(12.dp),
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        if (showHero) {
+                            item(key = "hero_spotlight") {
+                                heroBook?.let { hero ->
+                                    HeroContinueReadingCard(
+                                        book = hero,
+                                        onContinueReading = { onSelectBook(hero) },
+                                        modifier = Modifier.padding(bottom = 6.dp)
+                                    )
+                                }
+                            }
+                        }
+
+                        items(filteredBooks, key = { it.id }) { book ->
+                            BookListRowCard(
+                                book = book,
+                                onSelectBook = onSelectBook,
+                                onToggleFavorite = { viewModel.toggleFavorite(book) },
+                                onShowOptions = { selectedBookForOptions = book }
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
+        // 5. Yüzen Ada Navigasyon İskeleti (Floating Navigation Island)
+        FloatingNavigationIsland(
+            currentTab = NavigationTab.LIBRARY,
+            notesCount = notesCount,
+            onTabSelected = { tab ->
+                when (tab) {
+                    NavigationTab.LIBRARY -> { /* Zaten kütüphanedeyiz */ }
+                    NavigationTab.NOTES -> onNavigateToNotes()
+                    NavigationTab.SETTINGS -> onNavigateToSettings()
+                }
+            },
+            onAddNewBook = { filePickerLauncher.launch("*/*") },
+            onScanFolder = { folderPickerLauncher.launch(null) },
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .navigationBarsPadding()
+        )
+    }
+
+    // 6. Kitap Detay & Seçenekler Modalı (Artisanal Bottom Sheet)
+    selectedBookForOptions?.let { book ->
+        val progressPercent = (book.progress * 100).toInt().coerceIn(0, 100)
+        val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+
+        ModalBottomSheet(
+            onDismissRequest = { selectedBookForOptions = null },
+            sheetState = sheetState,
+            containerColor = CsReaderTheme.colors.cardBg,
+            shape = RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp),
+            dragHandle = {
+                Box(
+                    modifier = Modifier
+                        .padding(vertical = 12.dp)
+                        .width(36.dp)
+                        .height(4.dp)
+                        .clip(CircleShape)
+                        .background(CsReaderTheme.colors.border)
+                )
+            }
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp)
+                    .padding(bottom = 36.dp)
+            ) {
+                // Kitap Bilgi Başlığı
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    items(filteredBooks, key = { it.id }) { book ->
-                        BookCard(
-                            book = book,
-                            onSelectBook = onSelectBook,
-                            onToggleFavorite = { viewModel.toggleFavorite(book) },
-                            onDeleteBook = { showDeleteDialogForBook = book }
+                    ArtisanalBookCover(
+                        book = book,
+                        size = BookCoverSize.COMPACT
+                    )
+
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = book.title,
+                            fontSize = 17.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = FontFamily.Serif,
+                            color = CsReaderTheme.colors.text,
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis
+                        )
+
+                        Text(
+                            text = book.author,
+                            fontSize = 13.sp,
+                            color = CsReaderTheme.colors.textMuted,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.padding(top = 2.dp)
+                        )
+
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(6.dp),
+                            modifier = Modifier.padding(top = 6.dp)
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(4.dp))
+                                    .background(CsReaderTheme.colors.primary.copy(alpha = 0.12f))
+                                    .padding(horizontal = 6.dp, vertical = 2.dp)
+                            ) {
+                                Text(
+                                    text = book.type.uppercase(),
+                                    fontSize = 10.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = CsReaderTheme.colors.primary
+                                )
+                            }
+
+                            Text(
+                                text = "• %$progressPercent okundu",
+                                fontSize = 11.sp,
+                                color = CsReaderTheme.colors.textMuted
+                            )
+                        }
+                    }
+                }
+
+                HorizontalDivider(
+                    modifier = Modifier.padding(vertical = 16.dp),
+                    color = CsReaderTheme.colors.border
+                )
+
+                // Aksiyon Listesi
+                Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    // 1. Okumaya Başla / Kaldığın Yerden Oku
+                    ListItem(
+                        headlineContent = {
+                            Text(
+                                text = if (book.progress > 0f) "Kaldığın Yerden Oku" else "Okumaya Başla",
+                                fontWeight = FontWeight.SemiBold,
+                                color = CsReaderTheme.colors.text
+                            )
+                        },
+                        leadingContent = {
+                            Icon(
+                                Icons.AutoMirrored.Filled.MenuBook,
+                                contentDescription = null,
+                                tint = CsReaderTheme.colors.primary
+                            )
+                        },
+                        colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(12.dp))
+                            .clickable {
+                                selectedBookForOptions = null
+                                onSelectBook(book)
+                            }
+                    )
+
+                    // 2. Favorilere Ekle / Çıkar
+                    ListItem(
+                        headlineContent = {
+                            Text(
+                                text = if (book.favorite) "Favorilerden Kaldır" else "Favorilere Ekle",
+                                fontWeight = FontWeight.SemiBold,
+                                color = CsReaderTheme.colors.text
+                            )
+                        },
+                        leadingContent = {
+                            Icon(
+                                imageVector = if (book.favorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                                contentDescription = null,
+                                tint = if (book.favorite) Color(0xFFEF4444) else CsReaderTheme.colors.textMuted
+                            )
+                        },
+                        colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(12.dp))
+                            .clickable {
+                                viewModel.toggleFavorite(book)
+                                selectedBookForOptions = null
+                            }
+                    )
+
+                    // 3. Okuma İlerlemesini Sıfırla
+                    if (book.progress > 0f) {
+                        ListItem(
+                            headlineContent = {
+                                Text(
+                                    text = "İlerlemeyi Sıfırla",
+                                    fontWeight = FontWeight.SemiBold,
+                                    color = CsReaderTheme.colors.text
+                                )
+                            },
+                            leadingContent = {
+                                Icon(
+                                    Icons.Default.RestartAlt,
+                                    contentDescription = null,
+                                    tint = CsReaderTheme.colors.textMuted
+                                )
+                            },
+                            colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(12.dp))
+                                .clickable {
+                                    viewModel.resetProgress(book)
+                                    selectedBookForOptions = null
+                                    Toast.makeText(context, "Okuma ilerlemesi sıfırlandı", Toast.LENGTH_SHORT).show()
+                                }
                         )
                     }
+
+                    // 4. Kitabı Sil
+                    ListItem(
+                        headlineContent = {
+                            Text(
+                                text = "Kitaplıktan ve Cihazdan Sil",
+                                fontWeight = FontWeight.SemiBold,
+                                color = Color(0xFFEF4444)
+                            )
+                        },
+                        leadingContent = {
+                            Icon(
+                                Icons.Default.DeleteOutline,
+                                contentDescription = null,
+                                tint = Color(0xFFEF4444)
+                            )
+                        },
+                        colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(12.dp))
+                            .clickable {
+                                val target = book
+                                selectedBookForOptions = null
+                                showDeleteDialogForBook = target
+                            }
+                    )
                 }
             }
         }
     }
 
-    // Delete Confirmation Dialog
+    // 7. Silme Onay Penceresi (Delete Confirmation Dialog)
     showDeleteDialogForBook?.let { book ->
         AlertDialog(
             onDismissRequest = { showDeleteDialogForBook = null },
-            title = { Text("Kitabı Sil", fontWeight = FontWeight.Bold) },
-            text = { Text("\"${book.title}\" kitabını ve tüm notlarını silmek istediğinize emin misiniz?") },
+            title = {
+                Text(
+                    text = "Kitabı Sil",
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = FontFamily.Serif
+                )
+            },
+            text = {
+                Text(
+                    text = "\"${book.title}\" eseri kütüphanenizden ve cihazınızdan silinecektir. Bu işlem geri alınamaz."
+                )
+            },
             confirmButton = {
                 TextButton(
                     onClick = {
                         viewModel.deleteBook(context, book)
                         showDeleteDialogForBook = null
+                        Toast.makeText(context, "Kitap silindi", Toast.LENGTH_SHORT).show()
                     }
                 ) {
-                    Text("Sil", color = Color.Red, fontWeight = FontWeight.Bold)
+                    Text("Sil", color = Color(0xFFEF4444), fontWeight = FontWeight.Bold)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showDeleteDialogForBook = null }) {
-                    Text("İptal")
+                    Text("Vazgeç")
                 }
-            }
+            },
+            shape = RoundedCornerShape(20.dp),
+            containerColor = CsReaderTheme.colors.cardBg
         )
     }
 
+    // 8. Klasör Tarama İlerleme Penceresi
     if (scanning && scanProgressText.isNotEmpty()) {
         Dialog(onDismissRequest = {}) {
             Card(
-                shape = RoundedCornerShape(16.dp),
+                shape = RoundedCornerShape(24.dp),
                 colors = CardDefaults.cardColors(containerColor = CsReaderTheme.colors.cardBg),
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(16.dp),
+                border = androidx.compose.foundation.BorderStroke(1.dp, CsReaderTheme.colors.border)
             ) {
                 Column(
-                    modifier = Modifier.padding(24.dp),
+                    modifier = Modifier.padding(28.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    CircularProgressIndicator(color = CsReaderTheme.colors.primary)
-                    Spacer(modifier = Modifier.height(16.dp))
+                    CircularProgressIndicator(color = CsReaderTheme.colors.primary, strokeWidth = 3.dp)
+                    Spacer(modifier = Modifier.height(18.dp))
                     Text(
-                        text = "Klasör Taranıyor",
+                        text = "Kütüphane Taranıyor",
                         fontWeight = FontWeight.Bold,
+                        fontFamily = FontFamily.Serif,
                         color = CsReaderTheme.colors.text,
-                        fontSize = 16.sp
+                        fontSize = 17.sp
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = scanProgressText,
                         color = CsReaderTheme.colors.textMuted,
-                        fontSize = 13.sp,
-                        textAlign = TextAlign.Center
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center,
+                        lineHeight = 18.sp
                     )
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun BookCard(
-    book: BookEntity,
-    onSelectBook: (BookEntity) -> Unit,
-    onToggleFavorite: () -> Unit,
-    onDeleteBook: () -> Unit
-) {
-    val progressPercent = (book.progress * 100).toInt().coerceIn(0, 100)
-    val isEpub = book.type == "epub"
-
-    Card(
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = CsReaderTheme.colors.cardBg),
-        modifier = Modifier
-            .fillMaxWidth()
-            .border(1.dp, CsReaderTheme.colors.border, RoundedCornerShape(16.dp))
-            .clickable { onSelectBook(book) }
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(130.dp)
-        ) {
-            // Book cover / icon area
-            val iconBgColor = if (isEpub) CsReaderTheme.colors.accent else Color(0x1AEF4444)
-            val iconColor = if (isEpub) CsReaderTheme.colors.primary else Color(0xFFEF4444)
-
-            Box(
-                modifier = Modifier
-                    .width(100.dp)
-                    .fillMaxHeight()
-                    .background(iconBgColor),
-                contentAlignment = Alignment.Center
-            ) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Icon(
-                        imageVector = if (isEpub) Icons.Default.Book else Icons.Default.Description,
-                        contentDescription = null,
-                        tint = iconColor,
-                        modifier = Modifier.size(44.dp)
-                    )
-                }
-                Text(
-                    text = book.type.uppercase(),
-                    fontSize = 10.sp,
-                    fontWeight = FontWeight.Black,
-                    color = CsReaderTheme.colors.textMuted,
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .padding(bottom = 8.dp)
-                )
-            }
-
-            // Book details
-            Column(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .weight(1f)
-                    .padding(14.dp),
-                verticalArrangement = Arrangement.SpaceBetween
-            ) {
-                Column {
-                    Text(
-                        text = book.title,
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = CsReaderTheme.colors.text,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                    Text(
-                        text = book.author,
-                        fontSize = 13.sp,
-                        color = CsReaderTheme.colors.textMuted,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        modifier = Modifier.padding(top = 2.dp)
-                    )
-                }
-
-                // Progress Bar
-                Column(modifier = Modifier.padding(top = 8.dp)) {
-                    LinearProgressIndicator(
-                        progress = book.progress.coerceIn(0f, 1f),
-                        color = iconColor,
-                        trackColor = CsReaderTheme.colors.border,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(5.dp)
-                            .clip(RoundedCornerShape(3.dp))
-                    )
-                    Text(
-                        text = "%$progressPercent tamamlandı",
-                        fontSize = 11.sp,
-                        color = CsReaderTheme.colors.textMuted,
-                        modifier = Modifier.padding(top = 4.dp)
-                    )
-                }
-
-                // Action Row
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.End,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    IconButton(
-                        onClick = onToggleFavorite,
-                        modifier = Modifier.size(32.dp)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Star,
-                            contentDescription = "Favori",
-                            tint = if (book.favorite) Color(0xFFF59E0B) else CsReaderTheme.colors.textMuted
-                        )
-                    }
-
-                    Spacer(modifier = Modifier.width(12.dp))
-
-                    IconButton(
-                        onClick = onDeleteBook,
-                        modifier = Modifier.size(32.dp)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Delete,
-                            contentDescription = "Sil",
-                            tint = Color(0xFFEF4444)
-                        )
-                    }
                 }
             }
         }

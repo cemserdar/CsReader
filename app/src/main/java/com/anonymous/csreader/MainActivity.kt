@@ -58,6 +58,7 @@ class MainActivity : FragmentActivity() {
                     composable("library") {
                         LibraryScreen(
                             bookDao = database.bookDao(),
+                            highlightDao = database.highlightDao(),
                             onSelectBook = { book ->
                                 navController.navigate("reader/${book.id}")
                             },
